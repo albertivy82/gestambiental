@@ -1,11 +1,16 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -40,8 +45,24 @@ public class Usuario implements Serializable {
 	@NotBlank
 	private String cpf;
 	
+	@NotBlank
+	private String senha;
+	
 	@JsonIgnore
 	@ManyToMany(mappedBy="usuario")
 	private List<Localidade> localidade;
+	
+	@ManyToMany
+	@JoinTable(
+			name="usuario_grupo",
+			joinColumns = @JoinColumn(name="usuario"),
+			inverseJoinColumns = @JoinColumn(name ="grupo")
+	)
+	private Set<Grupo> grupo = new HashSet<>();
+	
+	
+	public boolean isNovo() {
+		return getId() == null;
+	}
 
 }

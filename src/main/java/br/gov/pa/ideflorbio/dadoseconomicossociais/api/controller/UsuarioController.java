@@ -18,14 +18,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.SenhaInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.UsuarioInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Usuario;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.UsuarioService;
 import io.swagger.annotations.Api;
 
-@Api(tags = "Entervistador")
+@Api(tags = "Usuario")
 @RestController
-@RequestMapping("/entrevistadores")
+@RequestMapping("/usuario")
 public class UsuarioController {
 	
 	
@@ -53,6 +54,13 @@ public class UsuarioController {
 		return mapper.map(usuarioCadastro.inserir(entrevistadorAtual), UsuarioDTO.class);
 		
 	}
+	
+	@PutMapping("/{id}")
+	public void alterarSenha(@PathVariable Long id, 
+		@RequestBody @Valid SenhaInput senha) {
+		
+		usuarioCadastro.AlterarSenha(id, senha.getSenhaAtual(), senha.getNovaSenha());
+	}
 
 	
 	@GetMapping
@@ -68,8 +76,23 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/buscapornome/{nome}")
-	public UsuarioDTO Buscar(@PathVariable String nome) {
+	public UsuarioDTO BuscarPorNome(@PathVariable String nome) {
 		return usuarioCadastro.buscarPorNome(nome);
+	}
+	
+	@GetMapping("/buscapormatricula/{matricula}")
+	public UsuarioDTO BuscarPorMatricula(@PathVariable String matricula) {
+		return usuarioCadastro.buscarPorMatricula(matricula);
+	}
+	
+	@PutMapping("/{idUsuario}/grupo/{idGrupo}")
+	public void VincularUsuarioGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
+		usuarioCadastro.VinculaGrupo(idUsuario, idGrupo);		
+	}
+	
+	@DeleteMapping("/{idUsuario}/grupo/{idGrupo}")
+	public void DesvincularUsuarioGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
+		usuarioCadastro.DesvinculaGrupo(idUsuario, idGrupo);	
 	}
 	
 		

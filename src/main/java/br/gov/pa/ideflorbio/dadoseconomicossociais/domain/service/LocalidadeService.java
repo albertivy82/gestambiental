@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.LocalidadeDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.LocalidadeInput;
@@ -28,7 +29,7 @@ public class LocalidadeService {
 	LocalidadesRepository localidades;
 	
 	@Autowired
-	UsuariosRepository entrevistadores;
+	UsuariosRepository usuarios;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -72,42 +73,43 @@ public class LocalidadeService {
 	
 	
 	
-	public List<UsuarioDTO> listarEntrevistadores(Long id){
+	public List<UsuarioDTO> listarUsuarios(Long id){
 		
 		Localidade localidade = localidades.findById(id)
 				.orElseThrow(()-> new LocalidadeNaoEncontradaException(id));
 		
-		List<UsuarioDTO> listaDeEntrevistadores = localidade.getUsuario()
+		List<UsuarioDTO> listaDeUsuarios = localidade.getUsuario()
 				.stream().map(e->mapper.map(e, UsuarioDTO.class)).toList();
 		
-		return listaDeEntrevistadores;
+		return listaDeUsuarios;
 	}
 	
 	@Transactional
-	public void vincularEntrevistador(Long idLocalidade, Long idEntrevistador) {
+	public void vincularUsuario(Long idLocalidade, Long idEntrevistador) {
 		
 		Localidade localidade = localidades.findById(idLocalidade)
 		.orElseThrow(()-> new LocalidadeNaoEncontradaException(idLocalidade));
 		
-		Usuario entrevistador = entrevistadores.findById(idEntrevistador)
+		Usuario usuario = usuarios.findById(idEntrevistador)
 				.orElseThrow(()-> new UsuarioNaoEncontradoException(idEntrevistador));
 		
-		localidade.getUsuario().add(entrevistador);
+		localidade.getUsuario().add(usuario);
 			
 	}
 	
 	@Transactional
-	public void desvincularEntrevistador(Long idLocalidade, Long idEntrevistador) {
+	public void desvincularUsuario(Long idLocalidade, Long idUsuario) {
 		
 		Localidade localidade = localidades.findById(idLocalidade)
 		.orElseThrow(()-> new LocalidadeNaoEncontradaException(idLocalidade));
 		
-		Usuario entrevistador = entrevistadores.findById(idEntrevistador)
-				.orElseThrow(()-> new UsuarioNaoEncontradoException(idEntrevistador));
+		Usuario usuario = usuarios.findById(idUsuario)
+				.orElseThrow(()-> new UsuarioNaoEncontradoException(idUsuario));
 		
-		localidade.getUsuario().remove(entrevistador);
+		localidade.getUsuario().remove(usuario);
 			
 	}
+	
 		
 		
 	@Transactional

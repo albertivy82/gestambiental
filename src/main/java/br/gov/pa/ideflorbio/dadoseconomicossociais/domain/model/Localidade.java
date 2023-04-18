@@ -15,13 +15,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Municipio;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,9 +52,9 @@ public class Localidade implements Serializable{
 	@NotBlank
 	private String longitude;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao postoDeSaude;
+	@JsonIgnore
+	@OneToOne(mappedBy = "localidade")
+	private PostoDeSaude postoDeSaude;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="localidade")
@@ -67,10 +67,8 @@ public class Localidade implements Serializable{
 	@ManyToMany
 	@JoinTable(
 	        name="localidade_usuario",
-	        joinColumns=
-	            @JoinColumn(name="localidade"),
-	        inverseJoinColumns=
-	            @JoinColumn(name="usuario")
+	        joinColumns=@JoinColumn(name="localidade"),
+	        inverseJoinColumns=@JoinColumn(name="usuario")
 	    )
 	private Set<Usuario> usuario = new HashSet<>();
 	

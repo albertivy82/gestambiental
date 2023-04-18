@@ -15,9 +15,9 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.LocalidadeServ
 import io.swagger.annotations.Api;
 
 
-@Api(tags = "LocalidadeXEntrevistador")
+@Api(tags = "LocalidadeXUsuario")
 @RestController
-@RequestMapping("/localidade/{id}/entrevistadores")
+@RequestMapping("/localidade/{id}/usuario")
 public class LocalidadeEntrevistadorController {
 
 	@Autowired
@@ -26,17 +26,17 @@ public class LocalidadeEntrevistadorController {
 	@GetMapping
 	public List<UsuarioDTO> listar(@PathVariable Long id){
 		
-		return localidadesCadastro.listarEntrevistadores(id);
+		return localidadesCadastro.listarUsuarios(id);
 	}
 	
 	@PutMapping("/{idEntrevistador}")
-	public void associarLocalidadeEntrevistador(@PathVariable Long id, @PathVariable Long idEntrevistador) {
-		localidadesCadastro.vincularEntrevistador(id, idEntrevistador);
+	public void associarLocalidadeEntrevistador(@PathVariable Long id, @PathVariable Long idUsuario) {
+		localidadesCadastro.vincularUsuario(id, idUsuario);
 	}
 	
 	@DeleteMapping("/{idEntrevistador}")
-	public void desassociarLocalidadeEntrevistador(@PathVariable Long id, @PathVariable Long idEntrevistador) {
-		localidadesCadastro.desvincularEntrevistador(id, idEntrevistador);
+	public void desassociarLocalidadeEntrevistador(@PathVariable Long id, @PathVariable Long idUsuario) {
+		localidadesCadastro.desvincularUsuario(id, idUsuario);
 	}
 	
 	

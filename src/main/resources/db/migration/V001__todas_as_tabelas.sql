@@ -4,7 +4,6 @@ CREATE TABLE `localidade` (
   `latitude` varchar(255) NOT NULL,
   `longitude` varchar(255) NOT NULL,
   `municipio` varchar(100) NOT NULL,
-  `posto_de_saude` varchar(5) NOT NULL,
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
@@ -18,18 +17,29 @@ CREATE TABLE `escola` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+CREATE TABLE `posto_de_saude` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `ambulatorial` varchar(5) NOT NULL,
+  `emergencia` varchar(5) NOT NULL,
+  `medicos_por_turno` bigint(5) NOT NULL,
+  `localidade` bigint(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
 CREATE TABLE `usuario` (
   `id` bigint(30) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `matricula` varchar(100) NOT NULL,
-  `e-mail` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `cpf` varchar(100) NOT NULL,
+  `senha` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE `localidade_entrevistador` (
+CREATE TABLE `localidade_usuario` (
   `localidade` bigint(30) NOT NULL,
-  `entrevistador` bigint(30) NOT NULL
+  `usuario` bigint(30) NOT NULL
  ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 

@@ -2,18 +2,24 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.GrupoNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.UsuarioNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Grupo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Usuario;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.GruposRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.UsuariosRepository;
 
 @Service
@@ -26,10 +32,39 @@ public class UsuarioService {
 	UsuariosRepository usuarios;
 	
 	@Autowired
+	GruposRepository grupos;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	ModelMapper mapper;
 	
 	@Transactional
 	public Usuario inserir(Usuario usuario) {
+		
+		usuarios.detach(usuario);
+		
+		Optional<Usuario> checkaEmail = usuarios.findByEmail(usuario.getEmail());
+		Optional<Usuario> checkaCpf = usuarios.findByCpf(usuario.getCpf());
+		Optional<Usuario> checkaMatricula = usuarios.findByMatricula(usuario.getMatricula());
+		
+		if(checkaEmail.isPresent()&&!checkaEmail.get().equals(usuario)){
+			throw new NegocioException(String.format("O e-mail: %s não está disponível", usuario.getEmail()));
+		}
+		
+		if(checkaCpf.isPresent()&&!checkaCpf.get().equals(usuario)){
+			throw new NegocioException(String.format("O CPF: %s não está disponível", usuario.getCpf()));
+		}
+		
+		if(checkaMatricula.isPresent()&&!checkaMatricula.get().equals(usuario)){
+			throw new NegocioException(String.format("O matricula: %s não está disponível", usuario.getMatricula()));
+		}
+		
+		if(usuario.isNovo()) {
+			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+		}
+		
 		
 		return usuarios.save(usuario);	
 	}
@@ -64,6 +99,47 @@ public class UsuarioService {
 		
 		return mapper.map(usuario, UsuarioDTO.class);
 	}
+	
+	public UsuarioDTO buscarPorMatricula(String matricula) {
+		Usuario usuario = usuarios.findByMatricula(matricula)
+				.orElseThrow(()->new UsuarioNaoEncontradoException(matricula));
+		
+		return mapper.map(usuario, UsuarioDTO.class);
+	}
+	
+	
+	public void VinculaGrupo(Long usuarioId, Long grupoId) {
+		
+		Usuario usuario =  usuarios.findById(usuarioId)
+				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));
+		
+		Grupo grupo =  grupos.findById(grupoId)
+				.orElseThrow(()->new GrupoNaoEncontradoException(usuarioId));
+		
+		usuario.getGrupo().add(grupo);
+	}
+	
+   public void DesvinculaGrupo(Long usuarioId, Long grupoId) {
+		
+		Usuario usuario =  usuarios.findById(usuarioId)
+				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));
+		
+		Grupo grupo =  grupos.findById(grupoId)
+				.orElseThrow(()->new GrupoNaoEncontradoException(usuarioId));
+		
+		usuario.getGrupo().remove(grupo);
+	}
+   
+   public void AlterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
+	   Usuario usuario = usuarios.findById(usuarioId)
+				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));
+	   
+	   if(!passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
+		   throw new NegocioException("A senha informada não confere");
+	   }
+	   
+	   usuario.setSenha(passwordEncoder.encode(novaSenha));
+   }
 	
 	@Transactional
 	public void apagar(long id) {

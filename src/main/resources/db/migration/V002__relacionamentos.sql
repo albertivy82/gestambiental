@@ -3,7 +3,7 @@ ALTER TABLE `escola` ADD CONSTRAINT `fk_localidade_escola` FOREIGN KEY ( `locali
 
 
 ALTER TABLE `localidade_usuario` ADD CONSTRAINT `fk_usuario_localidade_usuario` FOREIGN KEY ( `usuario` ) REFERENCES `usuario` ( `id` );
-ALTER TABLE `localidade_usuario` ADD CONSTRAINT `fk_usuario_localidade_usuario` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
+ALTER TABLE `localidade_usuario` ADD CONSTRAINT `fk_localidade__usuario_localidade` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
 
 
 
@@ -32,7 +32,7 @@ ALTER TABLE `morador` ADD CONSTRAINT `fk_residencia_morador` FOREIGN KEY ( `resi
 ALTER TABLE `indicado_consulta_publica` ADD CONSTRAINT `fk_entrevistado_indicado_consulta_publica` FOREIGN KEY ( `entrevistado`) REFERENCES `entrevistado` ( `id` );
 
 
-
+ALTER TABLE `posto_de_saude` ADD CONSTRAINT `fk_localidade_posto_de_saude` FOREIGN KEY ( `localidade`) REFERENCES `localidade` ( `id` );
 
 
 ALTER TABLE `morador_doenca` ADD CONSTRAINT `fk_morador_morador_doenca` FOREIGN KEY ( `morador` ) REFERENCES `morador` ( `id` );
