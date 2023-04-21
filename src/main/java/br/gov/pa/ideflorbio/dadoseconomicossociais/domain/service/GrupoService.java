@@ -10,9 +10,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.GrupoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.GrupoNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.PermissaoNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.UsuarioNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Grupo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Permissao;
@@ -20,7 +21,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.GruposRepos
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.PermissoesRepository;
 
 @Service
-public class GupoService {
+public class GrupoService {
 	
 	private static final String ENTIDADE_EM_USO = "O grupo de id %d não pode ser apagado, pois está "
 			+ "sendo utilizado em um relacionamento";
@@ -58,26 +59,29 @@ public class GupoService {
 	}
 	
 	
-	public UsuarioDTO buscaPorId(Long id){
+	public GrupoDTO buscaPorId(Long id){
 		Grupo grupo = grupos
 				.findById(id).orElseThrow(()->new UsuarioNaoEncontradoException(id));
-		return mapper.map(grupo, UsuarioDTO.class);
+		return mapper.map(grupo, GrupoDTO.class);
 	}
 	
-	
-	public void VinculaGrupo(Long grupoId, Long permissaoId) {
+	@Transactional
+	public void VinculaPermissao(Long grupoId, Long permissaoId) {
 		
 				
 		Grupo grupo =  grupos.findById(grupoId)
 				.orElseThrow(()->new GrupoNaoEncontradoException(grupoId));
 		
 		Permissao permissao =  permissoes.findById(permissaoId)
-				.orElseThrow(()->new UsuarioNaoEncontradoException(permissaoId));
+				.orElseThrow(()->new PermissaoNaoEncontradaException(permissaoId));
 		
-		grupo.getPermissao().add(permissao);
+		System.out.println(permissao.getNome() + permissao.getId());
+		grupo.getPermissoes().add(permissao);
+		
 	}
 	
-   public void DesvinculaGrupo(Long grupoId, Long permissaoId) {
+	@Transactional
+   public void DesvinculaPermissao(Long grupoId, Long permissaoId) {
 		
 	   Grupo grupo =  grupos.findById(grupoId)
 				.orElseThrow(()->new GrupoNaoEncontradoException(grupoId));
@@ -85,7 +89,7 @@ public class GupoService {
 		Permissao permissao =  permissoes.findById(permissaoId)
 				.orElseThrow(()->new UsuarioNaoEncontradoException(permissaoId));
 		
-		grupo.getPermissao().remove(permissao);
+		grupo.getPermissoes().remove(permissao);
 	}
    
    

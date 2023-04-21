@@ -5,6 +5,11 @@ ALTER TABLE `escola` ADD CONSTRAINT `fk_localidade_escola` FOREIGN KEY ( `locali
 ALTER TABLE `localidade_usuario` ADD CONSTRAINT `fk_usuario_localidade_usuario` FOREIGN KEY ( `usuario` ) REFERENCES `usuario` ( `id` );
 ALTER TABLE `localidade_usuario` ADD CONSTRAINT `fk_localidade__usuario_localidade` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
 
+ALTER TABLE `usuario_grupo` ADD CONSTRAINT `fk_grupo_usuario_grupo` FOREIGN KEY ( `grupo` ) REFERENCES `grupo` ( `id` );
+ALTER TABLE `usuario_grupo` ADD CONSTRAINT `fk_usuario_grupo_usuario` FOREIGN KEY ( `usuario` ) REFERENCES `usuario` ( `id` );
+
+ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_permissao_grupo_permissao` FOREIGN KEY ( `permissao` ) REFERENCES `permissao` ( `id` );
+ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_grupo_permissao_grupo` FOREIGN KEY ( `grupo` ) REFERENCES `grupo` ( `id` );
 
 
 ALTER TABLE `residencia` ADD CONSTRAINT `fk_localidade_residencia` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );

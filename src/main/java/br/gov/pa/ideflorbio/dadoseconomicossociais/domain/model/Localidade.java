@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -52,9 +51,10 @@ public class Localidade implements Serializable{
 	@NotBlank
 	private String longitude;
 	
+	/*
 	@JsonIgnore
 	@OneToOne(mappedBy = "localidade")
-	private PostoDeSaude postoDeSaude;
+	private PostoDeSaude postoDeSaude;*/
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="localidade")

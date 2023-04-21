@@ -55,7 +55,7 @@ public class UsuarioController {
 		
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("alterar-senha/{id}")
 	public void alterarSenha(@PathVariable Long id, 
 		@RequestBody @Valid SenhaInput senha) {
 		

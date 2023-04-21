@@ -43,7 +43,7 @@ public class UsuarioService {
 	@Transactional
 	public Usuario inserir(Usuario usuario) {
 		
-		usuarios.detach(usuario);
+		//usuarios.detach(usuario);
 		
 		Optional<Usuario> checkaEmail = usuarios.findByEmail(usuario.getEmail());
 		Optional<Usuario> checkaCpf = usuarios.findByCpf(usuario.getCpf());
@@ -73,9 +73,9 @@ public class UsuarioService {
 	@Transactional
 	public Usuario buscarEntidade(Long id) {
 		
-		Usuario entrevistadorAtual = usuarios
+		Usuario usuarioAtual = usuarios
 				.findById(id).orElseThrow(()->new UsuarioNaoEncontradoException(id));
-		return entrevistadorAtual;
+		return usuarioAtual;
 		
 	}
 	
@@ -107,7 +107,7 @@ public class UsuarioService {
 		return mapper.map(usuario, UsuarioDTO.class);
 	}
 	
-	
+	@Transactional
 	public void VinculaGrupo(Long usuarioId, Long grupoId) {
 		
 		Usuario usuario =  usuarios.findById(usuarioId)
@@ -119,6 +119,7 @@ public class UsuarioService {
 		usuario.getGrupo().add(grupo);
 	}
 	
+	@Transactional	
    public void DesvinculaGrupo(Long usuarioId, Long grupoId) {
 		
 		Usuario usuario =  usuarios.findById(usuarioId)

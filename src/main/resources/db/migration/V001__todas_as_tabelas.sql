@@ -33,9 +33,32 @@ CREATE TABLE `usuario` (
   `matricula` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `cpf` varchar(100) NOT NULL,
-  `senha` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `grupo` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `permissao` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE `usuario_grupo` (
+  `usuario` bigint(30) NOT NULL,
+  `grupo` bigint(30) NOT NULL
+ ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+ 
+ CREATE TABLE `grupo_permissao` (
+  `grupo` bigint(30) NOT NULL,
+  `permissao` bigint(30) NOT NULL,
+  primary key (grupo, permissao)
+ )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `localidade_usuario` (
   `localidade` bigint(30) NOT NULL,

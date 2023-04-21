@@ -27,7 +27,7 @@ public class LocalidadeInput {
 	private String longitude;
 	
 	
-	//private List<Usuario> entrevistador;
+	
 	
 	
 }

@@ -29,12 +29,12 @@ public class LocalidadeEntrevistadorController {
 		return localidadesCadastro.listarUsuarios(id);
 	}
 	
-	@PutMapping("/{idEntrevistador}")
+	@PutMapping("/{idUsuario}")
 	public void associarLocalidadeEntrevistador(@PathVariable Long id, @PathVariable Long idUsuario) {
 		localidadesCadastro.vincularUsuario(id, idUsuario);
 	}
 	
-	@DeleteMapping("/{idEntrevistador}")
+	@DeleteMapping("/{idUsuario}")
 	public void desassociarLocalidadeEntrevistador(@PathVariable Long id, @PathVariable Long idUsuario) {
 		localidadesCadastro.desvincularUsuario(id, idUsuario);
 	}
