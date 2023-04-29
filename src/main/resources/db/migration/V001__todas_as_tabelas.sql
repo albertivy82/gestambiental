@@ -21,7 +21,7 @@ CREATE TABLE `posto_de_saude` (
   `id` bigint(30) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `ambulatorial` varchar(5) NOT NULL,
-  `emergencia` varchar(5) NOT NULL,
+  `urgencia_emergencia` varchar(5) NOT NULL,
   `medicos_por_turno` bigint(5) NOT NULL,
   `localidade` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
@@ -51,7 +51,8 @@ CREATE TABLE `permissao` (
 
 CREATE TABLE `usuario_grupo` (
   `usuario` bigint(30) NOT NULL,
-  `grupo` bigint(30) NOT NULL
+  `grupo` bigint(30) NOT NULL,
+  PRIMARY KEY (`usuario`, `grupo`)
  ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
  
  CREATE TABLE `grupo_permissao` (

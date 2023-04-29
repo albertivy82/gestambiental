@@ -24,10 +24,11 @@ public class Permissao implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
 	
 	@NotBlank
 	private String nome;
 	
-		
+			
 }

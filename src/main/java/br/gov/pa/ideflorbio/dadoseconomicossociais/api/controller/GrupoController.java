@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.GrupoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.GrupoInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Grupo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.GrupoService;
 import io.swagger.annotations.Api;
@@ -35,6 +36,8 @@ public class GrupoController {
 	@Autowired
 	ModelMapper mapper;
 	
+	
+	@CheckSecurity.Usuario.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public GrupoDTO adicionar(@RequestBody @Valid GrupoInput grupoInput) {
@@ -44,6 +47,7 @@ public class GrupoController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("/{id}")
 	public GrupoDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid GrupoInput grupoInput) {
@@ -54,6 +58,7 @@ public class GrupoController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping
 	public List<GrupoDTO> listar(){
 		return grupoCadastro
@@ -61,12 +66,13 @@ public class GrupoController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping("/buscaporid/{id}")
 	public GrupoDTO Buscar(@PathVariable Long id) {
 		return grupoCadastro.buscaPorId(id);
 	}
 	
-		
+	@CheckSecurity.Usuario.PodeEditar
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

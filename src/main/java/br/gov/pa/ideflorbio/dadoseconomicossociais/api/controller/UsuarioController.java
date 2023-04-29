@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.SenhaInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.UsuarioInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Usuario;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.UsuarioService;
 import io.swagger.annotations.Api;
@@ -36,6 +37,7 @@ public class UsuarioController {
 	@Autowired
 	ModelMapper mapper;
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public UsuarioDTO adicionar(@RequestBody @Valid UsuarioInput usuarioInput) {
@@ -45,6 +47,7 @@ public class UsuarioController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("/{id}")
 	public UsuarioDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid UsuarioInput usuarioInput) {
@@ -55,6 +58,7 @@ public class UsuarioController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("alterar-senha/{id}")
 	public void alterarSenha(@PathVariable Long id, 
 		@RequestBody @Valid SenhaInput senha) {
@@ -62,7 +66,7 @@ public class UsuarioController {
 		usuarioCadastro.AlterarSenha(id, senha.getSenhaAtual(), senha.getNovaSenha());
 	}
 
-	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping
 	public List<UsuarioDTO> listar(){
 		return usuarioCadastro
@@ -70,32 +74,37 @@ public class UsuarioController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping("/buscaporid/{id}")
 	public UsuarioDTO Buscar(@PathVariable Long id) {
 		return usuarioCadastro.buscaPorId(id);
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping("/buscapornome/{nome}")
 	public UsuarioDTO BuscarPorNome(@PathVariable String nome) {
 		return usuarioCadastro.buscarPorNome(nome);
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping("/buscapormatricula/{matricula}")
 	public UsuarioDTO BuscarPorMatricula(@PathVariable String matricula) {
 		return usuarioCadastro.buscarPorMatricula(matricula);
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("/{idUsuario}/grupo/{idGrupo}")
 	public void VincularUsuarioGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
 		usuarioCadastro.VinculaGrupo(idUsuario, idGrupo);		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@DeleteMapping("/{idUsuario}/grupo/{idGrupo}")
 	public void DesvincularUsuarioGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
 		usuarioCadastro.DesvinculaGrupo(idUsuario, idGrupo);	
 	}
 	
-		
+	@CheckSecurity.Usuario.PodeEditar
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

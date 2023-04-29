@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.PermissaoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.PermissaoInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Permissao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.PermissaoService;
 import io.swagger.annotations.Api;
@@ -35,6 +36,7 @@ public class PermissaoController {
 	@Autowired
 	ModelMapper mapper;
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public PermissaoDTO adicionar(@RequestBody @Valid PermissaoInput permissaoInput) {
@@ -44,6 +46,7 @@ public class PermissaoController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("/{id}")
 	public PermissaoDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid PermissaoInput permissaoInput) {
@@ -54,6 +57,7 @@ public class PermissaoController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping
 	public List<PermissaoDTO> listar(){
 		return permissaoCadastro
@@ -61,12 +65,13 @@ public class PermissaoController {
 		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping("/buscaporid/{id}")
 	public PermissaoDTO Buscar(@PathVariable Long id) {
 		return permissaoCadastro.buscaPorId(id);
 	}
 	
-		
+	@CheckSecurity.Usuario.PodeEditar
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

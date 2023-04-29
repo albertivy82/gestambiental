@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.LocalidadeDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.LocalidadeInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.LocalidadeService;
 import io.swagger.annotations.Api;
 
@@ -35,23 +36,28 @@ public class LocalidadeController {
 	@Autowired
 	ModelMapper mapper;
 	
+	
+	@CheckSecurity.Localidade.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public LocalidadeDTO adicionar(@RequestBody @Valid LocalidadeInput localidadeInput) {
 		return localidadeCadastro.inserir(localidadeInput);
 	}
 	
+	@CheckSecurity.Localidade.PodeConsultar
 	@GetMapping
 	public List<LocalidadeDTO> listar(){
 		return localidadeCadastro
 				.listarTodos().stream().map(t->mapper.map(t, LocalidadeDTO.class)).toList();
 	}
 	
+	@CheckSecurity.Localidade.PodeConsultar
 	@GetMapping("/{id}")
 	public LocalidadeDTO Buscar(@PathVariable Long id) {
 		return localidadeCadastro.localizarEntidade(id);
 	}
 	
+	@CheckSecurity.Localidade.PodeEditar
 	@PutMapping("/{id}")
 	public LocalidadeDTO atualizar(@PathVariable Long id, 
 			@RequestBody @Valid LocalidadeInput localidadeInput) {
@@ -59,6 +65,8 @@ public class LocalidadeController {
 		return localidadeCadastro.atualizar(id, localidadeInput);
 	}
 	
+	
+	@CheckSecurity.Localidade.PodeEditar
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

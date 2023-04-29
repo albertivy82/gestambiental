@@ -24,7 +24,7 @@ public class UsuarioInput {
 	private String cpf;
 	
 	@NotBlank
-	private String grupo;
+	private String senha;
 	
 	
 }

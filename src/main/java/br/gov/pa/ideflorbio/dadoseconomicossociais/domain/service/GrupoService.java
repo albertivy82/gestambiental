@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.GrupoDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.PermissaoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.GrupoNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.PermissaoNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.UsuarioNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Grupo;
@@ -63,6 +65,17 @@ public class GrupoService {
 		Grupo grupo = grupos
 				.findById(id).orElseThrow(()->new UsuarioNaoEncontradoException(id));
 		return mapper.map(grupo, GrupoDTO.class);
+	}
+	
+	public List<PermissaoDTO> listaPermissoes(Long id){
+		
+		Grupo grupo = grupos.findById(id)
+				.orElseThrow(()-> new LocalidadeNaoEncontradaException(id));
+		
+		List<PermissaoDTO> listaDePermissoes = grupo.getPermissoes()
+				.stream().map(e->mapper.map(e, PermissaoDTO.class)).toList();
+		
+		return listaDePermissoes;
 	}
 	
 	@Transactional

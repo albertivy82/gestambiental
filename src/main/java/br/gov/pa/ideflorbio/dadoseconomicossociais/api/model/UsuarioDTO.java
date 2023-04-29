@@ -20,7 +20,7 @@ public class UsuarioDTO {
 	
 	private List<Localidade> localidadeVinculadas;
 	
-	private List<GrupoDTO> gupos;
+	private List<GrupoDTO> grupos;
 
 
 }

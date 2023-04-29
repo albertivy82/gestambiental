@@ -26,6 +26,7 @@ public class Grupo implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
 	
 	@NotBlank
@@ -34,8 +35,8 @@ public class Grupo implements Serializable{
 	@ManyToMany
 	@JoinTable(
 			name="grupo_permissao",
-			joinColumns = @JoinColumn(name="grupo"),
-			inverseJoinColumns = @JoinColumn(name="permissao")
+			joinColumns=@JoinColumn(name="grupo"),
+			inverseJoinColumns=@JoinColumn(name="permissao")
 			
 	)
 	private Set<Permissao> permissoes = new HashSet<>();

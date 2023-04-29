@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.GrupoDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.PermissaoDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.GrupoService;
 
 
@@ -24,20 +25,21 @@ public class GrupoPermissaoController {
 	@Autowired
 	GrupoService grupoCadastro;
 
+	@CheckSecurity.Usuario.PodeEditar
 	@GetMapping
-	public List<GrupoDTO> listar(@PathVariable Long id){
+	public List<PermissaoDTO> listar(@PathVariable Long id){
 		
-		//return localidadesCadastro.listarUsuarios(id);
+		return grupoCadastro.listaPermissoes(id);
 		
-		return null;
 	}
 	
-	
+	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("/{idPermissao}")
 	public void VincularGrupoPermissao(@PathVariable Long id, @PathVariable Long idPermissao) {
 		grupoCadastro.VinculaPermissao(id, idPermissao);		
 	}
 	
+	@CheckSecurity.Usuario.PodeEditar
 	@DeleteMapping("/{idPermissao}")
 	public void DesvincularGrupoPermissao(@PathVariable Long id, @PathVariable Long idPermissao) {
 		grupoCadastro.DesvinculaPermissao(id, idPermissao);	

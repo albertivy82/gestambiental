@@ -120,7 +120,7 @@ public class UsuarioService {
 	}
 	
 	@Transactional	
-   public void DesvinculaGrupo(Long usuarioId, Long grupoId) {
+    public void DesvinculaGrupo(Long usuarioId, Long grupoId) {
 		
 		Usuario usuario =  usuarios.findById(usuarioId)
 				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));
@@ -131,6 +131,7 @@ public class UsuarioService {
 		usuario.getGrupo().remove(grupo);
 	}
    
+	@Transactional
    public void AlterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
 	   Usuario usuario = usuarios.findById(usuarioId)
 				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));

@@ -1,6 +1,7 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.exceptionhandler;
 
 
+import org.springframework.security.access.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -187,7 +188,24 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
-	//7_____________________________________
+	//7
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<?> handleEntidadeNaoEncontrada(AccessDeniedException ex, WebRequest request){
+	
+		
+		 HttpStatus status = HttpStatus.FORBIDDEN;
+		 ProblemType problemType = ProblemType.ACESSO_NEGADO;
+		 String detail = ex.getMessage();
+		
+		 Problem problem = createProblemBuilder(status, problemType, detail)
+		            .userMessage(detail)
+		            .userMessage("Você não possui permissão para executar essa operação! :´(")
+		            .build();
+
+		    return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+	
+	//8_____________________________________
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
