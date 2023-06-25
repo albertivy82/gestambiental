@@ -4,7 +4,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,27 +37,27 @@ public class LocalidadeController {
 	ModelMapper mapper;
 	
 	
-	@CheckSecurity.Localidade.PodeEditar
+	@CheckSecurity.GerenciaLocalidade.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public LocalidadeDTO adicionar(@RequestBody @Valid LocalidadeInput localidadeInput) {
 		return localidadeCadastro.inserir(localidadeInput);
 	}
 	
-	@CheckSecurity.Localidade.PodeConsultar
+	@CheckSecurity.GerenciaLocalidade.PodeConsultar
 	@GetMapping
 	public List<LocalidadeDTO> listar(){
 		return localidadeCadastro
 				.listarTodos().stream().map(t->mapper.map(t, LocalidadeDTO.class)).toList();
 	}
 	
-	@CheckSecurity.Localidade.PodeConsultar
+	@CheckSecurity.GerenciaLocalidade.PodeConsultar
 	@GetMapping("/{id}")
 	public LocalidadeDTO Buscar(@PathVariable Long id) {
 		return localidadeCadastro.localizarEntidade(id);
 	}
 	
-	@CheckSecurity.Localidade.PodeEditar
+	@CheckSecurity.GerenciaLocalidade.PodeEditar
 	@PutMapping("/{id}")
 	public LocalidadeDTO atualizar(@PathVariable Long id, 
 			@RequestBody @Valid LocalidadeInput localidadeInput) {
@@ -66,7 +66,7 @@ public class LocalidadeController {
 	}
 	
 	
-	@CheckSecurity.Localidade.PodeEditar
+	@CheckSecurity.GerenciaLocalidade.PodeEditar
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

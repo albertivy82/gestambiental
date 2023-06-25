@@ -10,7 +10,7 @@ public class DadosDeConsumoNaoEncontradoException extends EntidadeNaoEncontradaE
 	}
 	
 	public DadosDeConsumoNaoEncontradoException(Long id) {
-		this(String.format("Os dados de consumo cadastrados com código %d não existem", id));
+		this("Os dados de consumo cadastrados com código %d não existem".formatted(id));
 	}
 
 	

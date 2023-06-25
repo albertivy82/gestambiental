@@ -23,7 +23,7 @@ public class LocalidadeDTO {
 	
 	//private List<PostoDeSaudeDTO> posto;
 	
-	private List<ResidenciaToLocaliadadeDTO> residencia;
+	private List<ImovelToLocaliadadeDTO> residencia;
 	
 	private List<EscolaToLocalidadeDTO> escola;
 		

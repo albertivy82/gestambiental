@@ -115,7 +115,7 @@ public class GrupoService {
 		}catch(EmptyResultDataAccessException e) {
 			throw new GrupoNaoEncontradoException(id);
 		}catch(DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(ENTIDADE_EM_USO, id));
+			throw new EntidadeEmUsoException(ENTIDADE_EM_USO.formatted(id));
 		}
 		
 		

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResidenciaIdInput {
+public class ImovelIdInput {
 	
     private Long id;
 		

@@ -1,10 +1,10 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import java.sql.Date;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Escolaridade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EstadoCivil;
@@ -50,7 +50,7 @@ public class MoradorInput {
 	@NotBlank
 	private String religiao;
 	
-	private ResidenciaIdInput residencia;
+	private ImovelIdInput residencia;
 
 
 }

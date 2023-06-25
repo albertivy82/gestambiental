@@ -1,8 +1,8 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums;
 
-public enum Imovel {
+public enum Condicao {
 	
-	PROPRIETÁRIO,
-	OCUPAÇÃO_COM_BENFEITORIA
+	SOFREU,
+	PRESENCIOU
 
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResidenciaToLocaliadadeDTO {
+public class ImovelToLocaliadadeDTO {
 	
 	    private Long id;
 	

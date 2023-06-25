@@ -10,7 +10,7 @@ public class UsuarioNaoEncontradoException extends EntidadeNaoEncontradaExceptio
 	}
 	
 	public UsuarioNaoEncontradoException(Long id) {
-		this(String.format("Entrevistador de código %d não existe", id));
+		this("Entrevistador de código %d não existe".formatted(id));
 	}
 
 	

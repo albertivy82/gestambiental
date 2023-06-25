@@ -26,20 +26,20 @@ public class LocalidadeUsuarioController {
 	@Autowired
 	LocalidadeService localidadesCadastro;
 
-	@CheckSecurity.Localidade.PodeEditar
+	@CheckSecurity.GerenciaLocalidade.PodeEditar
 	@GetMapping
 	public List<UsuarioDTO> listar(@PathVariable Long id){
 		
 		return localidadesCadastro.listarUsuarios(id);
 	}
 	
-	@CheckSecurity.Localidade.PodeEditar
+	@CheckSecurity.GerenciaLocalidade.PodeEditar
 	@PutMapping("/{idUsuario}")
 	public void associarLocalidadeUsuario(@PathVariable Long id, @PathVariable Long idUsuario) {
 		localidadesCadastro.vincularUsuario(id, idUsuario);
 	}
 	
-	@CheckSecurity.Localidade.PodeEditar
+	@CheckSecurity.GerenciaLocalidade.PodeEditar
 	@DeleteMapping("/{idUsuario}")
 	public void desassociarLocalidadeUsuario(@PathVariable Long id, @PathVariable Long idUsuario) {
 		localidadesCadastro.desvincularUsuario(id, idUsuario);

@@ -2,7 +2,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.RendaOutrasFontesDT
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.RendasOutrasFontesInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.RendaOutrasFontes;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.RendasService;
 import io.swagger.annotations.Api;
 
@@ -67,7 +67,7 @@ public class rendasController {
 			@RequestBody @Valid RendasOutrasFontesInput rendasInput) {
 		try {
 			RendaOutrasFontes renda = rendasCadastro.buscarEntidade(id);
-			renda.setResidencia(new Residencia());
+			renda.setImovel(new Imovel());
 			mapper.map(rendasInput, renda);
 			return mapper.map(rendasCadastro.inserir(renda), RendaOutrasFontesDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

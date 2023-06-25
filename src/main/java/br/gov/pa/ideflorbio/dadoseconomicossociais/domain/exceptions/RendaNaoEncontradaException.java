@@ -10,7 +10,7 @@ public class RendaNaoEncontradaException extends EntidadeNaoEncontradaException 
 	}
 	
 	public RendaNaoEncontradaException(Long id) {
-		this(String.format("A fonte de renda de código %d não existe", id));
+		this("A fonte de renda de código %d não existe".formatted(id));
 	}
 
 	

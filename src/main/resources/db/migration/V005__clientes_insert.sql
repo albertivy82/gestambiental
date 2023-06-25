@@ -1,32 +1,25 @@
-insert into oauth_client_details (
-  client_id, resource_ids, client_secret, 
-  scope, authorized_grant_types, web_server_redirect_uri, authorities,
-  access_token_validity, refresh_token_validity, autoapprove
-)
-values (
-  'gestambiental', null, '$2a$12$LaejyJQjfUJG1uYUIs94X.Qa3iQC6CJroL1.71y8NlxcqTrUqhEWG',
-  'READ,WRITE', 'password', null, null,
-  60 * 60 * 6, 60 * 60 * 60 * 60, null
-);
+INSERT INTO `oauth2_registered_client` (
+`client_id`, 
+`client_id_issued_at`, 
+`client_secret`, 
+`client_secret_expires_at`, 
+`client_name`, 
+`client_authentication_methods`, 
+`authorization_grant_types`, 
+`redirect_uris`, 
+`scopes`, 
+`client_settings`, 
+`token_settings`)
+VALUES
+('gestambiental', 
+'2023-05-03 19:04:12', 
+'$2a$12$6NMGw1P1YHctSHVyeDr.xenaSUVpt/QPfFDqO0nVa59Afz0Rp7/nu'
+, NULL, 
+'1', 
+'client_secret_basic', 
+'refresh_token,authorization_code', 
+'http://127.0.0.1:3000/authorize', 
+'READ,WRITE', 
+'{"@class":"java.util.Collections$UnmodifiableMap", "settings.client.require-proof-key":false, "settings.client.require-authorization-consent":false}', 
+'{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":false,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.core.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",86400.000000000]}');
 
-insert into oauth_client_details (
-  client_id, resource_ids, client_secret, 
-  scope, authorized_grant_types, web_server_redirect_uri, authorities,
-  access_token_validity, refresh_token_validity, autoapprove
-)
-values (
-  'authcode', null, null,
-  'READ,WRITE', 'authorization_code', 'http://localhost:8000', null,
-  null, null, true
-);
-
-insert into oauth_client_details (
-  client_id, resource_ids, client_secret, 
-  scope, authorized_grant_types, web_server_redirect_uri, authorities,
-  access_token_validity, refresh_token_validity, autoapprove
-)
-values (
-  'backend', null, '$2a$12$EshErhFSQybww/H05giwpOLXrIqr2Y3Z/E.ItPEi9jVJzW7JfIqKW',
-  'READ,WRITE', 'client_credentials', null, null,
-  null, null, null
-);

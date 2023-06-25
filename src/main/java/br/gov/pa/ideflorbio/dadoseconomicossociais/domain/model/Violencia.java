@@ -1,19 +1,20 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-
+//G->SEGURANÇA PÚBLICA
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Condicao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.ViolenciaTipo;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,11 +38,18 @@ public class Violencia implements Serializable{
 	private ViolenciaTipo tipo;
 	
 	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Condicao condicao;
+	
+	@NotNull
 	private int ocorrencias;
+	
+	
+	private String destaqueDoMorador;
 	
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name="residencia")
-	private Residencia residencia;
+	@JoinColumn(name="imovel")
+	private Imovel imovel;
 
 }

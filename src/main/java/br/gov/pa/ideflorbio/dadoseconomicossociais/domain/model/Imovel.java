@@ -4,25 +4,26 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Documentacao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Situacao_Fundiaria;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +32,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Getter
 @Setter
-public class Residencia implements Serializable{
+public class Imovel implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -42,9 +43,7 @@ public class Residencia implements Serializable{
 	
 	private String rua;
 	
-	
 	private String numero;
-	
 	
 	private String bairro;
 	
@@ -57,14 +56,21 @@ public class Residencia implements Serializable{
 	@NotBlank
 	private String longitude;
 	
-	
 	@Enumerated(EnumType.STRING)
-	private Imovel imovel;
-	
+	private Situacao_Fundiaria situacaoFundiaria;
 	
 	@NotNull
 	@DateTimeFormat(pattern = "YYYY-MM-DD")
 	private Date dataChegada;
+	
+	
+	//@Enumerated(EnumType.STRING)
+	//private LimitesImovel limites;
+	
+	
+	@Enumerated(EnumType.STRING)
+	private Documentacao documentacaoImovel;
+	
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -85,39 +91,39 @@ public class Residencia implements Serializable{
 	private Localidade localidade;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="residencia")
+	@OneToOne(mappedBy="imovel")
 	private Entrevistado entrevistado;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "residencia")
+	@OneToOne(mappedBy = "imovel")
 	private DadosDeConsumo consumo;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "residencia")
+	@OneToOne(mappedBy = "imovel")
 	private ServicosBasicos servicosBasicos;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "residencia")
+	@OneToMany(mappedBy = "imovel")
 	private List<Violencia> violenciaSofrida;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "residencia")
+	@OneToMany(mappedBy = "imovel")
 	private List<InstituicaoConhecida> instituicaoConhecida;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "residencia")
+	@OneToMany(mappedBy = "imovel")
 	private List<AtividadeProdutiva> atividadeProdutiva;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "residencia")
+	@OneToMany(mappedBy = "imovel")
 	private List<RendaOutrasFontes> rendaOutrasFontes;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "residencia")
+	@OneToMany(mappedBy = "imovel")
 	private List<Credito> credito;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "residencia")
+	@OneToMany(mappedBy = "imovel")
 	private  List<Morador> morador;
 	
 }

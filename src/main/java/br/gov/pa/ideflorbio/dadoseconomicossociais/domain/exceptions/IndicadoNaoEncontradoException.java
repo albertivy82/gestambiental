@@ -10,7 +10,7 @@ public class IndicadoNaoEncontradoException extends EntidadeNaoEncontradaExcepti
 	}
 	
 	public IndicadoNaoEncontradoException(Long id) {
-		this(String.format("O indicado de código %d não existe", id));
+		this("O indicado de código %d não existe".formatted(id));
 	}
 
 	

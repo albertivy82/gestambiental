@@ -2,7 +2,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.EntrevistadoI
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.EntrevistadoService;
 import io.swagger.annotations.Api;
 
@@ -59,7 +59,7 @@ public class EntrevistadoController {
 		
 		try {
 			 Entrevistado entrevistado =  entrevistadosCadastro.buscarEntidade(id);
-			 entrevistado.setResidencia(new Residencia());
+			 entrevistado.setImovel(new Imovel());
 			 mapper.map(entrevistadoInput, entrevistado);
 			return mapper.map(entrevistadosCadastro.inserir(entrevistado), EntrevistadoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

@@ -12,27 +12,26 @@ ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_permissao_grupo_permissao` FORE
 ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_grupo_permissao_grupo` FOREIGN KEY ( `grupo` ) REFERENCES `grupo` ( `id` );
 
 
-ALTER TABLE `residencia` ADD CONSTRAINT `fk_localidade_residencia` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
+ALTER TABLE `imovel` ADD CONSTRAINT `fk_localidade_imovel` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
+
+ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_imovel_entrevistado` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+
+ALTER TABLE `dados_de_consumo` ADD CONSTRAINT `fk_resdencia_dados_de_consuo` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+
+ALTER TABLE `servicos_basicos` ADD CONSTRAINT `fk_resdencia_servicos_basicos` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+
+ALTER TABLE `violencia` ADD CONSTRAINT `fk_imovel_violencia` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+
+ALTER TABLE `instituicao_conhecida` ADD CONSTRAINT `fk_imovel_instituicao_conhecida` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 
 
-ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_residencia_entrevistado` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
+ALTER TABLE `atividade_produtiva` ADD CONSTRAINT `fk_imovel_atividade_economica` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+ALTER TABLE `renda_outras_fontes` ADD CONSTRAINT `fk_imovel_renda_outras_fontes` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 
-ALTER TABLE `dados_de_consumo` ADD CONSTRAINT `fk_resdencia_dados_de_consuo` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
+ALTER TABLE `servicos_basicos` ADD CONSTRAINT `fk_imovel_servicos_basicos` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 
-ALTER TABLE `servicos_basicos` ADD CONSTRAINT `fk_resdencia_servicos_basicos` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-
-ALTER TABLE `violencia` ADD CONSTRAINT `fk_residencia_violencia` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-
-ALTER TABLE `instituicao_conhecida` ADD CONSTRAINT `fk_residencia_instituicao_conhecida` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-
-
-ALTER TABLE `atividade_produtiva` ADD CONSTRAINT `fk_residencia_atividade_economica` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-ALTER TABLE `renda_outras_fontes` ADD CONSTRAINT `fk_residencia_renda_outras_fontes` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-
-ALTER TABLE `servicos_basicos` ADD CONSTRAINT `fk_residencia_servicos_basicos` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-
-ALTER TABLE `credito` ADD CONSTRAINT `fk_residencia_credito` FOREIGN KEY ( `residencia` ) REFERENCES `residencia` ( `id` );
-ALTER TABLE `morador` ADD CONSTRAINT `fk_residencia_morador` FOREIGN KEY ( `residencia`) REFERENCES `residencia` ( `id` );
+ALTER TABLE `credito` ADD CONSTRAINT `fk_imovel_credito` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+ALTER TABLE `morador` ADD CONSTRAINT `fk_imovel_morador` FOREIGN KEY ( `imovel`) REFERENCES `imovel` ( `id` );
 
 ALTER TABLE `indicado_consulta_publica` ADD CONSTRAINT `fk_entrevistado_indicado_consulta_publica` FOREIGN KEY ( `entrevistado`) REFERENCES `entrevistado` ( `id` );
 

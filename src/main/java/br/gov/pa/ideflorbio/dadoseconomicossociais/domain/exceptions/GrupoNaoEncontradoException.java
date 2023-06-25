@@ -10,7 +10,7 @@ public class GrupoNaoEncontradoException extends EntidadeNaoEncontradaException 
 	}
 	
 	public GrupoNaoEncontradoException(Long id) {
-		this(String.format("Grupo de código %d não existe", id));
+		this("Grupo de código %d não existe".formatted(id));
 	}
 
 	

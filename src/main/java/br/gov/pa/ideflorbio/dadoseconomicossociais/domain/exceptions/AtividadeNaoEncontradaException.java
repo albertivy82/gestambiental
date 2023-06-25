@@ -10,7 +10,7 @@ public class AtividadeNaoEncontradaException extends EntidadeNaoEncontradaExcept
 	}
 	
 	public AtividadeNaoEncontradaException(Long id) {
-		this(String.format("Atividade de código %d não existe", id));
+		this("Atividade de código %d não existe".formatted(id));
 	}
 
 	

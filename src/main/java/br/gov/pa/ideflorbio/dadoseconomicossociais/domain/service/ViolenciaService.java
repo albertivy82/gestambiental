@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ViolenciasSofridasDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ServicoNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ViolenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Violencia;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ResidenciasRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ViolenciaRepository;
 
 
@@ -32,7 +32,7 @@ public class ViolenciaService {
 	ViolenciaRepository violencias;
 	
 	@Autowired
-	ResidenciasRepository residencias;
+	ImoveisRepository imoveis;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -40,11 +40,11 @@ public class ViolenciaService {
 	@Transactional
 	public Violencia inserir(Violencia violencia) {
 		
-		Long idResidencia = violencia.getResidencia().getId();
-		Residencia residencia = residencias.findById(idResidencia)
-		.orElseThrow(()->new ResidenciaNaoEncontradaException(idResidencia));
+		Long idImovel = violencia.getImovel().getId();
+		Imovel imovel = imoveis.findById(idImovel)
+		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
 		
-		violencia.setResidencia(residencia);
+		violencia.setImovel(imovel);
 		
 		return violencias.save(violencia);
 	}
@@ -86,7 +86,7 @@ public class ViolenciaService {
 			
 		}catch(DataIntegrityViolationException e) {
 			
-			throw new EntidadeEmUsoException(String.format(ENTIDADE_EM_USO, id));
+			throw new EntidadeEmUsoException(ENTIDADE_EM_USO.formatted(id));
 		}
 	}	
 	

@@ -10,7 +10,7 @@ public class DoencaNaoEncontradaException extends EntidadeNaoEncontradaException
 	}
 	
 	public DoencaNaoEncontradaException(Long id) {
-		this(String.format("A doença de código %d não existe", id));
+		this("A doença de código %d não existe".formatted(id));
 	}
 
 	

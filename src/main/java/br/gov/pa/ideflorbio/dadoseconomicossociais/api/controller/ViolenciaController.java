@@ -2,7 +2,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ViolenciasSofridasD
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ViolenciaInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Violencia;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.ViolenciaService;
 import io.swagger.annotations.Api;
@@ -59,7 +59,7 @@ public class ViolenciaController {
 		
 		try {
 			 Violencia violencia =  violenciaCadastro.buscarEntidade(id);
-			 violencia.setResidencia(new Residencia());
+			 violencia.setImovel(new Imovel());
 			 mapper.map(violenciaInput, violencia);
 			return mapper.map(violenciaCadastro.inserir(violencia), ViolenciasSofridasDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

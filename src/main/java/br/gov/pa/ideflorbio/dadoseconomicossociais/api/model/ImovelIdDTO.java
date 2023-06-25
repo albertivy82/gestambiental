@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResidenciaIdDTO {
+public class ImovelIdDTO {
 	
     private Long id;
 		

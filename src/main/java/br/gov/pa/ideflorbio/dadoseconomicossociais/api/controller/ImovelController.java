@@ -4,7 +4,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ResidenciaDTO;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ResidenciaInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ImovelDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ImovelInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.ResidenciaService;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.ImovelService;
 import io.swagger.annotations.Api;
 
 
@@ -33,21 +32,21 @@ import io.swagger.annotations.Api;
 @Api(tags = "Residência")
 @RestController
 @RequestMapping("/residencias")
-public class ResidenciaController {
+public class ImovelController {
 	
 	@Autowired
-	ResidenciaService residenciaCadastro;
+	ImovelService imoveisCadastro;
 	
 	@Autowired
 	ModelMapper mapper;
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
-	public ResidenciaDTO adicionar(@RequestBody @Valid ResidenciaInput residenciaInput) {
+	public ImovelDTO adicionar(@RequestBody @Valid ImovelInput imovelInput) {
 		try {
 			
-		Residencia residencia = mapper.map(residenciaInput, Residencia.class);
-		return mapper.map(residenciaCadastro.inserir(residencia), ResidenciaDTO.class);
+		Imovel imovel = mapper.map(imovelInput, Imovel.class);
+		return mapper.map(imoveisCadastro.inserir(imovel), ImovelDTO.class);
 		
 		}catch (LocalidadeNaoEncontradaException e){
 			throw new 	EntidadeNaoEncontradaException(e.getMessage());			
@@ -55,34 +54,34 @@ public class ResidenciaController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResidenciaDTO atualizar(@PathVariable Long id, 
-		@RequestBody @Valid ResidenciaInput residenciaInput) {
+	public ImovelDTO atualizar(@PathVariable Long id, 
+		@RequestBody @Valid ImovelInput imovelInput) {
 		try {
-		Residencia residenciaAtual = residenciaCadastro.buscarEntidade(id);
-		residenciaAtual.setLocalidade(new Localidade());
-		mapper.map(residenciaInput, residenciaAtual);
-		return mapper.map(residenciaCadastro.inserir(residenciaAtual), ResidenciaDTO.class);
+		Imovel imovelAtual = imoveisCadastro.buscarEntidade(id);
+		imovelAtual.setLocalidade(new Localidade());
+		mapper.map(imovelInput, imovelAtual);
+		return mapper.map(imoveisCadastro.inserir(imovelAtual), ImovelDTO.class);
 		}catch (LocalidadeNaoEncontradaException e){
 			throw new 	EntidadeNaoEncontradaException(e.getMessage());			
 		}
 	}
 
 	@GetMapping
-	public List<ResidenciaDTO> listar(){
-		return residenciaCadastro
-				.listarTodos().stream().map(t->mapper.map(t, ResidenciaDTO.class)).toList();
+	public List<ImovelDTO> listar(){
+		return imoveisCadastro
+				.listarTodos().stream().map(t->mapper.map(t, ImovelDTO.class)).toList();
 	}
 	
 	@GetMapping("/{id}")
-	public ResidenciaDTO Buscar(@PathVariable Long id) {
-		return residenciaCadastro.localizarEntidade(id);
+	public ImovelDTO Buscar(@PathVariable Long id) {
+		return imoveisCadastro.localizarEntidade(id);
 	}
 	
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
-		residenciaCadastro.excluir(id);
+		imoveisCadastro.excluir(id);
 	}
 
 }

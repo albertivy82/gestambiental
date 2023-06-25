@@ -2,10 +2,10 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import java.math.BigDecimal;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.FontesRenda;
 import lombok.Getter;
@@ -27,6 +27,6 @@ public class RendasOutrasFontesInput {
 	private BigDecimal rendaMesTotal;
 	
 	@NotNull
-	private ResidenciaIdInput residencia;
+	private ImovelIdInput residencia;
 
 }

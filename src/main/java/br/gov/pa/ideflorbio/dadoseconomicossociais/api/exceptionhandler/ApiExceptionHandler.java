@@ -1,24 +1,28 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.exceptionhandler;
 
 
-import org.springframework.security.access.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
 import com.fasterxml.jackson.databind.JsonMappingException.Reference;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
+
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
@@ -85,14 +89,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	//4______________________________________________________
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		
 		Throwable rootCause = ExceptionUtils.getRootCause(ex);
 		
-		if(rootCause instanceof InvalidFormatException) {
-			return handleInvalidFormatException((InvalidFormatException) rootCause, headers, status, request);
-		}else if(rootCause instanceof PropertyBindingException) {
-			return handlePropertyBindingException((PropertyBindingException) rootCause, headers, status, request);
+		if(rootCause instanceof InvalidFormatException exception) {
+			return handleInvalidFormatException(exception, headers, status, request);
+		}else if(rootCause instanceof PropertyBindingException exception) {
+			return handlePropertyBindingException(exception, headers, status, request);
 		}
 		
 		ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
@@ -107,14 +111,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 			//4.1________________________
 			private ResponseEntity<Object> handleInvalidFormatException(InvalidFormatException ex, HttpHeaders headers, 
-					HttpStatus status, WebRequest request){
+					HttpStatusCode status, WebRequest request){
 				
 				ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
 				String path = joinPath(ex.getPath());
 						
-				String detail = String.format("A propriedade '%s' recebeu o valor '%s'"
-						+ ", que é de um tipo inválido. Corrija e informe um valor compatível com o tipo '%s'"
-						, path, ex.getValue(), ex.getTargetType().getSimpleName());
+				String detail = ("A propriedade '%s' recebeu o valor '%s'"
+                        + ", que é de um tipo inválido. Corrija e informe um valor compatível com o tipo '%s'").formatted(path, ex.getValue(), ex.getTargetType().getSimpleName());
 				
 				Problem problem = createProblemBuilder(status, problemType, detail)
 						.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
@@ -126,12 +129,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			//4.2________________
 			
 			private ResponseEntity<Object> handlePropertyBindingException(PropertyBindingException ex, HttpHeaders headers, 
-					HttpStatus status, WebRequest request) {
+					HttpStatusCode status, WebRequest request) {
 				
 				ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
 				String path = joinPath(ex.getPath());
-				String detail = String.format("A propriedade '%s' não existe. "
-						+ "Corrija ou remova esta propriedade e tente novmente", path);
+				String detail = ("A propriedade '%s' não existe. "
+                        + "Corrija ou remova esta propriedade e tente novmente").formatted(path);
 				Problem problem = createProblemBuilder(status, problemType,detail)
 						.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 						.build();
@@ -148,22 +151,22 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	//5_____________________________
 	@Override
 	protected ResponseEntity<Object> handleTypeMismatch(org.springframework.beans.TypeMismatchException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		
-		if(ex instanceof MethodArgumentTypeMismatchException) {
-			return handleMethodArgumentTypeMismatch((MethodArgumentTypeMismatchException) ex, headers, status, request);
+		if(ex instanceof MethodArgumentTypeMismatchException exception) {
+			return handleMethodArgumentTypeMismatch(exception, headers, status, request);
 		}
 		return super.handleTypeMismatch(ex, headers, status, request);
 	}
 				
 	//5.1_____________________________			
 	private ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex, 
-			HttpHeaders headers, HttpStatus status, WebRequest request){
+			HttpHeaders headers, HttpStatusCode status, WebRequest request){
 						
 			ProblemType problemType = ProblemType.PARAMETRO_INVALIDO;
-			String detail = String.format("O parâmetro de URL '%s' recebeu o valor '%s', "
-					+ "que é de um tipo inválido. Corrija e informe um valor compatível "
-					+ "com o tipo %s.", ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
+			String detail = ("O parâmetro de URL '%s' recebeu o valor '%s', "
+                    + "que é de um tipo inválido. Corrija e informe um valor compatível "
+                    + "com o tipo %s.").formatted(ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 			
 			Problem problem = createProblemBuilder(status, problemType, detail)
 					.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
@@ -208,7 +211,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	//8_____________________________________
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		
 		ProblemType problemType = ProblemType.DADOS_INVALIDOS;
 		String detail = "Um ou mais campos inválidos. Faça o preenchimento correto e tente novamente";
@@ -234,17 +237,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@Override
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
-			HttpStatus status, WebRequest request) {
+			HttpStatusCode status, WebRequest request) {
 		if(body == null) {
 			body = Problem.builder()
-				.title(status.getReasonPhrase())
+				.title(HttpStatus.valueOf(status.value()).getReasonPhrase())
 				.status(status.value())
 				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.timestamp(LocalDateTime.now())
 				.build();
-		}else if(body instanceof String) {
+		}else if(body instanceof String string) {
 			body = Problem.builder()
-				.title((String)body)
+				.title(string)
 				.status(status.value())
 				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.timestamp(LocalDateTime.now())
@@ -254,7 +257,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	
-	private Problem.ProblemBuilder createProblemBuilder(HttpStatus status, ProblemType problemType, String detail){
+	private Problem.ProblemBuilder createProblemBuilder(HttpStatusCode status, ProblemType problemType, String detail){
 		return Problem.builder()
 				.status(status.value())
 				.type(problemType.getUri())

@@ -10,7 +10,7 @@ public class EntrevistadoNaoEncontradoException extends EntidadeNaoEncontradaExc
 	}
 	
 	public EntrevistadoNaoEncontradoException(Long id) {
-		this(String.format("Entrevistado de código %d não existe", id));
+		this("Entrevistado de código %d não existe".formatted(id));
 	}
 
 	

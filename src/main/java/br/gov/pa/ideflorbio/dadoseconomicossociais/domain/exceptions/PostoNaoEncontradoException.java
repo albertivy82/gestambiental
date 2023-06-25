@@ -9,7 +9,7 @@ public class PostoNaoEncontradoException extends EntidadeNaoEncontradaException{
 	}
 	
 	public PostoNaoEncontradoException(Long id) {
-		this(String.format("Posto de código %d não existe", id));
+		this("Posto de código %d não existe".formatted(id));
 	}
 
 }

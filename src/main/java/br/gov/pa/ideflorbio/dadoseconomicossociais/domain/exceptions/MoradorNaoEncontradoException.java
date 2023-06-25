@@ -10,7 +10,7 @@ public class MoradorNaoEncontradoException extends EntidadeNaoEncontradaExceptio
 	}
 	
 	public MoradorNaoEncontradoException(Long id) {
-		this(String.format("O morador de código %d não existe", id));
+		this("O morador de código %d não existe".formatted(id));
 	}
 
 	

@@ -10,7 +10,7 @@ public class LocalidadeNaoEncontradaException extends EntidadeNaoEncontradaExcep
 	}
 	
 	public LocalidadeNaoEncontradaException(Long id) {
-		this(String.format("A localidade de código %d não existe", id));
+		this("A localidade de código %d não existe".formatted(id));
 	}
 
 	

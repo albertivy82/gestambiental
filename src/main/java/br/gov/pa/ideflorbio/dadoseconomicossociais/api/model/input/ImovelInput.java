@@ -2,14 +2,14 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import java.sql.Date;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Situacao_Fundiaria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResidenciaInput {
+public class ImovelInput {
 	
     private String rua;
 		
@@ -36,7 +36,7 @@ public class ResidenciaInput {
 	
 	
 	@Enumerated(EnumType.STRING)
-	private Imovel imovel;
+	private Situacao_Fundiaria situacao_Fundiaria;
 	
 	
 	@NotNull

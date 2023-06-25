@@ -10,7 +10,7 @@ public class CreditoNaoEncontradoException extends EntidadeNaoEncontradaExceptio
 	}
 	
 	public CreditoNaoEncontradoException(Long id) {
-		this(String.format("Crédito de código %d não existe", id));
+		this("Crédito de código %d não existe".formatted(id));
 	}
 
 	

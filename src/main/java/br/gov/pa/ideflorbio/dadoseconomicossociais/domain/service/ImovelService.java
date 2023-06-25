@@ -8,76 +8,76 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ResidenciaDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ImovelDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.LocalidadesRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ResidenciasRepository;
 
 @Service
-public class ResidenciaService {
+public class ImovelService {
 	
 	private static final String ENTIDADE_EM_USO 
-	= "A resiência de código %d não pode ser removida, pois está em uso";
+	= "O imóvel de código %d não pode ser removido, pois está em uso";
 	
 	@Autowired
 	LocalidadesRepository localidades;
 	
 	@Autowired
-	ResidenciasRepository residencias;
+	ImoveisRepository imoveis;
 	
 	
 	@Autowired
 	ModelMapper mapper;
 	
-	public Residencia buscarEntidade(Long id) {
-		return residencias.findById(id)
-				.orElseThrow(()-> new ResidenciaNaoEncontradaException(id));
+	public Imovel buscarEntidade(Long id) {
+		return imoveis.findById(id)
+				.orElseThrow(()-> new ImovelNaoEncontradoException(id));
 	}
 	
 	@Transactional
-	public Residencia inserir(Residencia residencia) {
+	public Imovel inserir(Imovel imovel) {
 		
-		Long idLocalidade = residencia.getLocalidade().getId();
+		Long idLocalidade = imovel.getLocalidade().getId();
 			Localidade localidade = localidades.findById(idLocalidade)
 					.orElseThrow(()->new LocalidadeNaoEncontradaException(idLocalidade));
 		
-		residencia.setLocalidade(localidade);
+		imovel.setLocalidade(localidade);
 		
-		return residencias.save(residencia);
+		return imoveis.save(imovel);
 	}
 	
 	
 		
-	public List<Residencia> listarTodos(){
+	public List<Imovel> listarTodos(){
 		
-	   return residencias.findAll(); 
+	   return imoveis.findAll(); 
 		
 	}
 	
-	public ResidenciaDTO localizarEntidade(Long id) {
+	public ImovelDTO localizarEntidade(Long id) {
 		
-			Residencia residencia = buscarEntidade(id);
+			Imovel imovel = buscarEntidade(id);
 		
-		return mapper.map(residencia, ResidenciaDTO.class);
+		return mapper.map(imovel, ImovelDTO.class);
 	}
 	
 		
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			residencias.deleteById(id);
-			residencias.flush();
+			imoveis.deleteById(id);
+			imoveis.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
-			throw new ResidenciaNaoEncontradaException(id);
+			throw new ImovelNaoEncontradoException(id);
 			
 		}catch(DataIntegrityViolationException e) {
 			
-			throw new EntidadeEmUsoException(String.format(ENTIDADE_EM_USO, id));
+			throw new EntidadeEmUsoException(ENTIDADE_EM_USO.formatted(id));
 		}
 	}	
 	

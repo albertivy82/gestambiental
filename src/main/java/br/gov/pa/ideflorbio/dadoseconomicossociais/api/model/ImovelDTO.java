@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResidenciaDTO {
+public class ImovelDTO {
 	
     private String rua;
 	

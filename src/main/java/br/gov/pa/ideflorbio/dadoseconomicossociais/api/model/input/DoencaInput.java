@@ -1,8 +1,8 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotNull;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Molestias;
 import lombok.Getter;

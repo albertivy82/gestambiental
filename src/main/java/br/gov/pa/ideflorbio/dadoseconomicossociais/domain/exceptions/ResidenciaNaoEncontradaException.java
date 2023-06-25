@@ -10,7 +10,7 @@ public class ResidenciaNaoEncontradaException extends EntidadeNaoEncontradaExcep
 	}
 	
 	public ResidenciaNaoEncontradaException(Long id) {
-		this(String.format("A residêsncia de código %d não existe", id));
+		this("A residêsncia de código %d não existe".formatted(id));
 	}
 
 	

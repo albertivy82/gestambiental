@@ -13,12 +13,12 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.AtividadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntrevistadoNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EntrevistadosRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ResidenciasRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 
 @Service
 public class EntrevistadoService {
@@ -32,7 +32,7 @@ public class EntrevistadoService {
 	EntrevistadosRepository entrevistados;
 	
 	@Autowired
-	ResidenciasRepository residencias;
+	ImoveisRepository imoveis;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -40,16 +40,16 @@ public class EntrevistadoService {
 	@Transactional
 	public Entrevistado inserir(Entrevistado entrevistado) {
 		
-		Long idResidencia = entrevistado.getResidencia().getId();
-		Residencia residencia = residencias.findById(idResidencia)
-		.orElseThrow(()->new ResidenciaNaoEncontradaException(idResidencia));
+		Long idImovel = entrevistado.getImovel().getId();
+		Imovel imovel = imoveis.findById(idImovel)
+		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
 		
-		if(residencia.getEntrevistado()!=null && entrevistado.getId()==null) {
-			throw new NegocioException("Esta residencia já possui um entrevistado cadastrado. Atualize o cadastro ou apague o mesmo"
+		if(imovel.getEntrevistado()!=null && entrevistado.getId()==null) {
+			throw new NegocioException("Esta imovel já possui um entrevistado cadastrado. Atualize o cadastro ou apague o mesmo"
 					+ " para realizar novo cadastro");
 		}
 		
-		entrevistado.setResidencia(residencia);
+		entrevistado.setImovel(imovel);
 		
 		return entrevistados.save(entrevistado);
 	}
@@ -90,7 +90,7 @@ public class EntrevistadoService {
 			
 		}catch(DataIntegrityViolationException e) {
 			
-			throw new EntidadeEmUsoException(String.format(ENTIDADE_EM_USO, id));
+			throw new EntidadeEmUsoException(ENTIDADE_EM_USO.formatted(id));
 		}
 	}	
 	

@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.RendaOutrasFontesDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.RendaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.RendaOutrasFontes;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Residencia;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.RendasOutrasFontesRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ResidenciasRepository;
 
 
 @Service
@@ -30,7 +30,7 @@ public class RendasService {
 	RendasOutrasFontesRepository rendas;
 	
 	@Autowired
-	ResidenciasRepository residencias;
+	ImoveisRepository imoveis;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -38,11 +38,11 @@ public class RendasService {
 	@Transactional
 	public RendaOutrasFontes inserir(RendaOutrasFontes renda) {
 		
-		Long idResidencia = renda.getResidencia().getId();
-		Residencia residencia = residencias.findById(idResidencia)
-		.orElseThrow(()->new ResidenciaNaoEncontradaException(idResidencia));
+		Long idImovel = renda.getImovel().getId();
+		Imovel imovel = imoveis.findById(idImovel)
+		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
 		
-		renda.setResidencia(residencia);
+		renda.setImovel(imovel);
 		
 		return rendas.save(renda);	
 	}
@@ -80,7 +80,7 @@ public class RendasService {
 		}catch(EmptyResultDataAccessException e) {
 			throw new RendaNaoEncontradaException(id);
 		}catch(DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(ENTIDADE_EM_USO, id));
+			throw new EntidadeEmUsoException(ENTIDADE_EM_USO.formatted(id));
 		}
 		
 		

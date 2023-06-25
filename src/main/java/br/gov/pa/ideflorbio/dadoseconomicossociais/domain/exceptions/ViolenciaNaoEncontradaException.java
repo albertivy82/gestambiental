@@ -10,7 +10,7 @@ public class ViolenciaNaoEncontradaException extends EntidadeNaoEncontradaExcept
 	}
 	
 	public ViolenciaNaoEncontradaException(Long id) {
-		this(String.format("Os dados sobre violencia de código %d não existem", id));
+		this("Os dados sobre violencia de código %d não existem".formatted(id));
 	}
 
 	

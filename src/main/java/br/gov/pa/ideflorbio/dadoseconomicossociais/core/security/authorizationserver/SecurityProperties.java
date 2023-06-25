@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.authorizationserver;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -13,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Validated
+//VER ESTE GESTAMBIENTAL NO PROPOERTIES
 @ConfigurationProperties("gestambiental.auth")
 public class SecurityProperties {
 	

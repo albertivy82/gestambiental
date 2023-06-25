@@ -17,7 +17,7 @@ public @interface CheckSecurity {
 		public @interface PodeEditar {}
 	}
 	
-	public @interface Localidade{
+	public @interface GerenciaLocalidade{
 		@PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_LOCALIDADE')")
 		@Retention(RUNTIME)
 		@Target(METHOD)
@@ -29,8 +29,20 @@ public @interface CheckSecurity {
 		public @interface PodeConsultar {}
 	}
 	
-	public @interface Residencia{
+	public @interface GereciaSocioecomia{
 		@PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_DADOS_SOCIAIS')")
+		@Retention(RUNTIME)
+		@Target(METHOD)
+		public @interface PodeEditar {}
+		
+		@PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+		@Retention(RUNTIME)
+		@Target(METHOD)
+		public @interface PodeConsultar {}
+	}
+	
+	public @interface GereciaAmbiental{
+		@PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_DADOS_AMBIENTAIS')")
 		@Retention(RUNTIME)
 		@Target(METHOD)
 		public @interface PodeEditar {}

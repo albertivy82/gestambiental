@@ -10,7 +10,7 @@ public class InstituicaoNaoEncontradaException extends EntidadeNaoEncontradaExce
 	}
 	
 	public InstituicaoNaoEncontradaException(Long id) {
-		this(String.format("Dados de instituição de código %d não existem", id));
+		this("Dados de instituição de código %d não existem".formatted(id));
 	}
 
 	
