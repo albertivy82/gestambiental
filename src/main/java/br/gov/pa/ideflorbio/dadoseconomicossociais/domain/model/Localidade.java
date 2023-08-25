@@ -46,12 +46,9 @@ public class Localidade implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Municipio municipio;
 	
-	@NotBlank
-	private String latitude;
-	
-	@NotBlank
-	private String longitude;
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "localidade")
+	private List<Coordenada> coordenadas;
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "localidade")

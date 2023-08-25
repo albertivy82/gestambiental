@@ -39,14 +39,12 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.UsuariosRep
 @Configuration
 public class AuthoizationServerConfig {
 	
-	 @Bean
+	    @Bean
 	    @Order(Ordered.HIGHEST_PRECEDENCE)
 	    public SecurityFilterChain authFilterChain(HttpSecurity http) throws Exception {
-	        OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
+	        
+	    	OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
 	                new OAuth2AuthorizationServerConfigurer();
-
-	        authorizationServerConfigurer.authorizationEndpoint(
-	                customizer -> customizer.consentPage("/oauth2/consent"));
 
 	        RequestMatcher endpointsMatcher = authorizationServerConfigurer
 	                .getEndpointsMatcher();
@@ -56,7 +54,7 @@ public class AuthoizationServerConfig {
 	                authorize.anyRequest().authenticated();
 	            })
 	            .csrf(csrf -> csrf.ignoringRequestMatchers(endpointsMatcher))
-	            .formLogin(Customizer.withDefaults())
+	            .formLogin(customizer -> customizer.loginPage("/login"))
 	            .exceptionHandling(exceptions -> {
 	                exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"));
 	            })

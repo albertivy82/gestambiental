@@ -21,11 +21,15 @@ public class LocalidadeDTO {
 	
 	private String longitude;
 	
-	//private List<PostoDeSaudeDTO> posto;
+	private List<PostoDeSaudeDTO> posto;
 	
 	private List<ImovelToLocaliadadeDTO> residencia;
 	
 	private List<EscolaToLocalidadeDTO> escola;
+	
+	private List<CoordenadaDTO> coordenadas;
+	
+	
 		
 	
 }

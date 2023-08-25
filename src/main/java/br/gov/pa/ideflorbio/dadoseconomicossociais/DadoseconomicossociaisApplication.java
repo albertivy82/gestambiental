@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.core.io.Base64ProtocolResolver;
 
-//@EnableAutoConfiguration(exclude= {DataSourceAutoConfiguration.class})
-//@EnableJpaRepositories
+
 @SpringBootApplication
 public class DadoseconomicossociaisApplication {
 

@@ -16,9 +16,9 @@ INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('GERENTE_AMBIENT
 INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('ANALISTA_AMBIENTAL');
 
 
-INSERT INTO `dadossocioambienenentais`.`localidade` (`nome`, `latitude`, `longitude`, `municipio`) VALUES ('Boa Vsita de Irirteua', '6786768', '768767', 'CURUÇÁ');
-INSERT INTO `dadossocioambienenentais`.`localidade` (`nome`, `latitude`, `longitude`, `municipio`) VALUES ('Maracangalha', '5455454', '5454544', 'BELÉM');
-INSERT INTO `dadossocioambienenentais`.`localidade` (`nome`, `latitude`, `longitude`, `municipio`) VALUES ('Árvore Gigante', '55255555', '768767', 'SANTARÉM');
+INSERT INTO `dadossocioambienenentais`.`localidade` (`nome`, `municipio`) VALUES ('Boa Vsita de Irirteua', 'CURUÇÁ');
+INSERT INTO `dadossocioambienenentais`.`localidade` (`nome`, `municipio`) VALUES ('Maracangalha', 'BELÉM');
+INSERT INTO `dadossocioambienenentais`.`localidade` (`nome`, `municipio`) VALUES ('Árvore Gigante', 'SANTARÉM');
 
 
 INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('1', '1');

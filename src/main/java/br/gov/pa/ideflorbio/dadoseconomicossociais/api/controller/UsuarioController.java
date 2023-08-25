@@ -60,8 +60,7 @@ public class UsuarioController {
 	
 	@CheckSecurity.Usuario.PodeEditar
 	@PutMapping("alterar-senha/{id}")
-	public void alterarSenha(@PathVariable Long id, 
-		@RequestBody @Valid SenhaInput senha) {
+	public void alterarSenha(@PathVariable Long id, @RequestBody @Valid SenhaInput senha) {
 		
 		usuarioCadastro.AlterarSenha(id, senha.getSenhaAtual(), senha.getNovaSenha());
 	}

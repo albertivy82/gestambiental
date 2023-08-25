@@ -4,22 +4,30 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Municipio;
+
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class LocalidadeInput {
+public class PostoDeSaudeInput {
 	
 	@NotBlank
 	private String nome;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Municipio municipio;
+	private SimNao ambulatorial;
 	
-		
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNao urgenciaEmergencia;
 	
+	private int medicosPorTurno;
+	
+	
+	@NotNull
+	private LocalidadeIdInput localidade;
+
 }

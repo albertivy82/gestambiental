@@ -18,8 +18,8 @@ VALUES
 '1', 
 'client_secret_basic', 
 'refresh_token,authorization_code', 
-'http://127.0.0.1:3000/authorize', 
+'gestambiental://oauthcallback', 
 'READ,WRITE', 
-'{"@class":"java.util.Collections$UnmodifiableMap", "settings.client.require-proof-key":false, "settings.client.require-authorization-consent":false}', 
-'{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":false,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.core.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",86400.000000000]}');
+'{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":false, "settings.client.require-authorization-consent":false}', 
+'{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",86400.000000000],"settings.token.authorization-code-time-to-live":["java.time.Duration",300.000000000]}');
 

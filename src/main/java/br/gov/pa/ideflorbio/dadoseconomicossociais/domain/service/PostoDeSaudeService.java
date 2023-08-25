@@ -9,22 +9,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EscolaReciboDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.PostoDeSaudeDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EscolaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.PostoNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Escola;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.PostoDeSaude;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EscolasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.LocalidadesRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.PostosDeSaudeRepository;
 
 @Service
-public class EscolaService {
+public class PostoDeSaudeService {
 	
 	private static final String ENTIDADE_EM_USO 
-	= "A Escola de código %d não pode ser removida, pois está em uso";
+	= "O posto de saúde de código %d não pode ser removido, pois está em uso";
 	
 	@Autowired
-	EscolasRepository escolas;
+	PostosDeSaudeRepository postos;
 	
 	@Autowired
 	LocalidadesRepository localidades;
@@ -33,49 +37,49 @@ public class EscolaService {
 	ModelMapper mapper;
 	
 	@Transactional
-	public Escola inserir(Escola escola) {
+	public PostoDeSaude inserir(PostoDeSaude posto) {
 		
 		
-		Long idLocalidade = escola.getLocalidade().getId();
+		Long idLocalidade = posto.getLocalidade().getId();
 		Localidade localidade = localidades.findById(idLocalidade)
 		.orElseThrow(()->new LocalidadeNaoEncontradaException(idLocalidade));
-		escola.setLocalidade(localidade);
+		posto.setLocalidade(localidade);
 		
-		return escolas.save(escola);
+		return postos.save(posto);
 	}
 	
 	
-	public Escola buscarEntidade(Long id) {
+	public PostoDeSaude buscarEntidade(Long id) {
 		
-		Escola escolaAtual = escolas.findById(id)
-				.orElseThrow(()-> new EscolaNaoEncontradaException(id));
-		return inserir(escolaAtual);
+		PostoDeSaude postoAtual = postos.findById(id)
+				.orElseThrow(()-> new PostoNaoEncontradoException(id));
+		return inserir(postoAtual);
 	}
 	
 	
 	
-	public List<Escola> listarTodos(){
+	public List<PostoDeSaude> listarTodos(){
 		
-	   return escolas.findAll(); 
+	   return postos.findAll(); 
 		
 	}
 	
-	public EscolaReciboDTO localizarEntidade(Long id) {
+	public PostoDeSaudeDTO localizarEntidade(Long id) {
 		
-			Escola escola = escolas.findById(id)
-					.orElseThrow(()-> new EscolaNaoEncontradaException(id));
+			PostoDeSaude posto = postos.findById(id)
+					.orElseThrow(()-> new PostoNaoEncontradoException(id));
 		
-		return mapper.map(escola, EscolaReciboDTO.class);
+		return mapper.map(posto, PostoDeSaudeDTO.class);
 	}
 		
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			escolas.deleteById(id);
-			escolas.flush();
+			postos.deleteById(id);
+			postos.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
-			throw new EscolaNaoEncontradaException(id);
+			throw new PostoNaoEncontradoException(id);
 			
 		}catch(DataIntegrityViolationException e) {
 			

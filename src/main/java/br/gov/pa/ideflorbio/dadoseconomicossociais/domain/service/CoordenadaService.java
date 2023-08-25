@@ -1,6 +1,4 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service;
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -8,23 +6,22 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EscolaReciboDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.CoordenadaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EscolaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Escola;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Coordenada;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EscolasRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.CoordenadasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.LocalidadesRepository;
 
 @Service
-public class EscolaService {
+public class CoordenadaService {
 	
 	private static final String ENTIDADE_EM_USO 
-	= "A Escola de código %d não pode ser removida, pois está em uso";
+	= "A coordenada de código %d não pode ser removida, pois está em uso";
 	
 	@Autowired
-	EscolasRepository escolas;
+	CoordenadasRepository coordenadas;
 	
 	@Autowired
 	LocalidadesRepository localidades;
@@ -33,49 +30,36 @@ public class EscolaService {
 	ModelMapper mapper;
 	
 	@Transactional
-	public Escola inserir(Escola escola) {
+	public Coordenada inserir(Coordenada coordenada) {
 		
 		
-		Long idLocalidade = escola.getLocalidade().getId();
+		Long idLocalidade = coordenada.getLocalidade().getId();
 		Localidade localidade = localidades.findById(idLocalidade)
 		.orElseThrow(()->new LocalidadeNaoEncontradaException(idLocalidade));
-		escola.setLocalidade(localidade);
+		coordenada.setLocalidade(localidade);
 		
-		return escolas.save(escola);
+		return coordenadas.save(coordenada);
+	}
+	
+	public Coordenada buscarEntidade(Long id) {
+		
+		Coordenada coordenada = coordenadas.findById(id)
+				.orElseThrow(()->new CoordenadaNaoEncontradaException(id));
+		
+		return coordenada;
+		
 	}
 	
 	
-	public Escola buscarEntidade(Long id) {
-		
-		Escola escolaAtual = escolas.findById(id)
-				.orElseThrow(()-> new EscolaNaoEncontradaException(id));
-		return inserir(escolaAtual);
-	}
 	
-	
-	
-	public List<Escola> listarTodos(){
-		
-	   return escolas.findAll(); 
-		
-	}
-	
-	public EscolaReciboDTO localizarEntidade(Long id) {
-		
-			Escola escola = escolas.findById(id)
-					.orElseThrow(()-> new EscolaNaoEncontradaException(id));
-		
-		return mapper.map(escola, EscolaReciboDTO.class);
-	}
-		
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			escolas.deleteById(id);
-			escolas.flush();
+			coordenadas.deleteById(id);
+			coordenadas.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
-			throw new EscolaNaoEncontradaException(id);
+			throw new CoordenadaNaoEncontradaException(id);
 			
 		}catch(DataIntegrityViolationException e) {
 			
