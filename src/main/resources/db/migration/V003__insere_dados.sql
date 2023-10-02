@@ -14,8 +14,7 @@ INSERT INTO `dadossocioambienenentais`.`permissao` (`nome`) VALUES ('EDITAR_PERM
 
 
 INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('ADMINISTRADOR');
-INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('GERENTE_AMBIENTAL');
-INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('GERENTE_SOCIAL');
+INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('GESTOR_AMBIENTAL');
 INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('ANALISTA_AMBIENTAL');
 INSERT INTO `dadossocioambienenentais`.`grupo` (`nome`) VALUES ('ANALISTA_SOCIAL');
 
@@ -31,14 +30,13 @@ INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) 
 INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('1', '4');
 INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('1', '5');
 INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('2', '2');
+INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('2', '3');
 INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('2', '4');
-INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('3', '2');
-INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('3', '3');
-INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('4', '4');
-INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('5', '3');
+INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('3', '4');
+INSERT INTO `dadossocioambienenentais`.`grupo_permissao` (`grupo`, `permissao`) VALUES ('4', '3');
 
 INSERT INTO `dadossocioambienenentais`.`usuario_grupo` (`usuario`, `grupo`) VALUES ('1', '1');
 INSERT INTO `dadossocioambienenentais`.`usuario_grupo` (`usuario`, `grupo`) VALUES ('2', '2');
 INSERT INTO `dadossocioambienenentais`.`usuario_grupo` (`usuario`, `grupo`) VALUES ('3', '3');
 INSERT INTO `dadossocioambienenentais`.`usuario_grupo` (`usuario`, `grupo`) VALUES ('4', '4');
-INSERT INTO `dadossocioambienenentais`.`usuario_grupo` (`usuario`, `grupo`) VALUES ('5', '5');
+INSERT INTO `dadossocioambienenentais`.`usuario_grupo` (`usuario`, `grupo`) VALUES ('5', '1');
