@@ -2,6 +2,7 @@ CREATE TABLE `localidade` (
   `id` bigint(30) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
   `municipio` varchar(100) NOT NULL,
+  `esfera` varchar(15) NOT NULL,
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
@@ -28,7 +29,8 @@ CREATE TABLE `posto_de_saude` (
 
 CREATE TABLE `coordenada` (
   `id` bigint(30) NOT NULL AUTO_INCREMENT,
-  `coordenada` varchar(255) NOT NULL,
+  `latitude` varchar(30) NOT NULL,
+  `longitude` varchar(30) NOT NULL,
   `localidade` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;

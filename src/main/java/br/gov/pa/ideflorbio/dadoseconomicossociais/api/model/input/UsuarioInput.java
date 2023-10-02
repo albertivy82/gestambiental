@@ -23,8 +23,11 @@ public class UsuarioInput {
 	@NotBlank
 	private String cpf;
 	
-	@NotBlank
+	
 	private String senha;
 	
+	public void setSenha(String cpf) {
+	    this.senha = cpf;
+	}
 	
 }

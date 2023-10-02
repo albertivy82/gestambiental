@@ -29,7 +29,7 @@ public @interface CheckSecurity {
 		public @interface PodeConsultar {}
 	}
 	
-	public @interface GereciaSocioecomia{
+	public @interface GereciaSocioeconomia{
 		@PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_DADOS_SOCIAIS')")
 		@Retention(RUNTIME)
 		@Target(METHOD)
@@ -43,6 +43,18 @@ public @interface CheckSecurity {
 	
 	public @interface GereciaAmbiental{
 		@PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_DADOS_AMBIENTAIS')")
+		@Retention(RUNTIME)
+		@Target(METHOD)
+		public @interface PodeEditar {}
+		
+		@PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+		@Retention(RUNTIME)
+		@Target(METHOD)
+		public @interface PodeConsultar {}
+	}
+	
+	public @interface GereciaPermissao{
+		@PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_PERMISSOES')")
 		@Retention(RUNTIME)
 		@Target(METHOD)
 		public @interface PodeEditar {}

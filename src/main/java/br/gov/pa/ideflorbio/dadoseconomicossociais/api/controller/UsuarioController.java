@@ -2,11 +2,10 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +20,11 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.SenhaInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.UsuarioInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Usuario;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.UsuarioService;
 import io.swagger.annotations.Api;
+import jakarta.validation.Valid;
 
 @Api(tags = "Usuario")
 @RestController
@@ -37,12 +38,19 @@ public class UsuarioController {
 	@Autowired
 	ModelMapper mapper;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@CheckSecurity.Usuario.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public UsuarioDTO adicionar(@RequestBody @Valid UsuarioInput usuarioInput) {
 		
+		usuarioInput.setSenha(passwordEncoder.encode((usuarioInput.getCpf())));
 		Usuario usuario = mapper.map(usuarioInput, Usuario.class);
+		
+		usuarioCadastro.checkAvailability(usuario);
+		
 		return mapper.map(usuarioCadastro.inserir(usuario), UsuarioDTO.class);
 		
 	}
@@ -51,9 +59,15 @@ public class UsuarioController {
 	@PutMapping("/{id}")
 	public UsuarioDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid UsuarioInput usuarioInput) {
-
+		usuarioInput.setSenha(passwordEncoder.encode((usuarioInput.getCpf())));
 		Usuario entrevistadorAtual = usuarioCadastro.buscarEntidade(id);
 		mapper.map(usuarioInput, entrevistadorAtual);
+		
+		try {
+		usuarioCadastro.checkAvailability(entrevistadorAtual);
+		}catch(NegocioException e) {
+			throw e;
+		}
 		return mapper.map(usuarioCadastro.inserir(entrevistadorAtual), UsuarioDTO.class);
 		
 	}
@@ -69,7 +83,8 @@ public class UsuarioController {
 	@GetMapping
 	public List<UsuarioDTO> listar(){
 		return usuarioCadastro
-				.listarTodos().stream().map(t->mapper.map(t, UsuarioDTO.class)).toList();
+				.listarTodos();
+		//.stream().map(t->mapper.map(t, UsuarioDTO.class)).toList()
 		
 	}
 	

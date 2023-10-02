@@ -25,7 +25,10 @@ public class Coordenada {
 	private Long id;
 	
 	@NotBlank
-	private String coordenada;
+	private String latitude;
+	
+	@NotBlank
+	private String longitude;
 	
 	@ManyToOne
 	@JoinColumn(name="localidade")

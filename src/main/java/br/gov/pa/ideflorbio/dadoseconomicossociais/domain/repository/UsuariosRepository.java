@@ -23,5 +23,7 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Long>{
 	
 	@Query(value = "SELECT * FROM usuario WHERE usuario.Matricula LIKE:matricula", nativeQuery=true)
 	Optional<Usuario>findByMatricula(String matricula);
+	
+		
 
 }

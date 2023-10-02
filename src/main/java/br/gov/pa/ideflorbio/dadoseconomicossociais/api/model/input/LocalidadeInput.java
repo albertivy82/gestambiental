@@ -4,6 +4,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Esfera;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Municipio;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,10 @@ public class LocalidadeInput {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Municipio municipio;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Esfera esfera;
 	
 		
 	

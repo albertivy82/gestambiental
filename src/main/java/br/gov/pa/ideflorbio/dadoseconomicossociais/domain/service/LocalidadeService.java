@@ -9,13 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.LocalidadeDTO;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.LocalidadeInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.UsuarioNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Usuario;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.LocalidadesRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.UsuariosRepository;
 
@@ -72,45 +69,6 @@ public class LocalidadeService {
 	}
 	
 	
-	
-	public List<UsuarioDTO> listarUsuarios(Long id){
-		
-		Localidade localidade = localidades.findById(id)
-				.orElseThrow(()-> new LocalidadeNaoEncontradaException(id));
-		
-		List<UsuarioDTO> listaDeUsuarios = localidade.getUsuario()
-				.stream().map(e->mapper.map(e, UsuarioDTO.class)).toList();
-		
-		return listaDeUsuarios;
-	}
-	
-	@Transactional
-	public void vincularUsuario(Long idLocalidade, Long idEntrevistador) {
-		
-		Localidade localidade = localidades.findById(idLocalidade)
-		.orElseThrow(()-> new LocalidadeNaoEncontradaException(idLocalidade));
-		
-		Usuario usuario = usuarios.findById(idEntrevistador)
-				.orElseThrow(()-> new UsuarioNaoEncontradoException(idEntrevistador));
-		
-		localidade.getUsuario().add(usuario);
-			
-	}
-	
-	@Transactional
-	public void desvincularUsuario(Long idLocalidade, Long idUsuario) {
-		
-		Localidade localidade = localidades.findById(idLocalidade)
-		.orElseThrow(()-> new LocalidadeNaoEncontradaException(idLocalidade));
-		
-		Usuario usuario = usuarios.findById(idUsuario)
-				.orElseThrow(()-> new UsuarioNaoEncontradoException(idUsuario));
-		
-		localidade.getUsuario().remove(usuario);
-			
-	}
-	
-		
 		
 	@Transactional
 	public void excluir(Long id) {

@@ -40,16 +40,23 @@ public class UsuarioService {
 	@Autowired
 	ModelMapper mapper;
 	
+	
 	@Transactional
 	public Usuario inserir(Usuario usuario) {
 		
-		//usuarios.detach(usuario);
+		return usuarios.save(usuario);	
+	}
+	
+	
+	public void checkAvailability(Usuario usuario) {
 		
 		Optional<Usuario> checkaEmail = usuarios.findByEmail(usuario.getEmail());
 		Optional<Usuario> checkaCpf = usuarios.findByCpf(usuario.getCpf());
 		Optional<Usuario> checkaMatricula = usuarios.findByMatricula(usuario.getMatricula());
+		System.out.println(checkaEmail);
 		
 		if(checkaEmail.isPresent()&&!checkaEmail.get().equals(usuario)){
+			System.out.println("lançou/////////?");
 			throw new NegocioException(String.format("O e-mail: %s não está disponível", usuario.getEmail()));
 		}
 		
@@ -60,13 +67,6 @@ public class UsuarioService {
 		if(checkaMatricula.isPresent()&&!checkaMatricula.get().equals(usuario)){
 			throw new NegocioException(String.format("O matricula: %s não está disponível", usuario.getMatricula()));
 		}
-		
-		if(usuario.isNovo()) {
-			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
-		}
-		
-		
-		return usuarios.save(usuario);	
 	}
 	
 	
@@ -75,22 +75,33 @@ public class UsuarioService {
 		
 		Usuario usuarioAtual = usuarios
 				.findById(id).orElseThrow(()->new UsuarioNaoEncontradoException(id));
+			
 		return usuarioAtual;
 		
 	}
 	
 	
 	
-	public List<Usuario> listarTodos(){
+	public List<UsuarioDTO> listarTodos(){
+		List<UsuarioDTO> listaDeUsuarios = usuarios.findAll().stream().map(e->mapper.map(e, UsuarioDTO.class)).toList();
+		listaDeUsuarios.stream().forEach(e->e.setGrupo(grupos.findNomeGrupo(e.getId()).stream().map(u->u.toString()).toList()));
 		
-		return usuarios.findAll();
+		return listaDeUsuarios;
 	}
 	
 	
+	
+	@Transactional
 	public UsuarioDTO buscaPorId(Long id){
 		Usuario usuario = usuarios
 				.findById(id).orElseThrow(()->new UsuarioNaoEncontradoException(id));
-		return mapper.map(usuario, UsuarioDTO.class);
+		 UsuarioDTO userDetail = mapper.map(usuario, UsuarioDTO.class);
+		 
+		 System.out.println("grupos-> "+grupos.findNomeGrupo(usuario.getId()).stream().map(e->e.toString()).toList());
+		 
+		userDetail.setGrupo(grupos.findNomeGrupo(usuario.getId()).stream().map(e->e.toString()).toList());
+		
+		return userDetail;
 	}
 	
 	public UsuarioDTO buscarPorNome(String nome) {

@@ -2,7 +2,6 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -13,9 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,9 +46,6 @@ public class Usuario implements Serializable {
 	@NotBlank
 	private String senha;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy="usuario")
-	private List<Localidade> localidade;
 	
 	@ManyToMany
 	@JoinTable(
@@ -63,8 +56,8 @@ public class Usuario implements Serializable {
 	private Set<Grupo> grupo = new HashSet<>();
 	
 	
-	public boolean isNovo() {
-		return getId() == null;
-	}
+	
+	
+	
 
 }

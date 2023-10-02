@@ -17,9 +17,9 @@ public class LocalidadeDTO {
 	
 	private String municipio;
 	
-	private String latitude;
+	private String esfera;
 	
-	private String longitude;
+	private List<CoordenadaDTO> coordenadas;
 	
 	private List<PostoDeSaudeDTO> posto;
 	
@@ -27,7 +27,7 @@ public class LocalidadeDTO {
 	
 	private List<EscolaToLocalidadeDTO> escola;
 	
-	private List<CoordenadaDTO> coordenadas;
+	
 	
 	
 		

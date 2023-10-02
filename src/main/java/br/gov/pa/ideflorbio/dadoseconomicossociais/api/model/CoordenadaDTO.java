@@ -8,7 +8,9 @@ public class CoordenadaDTO {
 		
 	private Long id;
 		
-    private String coordenada;
+    private String latitude;
+    
+    private String longitude;
 		
 		
 }

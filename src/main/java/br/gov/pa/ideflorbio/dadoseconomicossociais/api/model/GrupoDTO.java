@@ -1,6 +1,7 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
 import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
