@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.InstituicoesConhecidasDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.InstituicaoNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.InstituicaoConhecida;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.InstituicoesConhecidasRepository;
 
 @Service
@@ -28,7 +28,7 @@ public class InstituicoesService {
 	InstituicoesConhecidasRepository instituicoes;
 	
 	@Autowired
-	ImoveisRepository imoveis;
+	BenfeitoriasRepository benfeitorias;
 	
 	
 	@Autowired
@@ -37,11 +37,11 @@ public class InstituicoesService {
 	@Transactional
 	public InstituicaoConhecida inserir(InstituicaoConhecida instituicaoConhecida) {
 		
-		Long idImovel = instituicaoConhecida.getImovel().getId();
-		Imovel imovel = imoveis.findById(idImovel)
-		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
+		Long idBenfeitoria = instituicaoConhecida.getBenfeitoria().getId();
+		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
+		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		instituicaoConhecida.setImovel(imovel);
+		instituicaoConhecida.setBenfeitoria(benfeitoria);
 		
 		return instituicoes.save(instituicaoConhecida);
 	}

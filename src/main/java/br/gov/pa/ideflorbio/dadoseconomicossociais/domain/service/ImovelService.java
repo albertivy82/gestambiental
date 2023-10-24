@@ -57,6 +57,12 @@ public class ImovelService {
 	   return imoveis.findAll(); 
 		
 	}
+	public List<ImovelDTO> findByLocalidade(Long localidadeId){
+		
+		return imoveis.findByLocalidadeId(localidadeId).stream().map(i->mapper.map(i, ImovelDTO.class)).toList();
+		
+	}
+	
 	
 	public ImovelDTO localizarEntidade(Long id) {
 		

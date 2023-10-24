@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.UsuarioDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.GrupoNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.UsuarioNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Grupo;
@@ -34,6 +34,7 @@ public class UsuarioService {
 	@Autowired
 	GruposRepository grupos;
 	
+	
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
@@ -43,6 +44,11 @@ public class UsuarioService {
 	
 	@Transactional
 	public Usuario inserir(Usuario usuario) {
+		
+		Long grupoId = usuario.getGrupo().getId();
+		Grupo grupo = grupos.findById(grupoId).orElseThrow(()->new ImovelNaoEncontradoException(grupoId));
+		
+		usuario.setGrupo(grupo);
 		
 		return usuarios.save(usuario);	
 	}
@@ -84,8 +90,6 @@ public class UsuarioService {
 	
 	public List<UsuarioDTO> listarTodos(){
 		List<UsuarioDTO> listaDeUsuarios = usuarios.findAll().stream().map(e->mapper.map(e, UsuarioDTO.class)).toList();
-		listaDeUsuarios.stream().forEach(e->e.setGrupo(grupos.findNomeGrupo(e.getId()).stream().map(u->u.toString()).toList()));
-		
 		return listaDeUsuarios;
 	}
 	
@@ -97,9 +101,6 @@ public class UsuarioService {
 				.findById(id).orElseThrow(()->new UsuarioNaoEncontradoException(id));
 		 UsuarioDTO userDetail = mapper.map(usuario, UsuarioDTO.class);
 		 
-		 System.out.println("grupos-> "+grupos.findNomeGrupo(usuario.getId()).stream().map(e->e.toString()).toList());
-		 
-		userDetail.setGrupo(grupos.findNomeGrupo(usuario.getId()).stream().map(e->e.toString()).toList());
 		
 		return userDetail;
 	}
@@ -118,29 +119,7 @@ public class UsuarioService {
 		return mapper.map(usuario, UsuarioDTO.class);
 	}
 	
-	@Transactional
-	public void VinculaGrupo(Long usuarioId, Long grupoId) {
-		
-		Usuario usuario =  usuarios.findById(usuarioId)
-				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));
-		
-		Grupo grupo =  grupos.findById(grupoId)
-				.orElseThrow(()->new GrupoNaoEncontradoException(usuarioId));
-		
-		usuario.getGrupo().add(grupo);
-	}
 	
-	@Transactional	
-    public void DesvinculaGrupo(Long usuarioId, Long grupoId) {
-		
-		Usuario usuario =  usuarios.findById(usuarioId)
-				.orElseThrow(()->new UsuarioNaoEncontradoException(usuarioId));
-		
-		Grupo grupo =  grupos.findById(grupoId)
-				.orElseThrow(()->new GrupoNaoEncontradoException(usuarioId));
-		
-		usuario.getGrupo().remove(grupo);
-	}
    
 	@Transactional
    public void AlterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {

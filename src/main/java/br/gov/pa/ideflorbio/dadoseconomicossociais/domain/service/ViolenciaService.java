@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ViolenciasSofridasDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ServicoNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ViolenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Violencia;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ViolenciaRepository;
 
 
@@ -32,7 +32,7 @@ public class ViolenciaService {
 	ViolenciaRepository violencias;
 	
 	@Autowired
-	ImoveisRepository imoveis;
+	BenfeitoriasRepository benfeitorias;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -40,11 +40,11 @@ public class ViolenciaService {
 	@Transactional
 	public Violencia inserir(Violencia violencia) {
 		
-		Long idImovel = violencia.getImovel().getId();
-		Imovel imovel = imoveis.findById(idImovel)
-		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
+		Long idBenfeitoria = violencia.getBenfeitoria().getId();
+		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
+		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		violencia.setImovel(imovel);
+		violencia.setBenfeitoria(benfeitoria);
 		
 		return violencias.save(violencia);
 	}

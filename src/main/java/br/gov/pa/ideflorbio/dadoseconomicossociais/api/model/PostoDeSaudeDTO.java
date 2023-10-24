@@ -13,7 +13,7 @@ public class PostoDeSaudeDTO{
 	private String nome;
 	private String ambulatorial;
 	private String urgenciaEmergencia;
-	private int medicosPorTurno;
+	private int medicosPorTurno = 0;
 	
 	
 

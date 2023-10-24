@@ -2,6 +2,8 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,6 +73,16 @@ public class CoordenadaController {
 		
 		return mapper.map(coordenda, CoordenadaDTO.class);
 	}
+	
+	@GetMapping("/localidade-coordenadas/{localidadeId}")
+	public List<CoordenadaDTO> BuscarPorLocalidade(@PathVariable Long localidadeId) {
+		   
+		return coordenadaCadastro.findByLocalidadeId(localidadeId)
+				.stream().map(t->mapper.map(t, CoordenadaDTO.class)).toList();
+	}
+	
+	
+	
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

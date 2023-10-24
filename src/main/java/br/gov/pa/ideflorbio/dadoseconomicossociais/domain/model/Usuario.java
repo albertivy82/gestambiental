@@ -1,16 +1,13 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -46,14 +43,9 @@ public class Usuario implements Serializable {
 	@NotBlank
 	private String senha;
 	
-	
-	@ManyToMany
-	@JoinTable(
-			name="usuario_grupo",
-			joinColumns = @JoinColumn(name="usuario"),
-			inverseJoinColumns = @JoinColumn(name ="grupo")
-	)
-	private Set<Grupo> grupo = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name="grupo")	
+	private Grupo grupo;
 	
 	
 	

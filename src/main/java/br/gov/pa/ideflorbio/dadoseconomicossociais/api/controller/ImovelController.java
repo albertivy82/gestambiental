@@ -29,9 +29,9 @@ import io.swagger.annotations.Api;
 
 
 
-@Api(tags = "Residência")
+@Api(tags = "imovel")
 @RestController
-@RequestMapping("/residencias")
+@RequestMapping("/imovel")
 public class ImovelController {
 	
 	@Autowired
@@ -75,6 +75,11 @@ public class ImovelController {
 	@GetMapping("/{id}")
 	public ImovelDTO Buscar(@PathVariable Long id) {
 		return imoveisCadastro.localizarEntidade(id);
+	}
+	
+	@GetMapping("localidade-imovel/{idLocalidade}")
+	public List<ImovelDTO> BuscarPoLocalidade(@PathVariable Long idLocalidade) {
+		return imoveisCadastro.findByLocalidade(idLocalidade);
 	}
 	
 	

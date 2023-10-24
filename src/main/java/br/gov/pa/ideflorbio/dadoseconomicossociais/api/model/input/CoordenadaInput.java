@@ -9,8 +9,12 @@ import lombok.Setter;
 @Setter
 public class CoordenadaInput {
 	
+	
 	@NotBlank
-	private String coordenada;
+	private String latitude;
+	
+	@NotBlank
+	private String longitude;
 	
 	@NotNull
 	private LocalidadeIdInput localidade;

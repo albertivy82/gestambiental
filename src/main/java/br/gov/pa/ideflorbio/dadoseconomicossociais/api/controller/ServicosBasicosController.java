@@ -2,8 +2,6 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +19,11 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ServicosBasicosDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ServicosBasicosInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosBasicos;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.ServicosBasicosService;
 import io.swagger.annotations.Api;
+import jakarta.validation.Valid;
 
 
 
@@ -56,7 +55,7 @@ public class ServicosBasicosController {
 			@RequestBody @Valid ServicosBasicosInput servicosBasicosInput) {
 		try {
 			ServicosBasicos servicoAtual = servicosBasicosCadastro.buscarEntidade(id);
-			servicoAtual.setImovel(new Imovel());
+			servicoAtual.setBenfeitoria(new Benfeitoria());
 			mapper.map(servicosBasicosInput, servicoAtual);
 		return mapper.map(servicosBasicosCadastro.inserir(servicoAtual), ServicosBasicosDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

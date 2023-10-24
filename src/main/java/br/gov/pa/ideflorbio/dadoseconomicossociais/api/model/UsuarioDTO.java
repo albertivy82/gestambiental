@@ -1,7 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +17,7 @@ public class UsuarioDTO {
 		
 	private String cpf;
 	
-	private List<String> grupo;
+	private GrupoNomeDTO grupo;
 
 
 }

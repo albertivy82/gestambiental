@@ -6,15 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LocalidadeDTO {
+public class LocalidadeIdDTO {
 	
-    
-	private Long id;
+    private Long id;
 	
-	private String nome;
-	
-	private String municipio;
-	
-	private String esfera;
 	
 }

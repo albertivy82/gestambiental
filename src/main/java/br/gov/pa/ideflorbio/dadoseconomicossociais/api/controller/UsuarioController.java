@@ -106,17 +106,6 @@ public class UsuarioController {
 		return usuarioCadastro.buscarPorMatricula(matricula);
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
-	@PutMapping("/{idUsuario}/grupo/{idGrupo}")
-	public void VincularUsuarioGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
-		usuarioCadastro.VinculaGrupo(idUsuario, idGrupo);		
-	}
-	
-	@CheckSecurity.Usuario.PodeEditar
-	@DeleteMapping("/{idUsuario}/grupo/{idGrupo}")
-	public void DesvincularUsuarioGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
-		usuarioCadastro.DesvinculaGrupo(idUsuario, idGrupo);	
-	}
 	
 	@CheckSecurity.Usuario.PodeEditar
 	@DeleteMapping("/{id}")

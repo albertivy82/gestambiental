@@ -46,6 +46,6 @@ public class RendaOutrasFontes implements Serializable{
 	
 	
 	@ManyToOne
-	@JoinColumn(name="imovel")
-	private Imovel imovel;
+	@JoinColumn(name="benfeitoria")
+	private Benfeitoria benfeitoria;
 }

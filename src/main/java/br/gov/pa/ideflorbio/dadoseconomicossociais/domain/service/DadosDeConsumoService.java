@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.DadosDeConsumoDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.DadosDeConsumoNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.DadosDeConsumo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.DadosDeConsumoRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 
 @Service
 public class DadosDeConsumoService {
@@ -31,7 +31,7 @@ public class DadosDeConsumoService {
 	DadosDeConsumoRepository consumo;
 	
 	@Autowired
-	ImoveisRepository imoveis;
+	BenfeitoriasRepository benfeitorias;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -41,16 +41,16 @@ public class DadosDeConsumoService {
 	@Transactional
 	public DadosDeConsumo inserir(DadosDeConsumo dadosDeConsumo) {
 		
-		Long idImovel = dadosDeConsumo.getImovel().getId();
-			Imovel imovel = imoveis.findById(idImovel)
-					.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
+		Long idBenfeitoria = dadosDeConsumo.getBenfeitoria().getId();
+			Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
+					.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 			
-			if(imovel.getEntrevistado()!=null && dadosDeConsumo.getId()==null) {
-				throw new NegocioException("Esta imovel já possui dados sobre consumo cadastrado. Atualize o cadastro ou apague o mesmo"
+			if(benfeitoria.getEntrevistado()!=null && dadosDeConsumo.getId()==null) {
+				throw new NegocioException("Esta Benfeitoria já possui dados sobre consumo cadastrado. Atualize o cadastro ou apague o mesmo"
 						+ " para realizar novo cadastro");
 			}
 			
-		dadosDeConsumo.setImovel(imovel);
+		dadosDeConsumo.setBenfeitoria(benfeitoria);
 		
 		return mapper.map(consumo.save(dadosDeConsumo), DadosDeConsumo.class);
 	}

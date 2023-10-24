@@ -2,7 +2,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +25,9 @@ public class UsuarioInput {
 	
 	
 	private String senha;
+	
+	@NotNull
+	private GrupoIdInput grupo;
 	
 	public void setSenha(String cpf) {
 	    this.senha = cpf;

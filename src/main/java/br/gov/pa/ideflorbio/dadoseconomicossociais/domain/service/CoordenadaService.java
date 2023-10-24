@@ -1,4 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -6,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.CoordenadaDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.CoordenadaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
@@ -31,11 +34,13 @@ public class CoordenadaService {
 	
 	@Transactional
 	public Coordenada inserir(Coordenada coordenada) {
-		
+		 
 		
 		Long idLocalidade = coordenada.getLocalidade().getId();
+		
 		Localidade localidade = localidades.findById(idLocalidade)
 		.orElseThrow(()->new LocalidadeNaoEncontradaException(idLocalidade));
+		
 		coordenada.setLocalidade(localidade);
 		
 		return coordenadas.save(coordenada);
@@ -49,6 +54,19 @@ public class CoordenadaService {
 		return coordenada;
 		
 	}
+	
+
+	public List<CoordenadaDTO> findByLocalidadeId(Long localidadeId) {
+		
+		List<CoordenadaDTO> listaDeCoordenadas = coordenadas.findByLocalidadeId(localidadeId).stream().map(result->mapper.map(result, CoordenadaDTO.class)).toList();
+               										
+               
+       System.out.println(listaDeCoordenadas);
+        
+        return listaDeCoordenadas;
+		
+	}
+	
 	
 	
 	

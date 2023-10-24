@@ -8,14 +8,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ServicosBasicosDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ServicoNaoEncontradoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosBasicos;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ServicosBasicosRepository;
 @Service
 public class ServicosBasicosService {
@@ -29,7 +30,7 @@ public class ServicosBasicosService {
 	ServicosBasicosRepository servicos;
 	
 	@Autowired
-	ImoveisRepository imoveis;
+	BenfeitoriasRepository benfeitorias;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -37,18 +38,18 @@ public class ServicosBasicosService {
 	@Transactional
 	public ServicosBasicos inserir(ServicosBasicos servicosBasicos) {
 		
-		Long idImovel = servicosBasicos.getImovel().getId();
+		Long idBenfeitoria = servicosBasicos.getBenfeitoria().getId();
 		
-		Imovel imovel = imoveis.findById(idImovel)
-		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
+		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
+		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		if(imovel.getEntrevistado()!=null && servicosBasicos.getId()==null) {
-			throw new NegocioException("Esta imovel já possui dados sobre "
+		if(benfeitoria.getEntrevistado()!=null && servicosBasicos.getId()==null) {
+			throw new NegocioException("Esta benfeitoria já possui dados sobre "
 					+ "atendimentos bássicos cadastrados. Atualize o cadastro ou apague o mesmo"
 					+ " para realizar novo cadastro");
 		}
 		
-		servicosBasicos.setImovel(imovel);
+		servicosBasicos.setBenfeitoria(benfeitoria);
 		
 		return servicos.save(servicosBasicos);
 	}

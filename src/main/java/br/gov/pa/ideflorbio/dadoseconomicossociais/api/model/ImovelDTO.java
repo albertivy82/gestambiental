@@ -1,9 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
-import java.sql.Date;
-import java.util.List;
-
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +7,11 @@ import lombok.Setter;
 @Setter
 public class ImovelDTO {
 	
+	private Long id;
+	
     private String rua;
 	
-	private String numero;
+	private String numero = "S/N";
 	
 	private String bairro;
 	
@@ -23,73 +21,30 @@ public class ImovelDTO {
 	
 	private String longitude;
 	
-	private String imovel;
+	private String situacaoFundiaria;
 	
-	private Date dataChegada;
+	private String documentacaoImovel;
+	
+	private String dataChegada;
 	
 	private String pretendeMudar;
-	
-	private String MotivoVontadeMudança;
+
+	private String MotivoVontadeMudanca = "NÃO SE APLICA";
 	
 	private String relacaoArea;
 	
 	private String relacaoVizinhos;
 	
-	private LocalidadeAssociacaoDTO localidade;
+	private String limites;
 	
-	private EntrevistadoIdNomeDTO entrevistado;
+	private String transporte;
 	
-	private DadosDeConsumoDTO consumo;
+	private String linhasDeBarco;
 	
-	private ServicosBasicosDTO servicosBasicos;
+	private String tipoSolo;
 	
-	private List<ViolenciasSofridasDTO> violenciaSofrida;
+	private String esporteLazer;
 	
-	private List<InstituicoesConhecidasDTO> instituicaoConhecida;
-	
-	private List<AtividadeProdutivaDTO> atividadeProdutiva;
-	
-	private List<RendaOutrasFontesDTO> rendaOutrasFontes;
-	
-	private List<CreditoDTO> credito;
-	
-	private  List<MoradorDTO> morador;
-	
-	
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		if(rua==null) {
-			this.rua = "Rua não identificada";
-		}
-		this.rua = rua;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		if(numero==null) {
-			this.numero = "S/N";
-		}
-		this.numero = numero;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		
-		if(bairro==null) {
-			this.bairro = "bairro não identificado";
-		}
-		
-		this.bairro = bairro;
-	}
-	
+	private LocalidadeDTO localidade;
 
 }

@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.MoradorDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.DoencaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.MoradorNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Doenca;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Morador;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.DoencasRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.MoradoresRepository;
 
 @Service
@@ -31,7 +31,7 @@ public class MoradoresService {
 	MoradoresRepository moradores;
 	
 	@Autowired
-	ImoveisRepository imoveis;
+	BenfeitoriasRepository benfeitorias;
 	
 	@Autowired
 	DoencasRepository doencas;
@@ -43,11 +43,11 @@ public class MoradoresService {
 	@Transactional
 	public Morador inserir(Morador morador) {
 		
-		Long idImovel = morador.getImovel().getId();
-		Imovel imovel = imoveis.findById(idImovel)
-		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
+		Long idBenfeitoria = morador.getBenfeitoria().getId();
+		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
+		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		morador.setImovel(imovel);
+		morador.setBenfeitoria(benfeitoria);
 		
 		return moradores.save(morador);
 	}
@@ -65,7 +65,7 @@ public class MoradoresService {
 	@Transactional
 	public void vincularDoenca(Long idMorador, Long idDoenca) {
 		Morador morador = moradores.findById(idMorador)
-				.orElseThrow(()-> new ImovelNaoEncontradoException(idMorador));
+				.orElseThrow(()-> new BenfeitoriaNaoEncontradaException(idMorador));
 		
 		Doenca doenca = doencas.findById(idDoenca)
 				.orElseThrow(()-> new DoencaNaoEncontradaException(idDoenca));
@@ -95,7 +95,7 @@ public class MoradoresService {
 	public MoradorDTO localizarEntidade(Long id) {
 		
 			Morador morador = moradores.findById(id)
-					.orElseThrow(()-> new ImovelNaoEncontradoException(id));
+					.orElseThrow(()-> new BenfeitoriaNaoEncontradaException(id));
 		
 		return mapper.map(morador, MoradorDTO.class);
 	}

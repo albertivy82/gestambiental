@@ -2,8 +2,6 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +19,11 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.DadosDeConsumoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.DadosDeConsumoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.DadosDeConsumo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.DadosDeConsumoService;
 import io.swagger.annotations.Api;
+import jakarta.validation.Valid;
 
 
 
@@ -56,7 +55,7 @@ public class DadosDeConsumoController {
 			@RequestBody @Valid DadosDeConsumoInput consumoInput) {
 		try {
 			DadosDeConsumo consumoAtual = dadosDeConsumoCadastro.buscarEntidade(id);
-			consumoAtual.setImovel(new Imovel());
+			consumoAtual.setBenfeitoria(new Benfeitoria());
 			mapper.map(consumoInput, consumoAtual);
 			return mapper.map(dadosDeConsumoCadastro.inserir(consumoAtual), DadosDeConsumoDTO.class); 
 			

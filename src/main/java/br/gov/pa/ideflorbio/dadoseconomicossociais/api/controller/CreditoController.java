@@ -2,8 +2,6 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +19,11 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.CreditoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.CreditoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Credito;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.CreditoService;
 import io.swagger.annotations.Api;
+import jakarta.validation.Valid;
 
 
 
@@ -59,7 +58,7 @@ public class CreditoController {
 		
 		try {
 			 Credito credito =  creditoCadastro.buscarEntidade(id);
-			 credito.setImovel(new Imovel());
+			 credito.setBenfeitoria(new Benfeitoria());
 			 mapper.map(creditoInput, credito);
 			return mapper.map(creditoCadastro.inserir(credito), CreditoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

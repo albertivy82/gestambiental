@@ -2,8 +2,6 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +19,11 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.InstituicoesConheci
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.InstituicaoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.InstituicaoConhecida;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.InstituicoesService;
 import io.swagger.annotations.Api;
+import jakarta.validation.Valid;
 
 
 
@@ -59,7 +58,7 @@ public class IntituicaoConhecidaController {
 		
 		try {
 			InstituicaoConhecida instituicao =  instituicoesCadastro.buscarEntidade(id);
-			 instituicao.setImovel(new Imovel());
+			 instituicao.setBenfeitoria(new Benfeitoria());
 			 mapper.map(instituicaoInput, instituicao);
 			return mapper.map(instituicoesCadastro.inserir(instituicao), InstituicoesConhecidasDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

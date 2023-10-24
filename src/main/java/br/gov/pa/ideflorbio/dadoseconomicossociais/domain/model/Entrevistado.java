@@ -40,8 +40,8 @@ public class Entrevistado implements Serializable{
 	private IndicadoConsultaPublica indicado;
 	
 	@OneToOne
-	@JoinColumn(name="imovel")
-	private Imovel imovel;
+	@JoinColumn(name="benfeitoria")
+	private Benfeitoria benfeitoria;
 	
 	
 

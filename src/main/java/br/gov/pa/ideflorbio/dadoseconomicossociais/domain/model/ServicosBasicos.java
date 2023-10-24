@@ -43,7 +43,7 @@ public class ServicosBasicos implements Serializable{
 	
 	@NotNull
 	@OneToOne
-	@JoinColumn(name="imovel")
-	private Imovel imovel;
+	@JoinColumn(name="benfeitoria")
+	private Benfeitoria benfeitoria;
 	
 }

@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.AtividadeProdutivaDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.AtividadeNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.AtividadeProdutiva;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.AtividadesProdutivasRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 
 
 @Service
@@ -30,7 +30,7 @@ public class AtividadesProdutivasService {
 	AtividadesProdutivasRepository atividadesProdutivas;
 	
 	@Autowired
-	ImoveisRepository imoveis;
+	BenfeitoriasRepository benfeitorias;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -38,11 +38,11 @@ public class AtividadesProdutivasService {
 	@Transactional
 	public AtividadeProdutiva inserir(AtividadeProdutiva atividadeProdutiva) {
 		
-		Long idImovel = atividadeProdutiva.getImovel().getId();
-		Imovel imovel = imoveis.findById(idImovel)
-		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
+		Long idBenfeitoria = atividadeProdutiva.getBenfeitoria().getId();
+		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
+		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		atividadeProdutiva.setImovel(imovel);
+		atividadeProdutiva.setBenfeitoria(benfeitoria);
 		
 		return atividadesProdutivas.save(atividadeProdutiva);
 	}

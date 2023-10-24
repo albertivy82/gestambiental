@@ -37,7 +37,7 @@ public class Credito implements Serializable{
 	private BigDecimal valor;
 	
 	@ManyToOne
-	@JoinColumn(name="imovel")
-	private Imovel imovel;
+	@JoinColumn(name="benfeitoria")
+	private Benfeitoria benfeitoria;
 
 }

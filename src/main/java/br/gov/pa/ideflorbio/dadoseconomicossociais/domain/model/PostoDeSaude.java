@@ -44,6 +44,7 @@ public class PostoDeSaude implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private SimNao urgenciaEmergencia;
 	
+	
 	private int medicosPorTurno;
 	
 	@OneToOne
