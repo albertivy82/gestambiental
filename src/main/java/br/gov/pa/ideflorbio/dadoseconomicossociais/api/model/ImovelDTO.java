@@ -21,6 +21,8 @@ public class ImovelDTO {
 	
 	private String longitude;
 	
+	private String vizinhos = "NAO_DECLARADO";
+	
 	private String situacaoFundiaria;
 	
 	private String documentacaoImovel;
@@ -36,6 +38,8 @@ public class ImovelDTO {
 	private String relacaoVizinhos;
 	
 	private String limites;
+	
+	private String iluminacaoPublica;
 	
 	private String transporte;
 	

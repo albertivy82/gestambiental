@@ -26,12 +26,8 @@ public class Benfeitoria {
 	private Long id;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="benfeitoria")
-	private Entrevistado entrevistado;
-	
-	@JsonIgnore
-	@OneToOne(mappedBy = "benfeitoria")
-	private DadosDeConsumo consumo;
+	@OneToMany(mappedBy = "benfeitoria")
+	private List<DadosDeConsumo> consumo;
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "benfeitoria")

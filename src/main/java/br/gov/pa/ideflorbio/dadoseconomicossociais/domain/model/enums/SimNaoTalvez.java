@@ -1,8 +1,9 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums;
 
-public enum SimNao {
+public enum SimNaoTalvez {
 	
 	SIM,
-	NÃO
+	NÃO,
+	TALVEZ
 
 }

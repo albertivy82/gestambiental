@@ -78,6 +78,7 @@ CREATE TABLE `imovel` (
   `referencial` varchar(255) NOT NULL,
   `latitude` varchar(255) NOT NULL,
   `longitude` varchar(255) NOT NULL,
+  `vizinhos` varchar(255) NOT NULL,
   `situacao_fundiaria` varchar(100) NOT NULL,
   `documentacao_imovel` varchar(100) NOT NULL,
   `data_chegada` date NOT NULL,
@@ -86,6 +87,7 @@ CREATE TABLE `imovel` (
   `relacao_area` varchar(255) NOT NULL,
   `relacao_vizinhos` varchar(255) NOT NULL,
   `limites` varchar(100) NOT NULL,
+  `iluminacao_publica` varchar(100) NOT NULL,
   `transporte` varchar(100) NOT NULL,
   `linhas_de_barco` varchar(100) NOT NULL,
   `tipo_solo` varchar(100) NOT NULL,
@@ -105,7 +107,9 @@ CREATE TABLE `entrevistado` (
   `nome` varchar(255) DEFAULT NULL,
   `apelido` varchar(100) DEFAULT NULL,
   `naturalidade` varchar(100) DEFAULT NULL,
-  `benfeitoria` bigint(30) NOT NULL,
+  `conhece_uc_proposta` varchar(100) DEFAULT NULL,
+  `proposta_melhorar_area` varchar(255) DEFAULT NULL,
+  `imovel` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 

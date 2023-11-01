@@ -5,12 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ServicosBasicosDTO {
+public class AtendimentoSaudeDTO {
 	
 	private Long id;
 	
-	private String servicosDeficitarios;
-	
+	private String tipoAtendimento;
 	
 
 }

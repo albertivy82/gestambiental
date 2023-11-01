@@ -9,13 +9,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ServicosBasicosDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.OutrosServicosDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ServicoNaoEncontradoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosBasicos;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ServicosBasicosRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.OutrosServicos;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.OutrosServicosRepository;
 @Service
-public class ServicosBasicosService {
+public class OutrosServicosService {
 	
 	
 	private static final String ENTIDADE_EM_USO = "Os dados sobre serviços públis básicos com id %d nõ podem ser apagados, pois estão "
@@ -23,38 +23,37 @@ public class ServicosBasicosService {
 
 	
 	@Autowired
-	ServicosBasicosRepository servicos;
+	OutrosServicosRepository servicos;
 	
 	@Autowired
 	ModelMapper mapper;
 	
 	@Transactional
-	public ServicosBasicos inserir(ServicosBasicos servicosBasicos) {
+	public OutrosServicos inserir(OutrosServicos servicosOutros) {
 		
-		return servicos.save(servicosBasicos);
+		return servicos.save(servicosOutros);
 	}
 	
 	@Transactional
-	public ServicosBasicos buscarEntidade(Long id) {
+	public OutrosServicos buscarEntidade(Long id) {
 		
-		ServicosBasicos servicosBasicos = servicos.findById(id)
+		OutrosServicos servicosOutros = servicos.findById(id)
 				.orElseThrow(()-> new ServicoNaoEncontradoException(id));
 		
-		return servicosBasicos;
+		return servicosOutros;	
 	}
 	
-	public List<ServicosBasicos> listarTodos(){
+	public List<OutrosServicos> listarTodos(){
 		
 	   return servicos.findAll(); 
 		
 	}
 	
-	public ServicosBasicosDTO localizarEntidade(Long id) {
-		
-			ServicosBasicos ServicosBasicos = servicos.findById(id)
+	public OutrosServicosDTO localizarEntidade(Long id) {
+		OutrosServicos servicosOutros = servicos.findById(id)
 					.orElseThrow(()-> new ServicoNaoEncontradoException(id));
 		
-		return mapper.map(ServicosBasicos, ServicosBasicosDTO.class);
+		return mapper.map(servicosOutros, OutrosServicosDTO.class);
 	}
 	
 		

@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,15 +37,15 @@ public class Escola implements Serializable {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao merenda;
+	private SimNaoTalvez merenda;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao transporte;
+	private SimNaoTalvez transporte;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao educacaoAmbiental;
+	private SimNaoTalvez educacaoAmbiental;
 	
 	@ManyToOne
 	@JoinColumn(name="localidade")

@@ -9,60 +9,60 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ServicosBasicosDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.AtendimentoSaudeDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ServicoNaoEncontradoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosBasicos;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ServicosBasicosRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.AtendimentoSaude;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.AtendimentoSaudeRepository;
 @Service
-public class ServicosBasicosService {
+public class AtendimentoSaudeService {
 	
 	
-	private static final String ENTIDADE_EM_USO = "Os dados sobre serviços públis básicos com id %d nõ podem ser apagados, pois estão "
+	private static final String ENTIDADE_EM_USO = "Os dados sobre serviços públicos básicos com id %d nõ podem ser apagados, pois estão "
 			+ "sendo utilizados em um relacionamento";
 
 	
 	@Autowired
-	ServicosBasicosRepository servicos;
+	AtendimentoSaudeRepository atendimentos;
 	
 	@Autowired
 	ModelMapper mapper;
 	
 	@Transactional
-	public ServicosBasicos inserir(ServicosBasicos servicosBasicos) {
+	public AtendimentoSaude inserir(AtendimentoSaude atendimentosBasicos) {
 		
-		return servicos.save(servicosBasicos);
+		return atendimentos.save(atendimentosBasicos);
 	}
 	
 	@Transactional
-	public ServicosBasicos buscarEntidade(Long id) {
+	public AtendimentoSaude buscarEntidade(Long id) {
 		
-		ServicosBasicos servicosBasicos = servicos.findById(id)
+		AtendimentoSaude atendimentosBasicos = atendimentos.findById(id)
 				.orElseThrow(()-> new ServicoNaoEncontradoException(id));
 		
-		return servicosBasicos;
+		return atendimentosBasicos;
 	}
 	
-	public List<ServicosBasicos> listarTodos(){
+	public List<AtendimentoSaude> listarTodos(){
 		
-	   return servicos.findAll(); 
+	   return atendimentos.findAll(); 
 		
 	}
 	
-	public ServicosBasicosDTO localizarEntidade(Long id) {
+	public AtendimentoSaudeDTO localizarEntidade(Long id) {
 		
-			ServicosBasicos ServicosBasicos = servicos.findById(id)
+			AtendimentoSaude AtendimentoSaude = atendimentos.findById(id)
 					.orElseThrow(()-> new ServicoNaoEncontradoException(id));
 		
-		return mapper.map(ServicosBasicos, ServicosBasicosDTO.class);
+		return mapper.map(AtendimentoSaude, AtendimentoSaudeDTO.class);
 	}
 	
 		
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			servicos.deleteById(id);
-			servicos.flush();
+			atendimentos.deleteById(id);
+			atendimentos.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
 			throw new ServicoNaoEncontradoException(id);

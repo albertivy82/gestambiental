@@ -18,5 +18,9 @@ public class EntrevistadoDTO {
 	
 	private String naturalidade;
 	
+    private String conheceUcProposta;
+	
+	private String propostaMelhorarArea;
+	
 		
 }

@@ -71,6 +71,13 @@ public class PostoDeSaudeService {
 		
 		return mapper.map(posto, PostoDeSaudeDTO.class);
 	}
+	
+	public List<PostoDeSaudeDTO> buscarPorLocalidade(Long localidadeId){
+		List<PostoDeSaudeDTO> postosLocais = postos.findByLocalidade(localidadeId)
+				.stream().map(posto->mapper.map(posto, PostoDeSaudeDTO.class)).toList();
+		
+		return postosLocais;
+	}
 		
 	@Transactional
 	public void excluir(Long id) {

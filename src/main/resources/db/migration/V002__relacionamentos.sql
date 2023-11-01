@@ -10,7 +10,7 @@ ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_grupo_permissao_grupo` FOREIGN 
 ALTER TABLE `imovel` ADD CONSTRAINT `fk_localidade_imovel` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
 
 
-ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_benfeitoria_entrevistado` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
+ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_imovel_entrevistado` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 
 ALTER TABLE `dados_de_consumo` ADD CONSTRAINT `fk_benfeitoria_dados_de_consuo` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 

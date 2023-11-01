@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.AtividadeNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntrevistadoNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EntrevistadosRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 
 @Service
 public class EntrevistadoService {
@@ -32,7 +32,7 @@ public class EntrevistadoService {
 	EntrevistadosRepository entrevistados;
 	
 	@Autowired
-	BenfeitoriasRepository benfeitorias;
+	ImoveisRepository imoveis;
 	
 	@Autowired
 	ModelMapper mapper;
@@ -40,16 +40,16 @@ public class EntrevistadoService {
 	@Transactional
 	public Entrevistado inserir(Entrevistado entrevistado) {
 		
-		Long idBenfeitoria = entrevistado.getBenfeitoria().getId();
-		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
-		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
+		Long idImovel = entrevistado.getImovel().getId();
+		Imovel imovel = imoveis.findById(idImovel)
+		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
 		
-		if(benfeitoria.getEntrevistado()!=null && entrevistado.getId()==null) {
-			throw new NegocioException("Esta benfeitoria já possui um entrevistado cadastrado. Atualize o cadastro ou apague o mesmo"
+		if(imovel.getEntrevistado()!=null && entrevistado.getId()==null) {
+			throw new NegocioException("Esta Imovel já possui um entrevistado cadastrado. Atualize o cadastro ou apague o mesmo"
 					+ " para realizar novo cadastro");
 		}
 		
-		entrevistado.setBenfeitoria(benfeitoria);
+		entrevistado.setImovel(imovel);
 		
 		return entrevistados.save(entrevistado);
 	}

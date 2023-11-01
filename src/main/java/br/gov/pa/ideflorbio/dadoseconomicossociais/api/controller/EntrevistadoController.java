@@ -19,8 +19,8 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.EntrevistadoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.EntrevistadoService;
 import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
@@ -58,7 +58,7 @@ public class EntrevistadoController {
 		
 		try {
 			 Entrevistado entrevistado =  entrevistadosCadastro.buscarEntidade(id);
-			 entrevistado.setBenfeitoria(new Benfeitoria());
+			 entrevistado.setImovel(new Imovel());
 			 mapper.map(entrevistadoInput, entrevistado);
 			return mapper.map(entrevistadosCadastro.inserir(entrevistado), EntrevistadoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {

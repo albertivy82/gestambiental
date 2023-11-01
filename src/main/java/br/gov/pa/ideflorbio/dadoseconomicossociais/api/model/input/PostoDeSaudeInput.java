@@ -5,7 +5,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +18,11 @@ public class PostoDeSaudeInput {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao ambulatorial;
+	private SimNaoTalvez ambulatorial;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao urgenciaEmergencia;
+	private SimNaoTalvez urgenciaEmergencia;
 	
 	private int medicosPorTurno;
 	

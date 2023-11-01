@@ -7,6 +7,7 @@ public enum Alimentacao {
 	CARNES,
 	VEJETAIS,
 	MARISCOS,
-	VARIADO
+	VARIADO, 
+	NAO_DECLARADO
 
 }

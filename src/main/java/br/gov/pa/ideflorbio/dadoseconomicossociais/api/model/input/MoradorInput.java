@@ -10,7 +10,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Escolarida
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EstadoCivil;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Perfil;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Sexo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,7 +45,7 @@ public class MoradorInput {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao trabalho;
+	private SimNaoTalvez trabalho;
 	
 	@NotBlank
 	private String religiao;

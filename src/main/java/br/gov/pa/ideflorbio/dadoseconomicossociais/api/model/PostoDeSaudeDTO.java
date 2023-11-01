@@ -9,11 +9,12 @@ import lombok.Setter;
 @Setter
 public class PostoDeSaudeDTO{
 	
-	private String id;
+	private Long id;
 	private String nome;
 	private String ambulatorial;
 	private String urgenciaEmergencia;
 	private int medicosPorTurno = 0;
+	private LocalidadeIdDTO localidade;
 	
 	
 

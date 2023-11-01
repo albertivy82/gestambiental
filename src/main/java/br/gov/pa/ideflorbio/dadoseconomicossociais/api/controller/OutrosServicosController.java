@@ -15,36 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ServicosBasicosDTO;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ServicosBasicosInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.OutrosServicosDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.OutrosServicosInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosBasicos;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.ServicosBasicosService;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.OutrosServicos;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.OutrosServicosService;
 import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 
 
-@Api(tags = "Serviços-Básicos")
+@Api(tags = "Outros-Servicos")
 @RestController
-@RequestMapping("/servicos-basicos")
-public class ServicosBasicosController {
+@RequestMapping("/outros-servicos")
+public class OutrosServicosController {
 	
 	
 	@Autowired
-	ServicosBasicosService servicosBasicosCadastro;
+	OutrosServicosService servicos;
 	
 	@Autowired
 	ModelMapper mapper;
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
-	public ServicosBasicosDTO adicionar(@RequestBody @Valid ServicosBasicosInput sevicosBasicosInput) {
+	public OutrosServicosDTO adicionar(@RequestBody @Valid OutrosServicosInput Input) {
 		try {
 			
-			ServicosBasicos servicosBasicos = mapper.map(sevicosBasicosInput, ServicosBasicos.class);
-			return mapper.map(servicosBasicosCadastro.inserir(servicosBasicos), ServicosBasicosDTO.class);
+			OutrosServicos outrosServicos = mapper.map(Input, OutrosServicos.class);
+			return mapper.map(servicos.inserir(outrosServicos), OutrosServicosDTO.class);
 		
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
@@ -52,33 +52,33 @@ public class ServicosBasicosController {
 	}
 	
 	@PutMapping("/{id}")
-	public ServicosBasicosDTO atualizar(@PathVariable Long id, 
-			@RequestBody @Valid ServicosBasicosInput servicosBasicosInput) {
+	public OutrosServicosDTO atualizar(@PathVariable Long id, 
+			@RequestBody @Valid OutrosServicosInput Input) {
 		try {
-			ServicosBasicos servicoAtual = servicosBasicosCadastro.buscarEntidade(id);
-			mapper.map(servicosBasicosInput, servicoAtual);
-		return mapper.map(servicosBasicosCadastro.inserir(servicoAtual), ServicosBasicosDTO.class);
+			OutrosServicos servicoAtual = servicos.buscarEntidade(id);
+			mapper.map(Input, servicoAtual);
+		return mapper.map(servicos.inserir(servicoAtual), OutrosServicosDTO.class);
 		}catch(Exception e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
 	}
 	
 	@GetMapping
-	public List<ServicosBasicosDTO> listar(){
-		return servicosBasicosCadastro
-		.listarTodos().stream().map(t->mapper.map(t, ServicosBasicosDTO.class)).toList();
+	public List<OutrosServicosDTO> listar(){
+		return servicos
+		.listarTodos().stream().map(t->mapper.map(t, OutrosServicosDTO.class)).toList();
 	}
 	
 	@GetMapping("/{id}")
-	public ServicosBasicosDTO Buscar(@PathVariable Long id) {
-		return servicosBasicosCadastro.localizarEntidade(id);
+	public OutrosServicosDTO Buscar(@PathVariable Long id) {
+		return servicos.localizarEntidade(id);
 	}
 	
 		
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
-		servicosBasicosCadastro.excluir(id);
+		servicos.excluir(id);
 	}
 	
 

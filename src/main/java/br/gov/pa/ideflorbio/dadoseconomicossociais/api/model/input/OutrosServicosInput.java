@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.ServicoPublicos;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Servico;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
@@ -9,12 +9,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ServicosBasicosInput {
+public class OutrosServicosInput {
 	
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private ServicoPublicos servicosDeficitarios;
+	private Servico outrosServicos;
 	
 	
 

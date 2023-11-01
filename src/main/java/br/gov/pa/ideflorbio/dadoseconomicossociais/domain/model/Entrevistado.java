@@ -3,6 +3,8 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,6 +13,7 @@ import jakarta.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,13 +38,18 @@ public class Entrevistado implements Serializable{
 	
 	private String naturalidade;
 	
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez conheceUcProposta;
+	
+	private String propostaMelhorarArea;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy = "entrevistado")
 	private IndicadoConsultaPublica indicado;
 	
 	@OneToOne
-	@JoinColumn(name="benfeitoria")
-	private Benfeitoria benfeitoria;
+	@JoinColumn(name="imovel")
+	private Imovel imovel;
 	
 	
 

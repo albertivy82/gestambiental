@@ -88,7 +88,7 @@ public class GrupoService {
 		Permissao permissao =  permissoes.findById(permissaoId)
 				.orElseThrow(()->new PermissaoNaoEncontradaException(permissaoId));
 		
-		System.out.println(permissao.getNome() + permissao.getId());
+		
 		grupo.getPermissoes().add(permissao);
 		
 	}

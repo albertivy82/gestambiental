@@ -13,7 +13,6 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.DadosDeConsumoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.DadosDeConsumoNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.DadosDeConsumo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
@@ -44,13 +43,8 @@ public class DadosDeConsumoService {
 		Long idBenfeitoria = dadosDeConsumo.getBenfeitoria().getId();
 			Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
 					.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
-			
-			if(benfeitoria.getEntrevistado()!=null && dadosDeConsumo.getId()==null) {
-				throw new NegocioException("Esta Benfeitoria já possui dados sobre consumo cadastrado. Atualize o cadastro ou apague o mesmo"
-						+ " para realizar novo cadastro");
-			}
-			
-		dadosDeConsumo.setBenfeitoria(benfeitoria);
+		
+			dadosDeConsumo.setBenfeitoria(benfeitoria);
 		
 		return mapper.map(consumo.save(dadosDeConsumo), DadosDeConsumo.class);
 	}

@@ -2,16 +2,21 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Documentacao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EsporteLazer;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.LimitesTerreno;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Situacao_Fundiaria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSolo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Vizinhos;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,7 +24,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
@@ -57,6 +65,11 @@ public class Imovel implements Serializable{
 	@NotBlank
 	private String longitude;
 	
+	
+	@Enumerated(EnumType.STRING)
+	private Vizinhos vizinhos;
+	
+	
 	@Enumerated(EnumType.STRING)
 	private Situacao_Fundiaria situacaoFundiaria;
 	
@@ -69,7 +82,7 @@ public class Imovel implements Serializable{
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNao pretendeMudar;
+	private SimNaoTalvez pretendeMudar;
 
 	private String MotivoVontadeMudanca;
 	
@@ -82,9 +95,15 @@ public class Imovel implements Serializable{
 	@Enumerated(EnumType.STRING)
     private LimitesTerreno limites;
 	
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez iluminacaoPublica;
+	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Transporte transporte;
+	
+	@NotBlank
+	private String programaInfraSaneamento;
 	
 	@NotBlank
 	private String linhasDeBarco;
@@ -97,11 +116,38 @@ public class Imovel implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private EsporteLazer esporteLazer;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy="imovel")
+	private Entrevistado entrevistado;
+	
 		
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="localidade")
 	private Localidade localidade;
 	
+	@ManyToMany
+    @JoinTable(
+        name = "imovel_servicos_basicos",
+        joinColumns = @JoinColumn(name = "imovel"),
+        inverseJoinColumns = @JoinColumn(name = "servicos_basicos")
+    )	
+	private Set<ServicosBasicos> servicosBasicos = new HashSet<>();
+	
+	@ManyToMany
+    @JoinTable(
+        name = "imovel_atendimento_saude",
+        joinColumns = @JoinColumn(name = "imovel_id"),
+        inverseJoinColumns = @JoinColumn(name = "atendimento_saude_id")
+    )
+	private Set<AtendimentoSaude> atendimentoSaude = new HashSet<>();
+	
+	@ManyToMany
+    @JoinTable(
+        name = "imovel_outros_servicos",
+        joinColumns = @JoinColumn(name = "imovel_id"),
+        inverseJoinColumns = @JoinColumn(name = "outros_servicos_id")
+    )
+	private Set<OutrosServicos> outrosServicos = new HashSet<>();
 		
 }

@@ -77,6 +77,12 @@ public class PostoDeSaudeController {
 		return postoCadastro.localizarEntidade(id);
 	}
 	
+	@GetMapping("/localidade-posto/{localidadeId}")
+	public List<PostoDeSaudeDTO> buscarPorLocalidade(@PathVariable Long localidadeId){
+		System.out.println("Requisição feita?");
+		return postoCadastro.buscarPorLocalidade(localidadeId);
+	}
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

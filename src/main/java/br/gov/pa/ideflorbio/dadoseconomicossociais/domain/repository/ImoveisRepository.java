@@ -13,5 +13,7 @@ public interface ImoveisRepository extends JpaRepository<Imovel, Long>{
 	
 	@Query(value= "SELECT * FROM IMOVEL WHERE localidade = ?1", nativeQuery=true)
 	List<Imovel> findByLocalidadeId (Long localidadeId);
+	
+	
 
 }

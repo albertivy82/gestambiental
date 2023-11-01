@@ -67,6 +67,13 @@ public class EscolaService {
 		
 		return mapper.map(escola, EscolaReciboDTO.class);
 	}
+	
+	public List<EscolaReciboDTO> buscarPorLocalidade(Long localidadeId){
+		
+		List<EscolaReciboDTO> escolasLocais = escolas.findByLocalidade(localidadeId)
+				.stream().map(escola->mapper.map(escola, EscolaReciboDTO.class)).toList();
+		return escolasLocais;
+	}
 		
 	@Transactional
 	public void excluir(Long id) {

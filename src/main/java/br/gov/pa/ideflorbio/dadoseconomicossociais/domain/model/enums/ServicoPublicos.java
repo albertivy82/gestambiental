@@ -7,6 +7,7 @@ public enum ServicoPublicos {
 	SEGURANÇA_PÚBLICA,
 	SAÚDE,
 	EDUCAÇÃO,
+	NAO_DECLARADO,
 	OUTROS
 	
 

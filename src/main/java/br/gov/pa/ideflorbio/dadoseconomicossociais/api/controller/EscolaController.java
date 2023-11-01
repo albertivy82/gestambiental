@@ -79,6 +79,12 @@ public class EscolaController {
 		return escolaCadastro.localizarEntidade(id);
 	}
 	
+	@GetMapping("/localidade-escola/{localidadeId}")
+	public List<EscolaReciboDTO> buscarPorLocalidade (@PathVariable Long localidadeId){
+		return escolaCadastro.buscarPorLocalidade(localidadeId);
+		
+	}
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

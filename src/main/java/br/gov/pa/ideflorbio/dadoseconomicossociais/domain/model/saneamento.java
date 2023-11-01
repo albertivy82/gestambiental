@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 
 
 //->ix saneamento básico futuro
@@ -8,7 +8,7 @@ public class saneamento {
 	
 	//private AbastecimentoAgua abastecimentoAgua;
 	
-	//private SimNao tratamento;
+	//private SimNaoTalvez tratamento;
 	
 	//private String metodo;
 	
