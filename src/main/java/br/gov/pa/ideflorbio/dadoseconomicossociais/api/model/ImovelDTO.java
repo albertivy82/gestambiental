@@ -43,6 +43,8 @@ public class ImovelDTO {
 	
 	private String transporte;
 	
+	private String programaInfraSaneamento= "NÃO INFORMADO";;
+	
 	private String linhasDeBarco;
 	
 	private String tipoSolo;

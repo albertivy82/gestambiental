@@ -137,16 +137,16 @@ public class Imovel implements Serializable{
 	@ManyToMany
     @JoinTable(
         name = "imovel_atendimento_saude",
-        joinColumns = @JoinColumn(name = "imovel_id"),
-        inverseJoinColumns = @JoinColumn(name = "atendimento_saude_id")
+        joinColumns = @JoinColumn(name = "imovel"),
+        inverseJoinColumns = @JoinColumn(name = "atendimento_saude")
     )
 	private Set<AtendimentoSaude> atendimentoSaude = new HashSet<>();
 	
 	@ManyToMany
     @JoinTable(
         name = "imovel_outros_servicos",
-        joinColumns = @JoinColumn(name = "imovel_id"),
-        inverseJoinColumns = @JoinColumn(name = "outros_servicos_id")
+        joinColumns = @JoinColumn(name = "imovel"),
+        inverseJoinColumns = @JoinColumn(name = "outros_servicos")
     )
 	private Set<OutrosServicos> outrosServicos = new HashSet<>();
 		

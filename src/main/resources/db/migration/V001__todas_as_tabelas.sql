@@ -89,6 +89,7 @@ CREATE TABLE `imovel` (
   `limites` varchar(100) NOT NULL,
   `iluminacao_publica` varchar(100) NOT NULL,
   `transporte` varchar(100) NOT NULL,
+   `programa_infra_ saneamento` varchar(100) NOT NULL,
   `linhas_de_barco` varchar(100) NOT NULL,
   `tipo_solo` varchar(100) NOT NULL,
   `esporte_lazer` varchar(100) NOT NULL,
@@ -208,14 +209,50 @@ CREATE TABLE `indicado_consulta_publica` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+
+
 CREATE TABLE `servicos_basicos` (
   `id` bigint(30) NOT NULL AUTO_INCREMENT,
-  `tipo_atendimento` varchar(100) NOT NULL,
   `servicos_deficitarios` varchar(100) NOT NULL,
-  `benfeitoria` bigint(30) NOT NULL,
+  `imovel` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+CREATE TABLE `atendimento_saude` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `tipo_atendimento` varchar(100) NOT NULL,
+  `imovel` bigint(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+
+CREATE TABLE `outros_servicos` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `outros_servicos` varchar(100) NOT NULL,
+  `imovel` bigint(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+
+CREATE TABLE `imovel_servicos_basicos` (
+  `imovel` bigint(30) NOT NULL,
+  `servicos_basicos` bigint(30) NOT NULL,
+  primary key (grupo, permissao)
+ )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+
+ CREATE TABLE `imovel_atendimento_saude` (
+  `imovel` bigint(30) NOT NULL,
+  `atendimento_saude` bigint(30) NOT NULL,
+  primary key (grupo, permissao)
+ )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+
+CREATE TABLE `imovel_outros_servicos` (
+  `imovel` bigint(30) NOT NULL,
+  `outros_servicos` bigint(30) NOT NULL,
+  primary key (grupo, permissao)
+ )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
 

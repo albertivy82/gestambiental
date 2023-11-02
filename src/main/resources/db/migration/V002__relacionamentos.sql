@@ -7,8 +7,11 @@ ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_permissao_grupo_permissao` FORE
 ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_grupo_permissao_grupo` FOREIGN KEY ( `grupo` ) REFERENCES `grupo` ( `id` );
 
 
-ALTER TABLE `imovel` ADD CONSTRAINT `fk_localidade_imovel` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
 
+
+
+
+ALTER TABLE `imovel` ADD CONSTRAINT `fk_localidade_imovel` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` );
 
 ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_imovel_entrevistado` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 
@@ -40,3 +43,14 @@ ALTER TABLE `coordenada` ADD CONSTRAINT `fk_localidade_coordenada` FOREIGN KEY (
 
 ALTER TABLE `morador_doenca` ADD CONSTRAINT `fk_morador_morador_doenca` FOREIGN KEY ( `morador` ) REFERENCES `morador` ( `id` );
 ALTER TABLE `morador_doenca` ADD CONSTRAINT `fk_doenca_morador_doenca` FOREIGN KEY ( `doenca` ) REFERENCES `doenca` ( `id` );
+
+
+ALTER TABLE `imovel_servicos_basicos` ADD CONSTRAINT `fk_imovel_servicos_basicos` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+ALTER TABLE `imovel_servicos_basicos` ADD CONSTRAINT `fk_servicos_basicos_imovel` FOREIGN KEY ( `servicos_basicos` ) REFERENCES `servicos_basicos` ( `id` );
+
+
+ALTER TABLE `imovel_atendimento_saude` ADD CONSTRAINT `fk_imovel_atendimento_saude` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+ALTER TABLE `imovel_atendimento_saude` ADD CONSTRAINT `fk_atendimento_saude_imovel` FOREIGN KEY ( `atendimento_saude` ) REFERENCES `atendimento_saude` ( `id` );
+
+ALTER TABLE `imovel_outros_servicos` ADD CONSTRAINT `fk_imovel_outros_servicos` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
+ALTER TABLE `imovel_outros_servicos` ADD CONSTRAINT `fk_outros_servicos_imovel` FOREIGN KEY ( `outros_servicos` ) REFERENCES `outros_servicos` ( `id` );
