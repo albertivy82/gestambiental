@@ -71,13 +71,14 @@ CREATE TABLE `localidade_usuario` (
 
 
 CREATE TABLE `imovel` (
-  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `rua` varchar(255) DEFAULT NULL,
   `numero` varchar(10) DEFAULT NULL,
   `bairro` varchar(255) DEFAULT NULL,
   `referencial` varchar(255) NOT NULL,
   `latitude` varchar(255) NOT NULL,
   `longitude` varchar(255) NOT NULL,
+  `area_imovel` double NOT NULL,
   `vizinhos` varchar(255) NOT NULL,
   `situacao_fundiaria` varchar(100) NOT NULL,
   `documentacao_imovel` varchar(100) NOT NULL,
@@ -89,7 +90,7 @@ CREATE TABLE `imovel` (
   `limites` varchar(100) NOT NULL,
   `iluminacao_publica` varchar(100) NOT NULL,
   `transporte` varchar(100) NOT NULL,
-   `programa_infra_ saneamento` varchar(100) NOT NULL,
+  `programa_infra_saneamento` varchar(100) NOT NULL,
   `linhas_de_barco` varchar(100) NOT NULL,
   `tipo_solo` varchar(100) NOT NULL,
   `esporte_lazer` varchar(100) NOT NULL,
@@ -237,21 +238,21 @@ CREATE TABLE `outros_servicos` (
 CREATE TABLE `imovel_servicos_basicos` (
   `imovel` bigint(30) NOT NULL,
   `servicos_basicos` bigint(30) NOT NULL,
-  primary key (grupo, permissao)
+  primary key (imovel, servicos_basicos)
  )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
  CREATE TABLE `imovel_atendimento_saude` (
   `imovel` bigint(30) NOT NULL,
   `atendimento_saude` bigint(30) NOT NULL,
-  primary key (grupo, permissao)
+  primary key (imovel, atendimento_saude)
  )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
 CREATE TABLE `imovel_outros_servicos` (
   `imovel` bigint(30) NOT NULL,
   `outros_servicos` bigint(30) NOT NULL,
-  primary key (grupo, permissao)
+  primary key (imovel, outros_servicos)
  )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 

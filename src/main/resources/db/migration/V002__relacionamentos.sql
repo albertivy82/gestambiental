@@ -17,7 +17,7 @@ ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_imovel_entrevistado` FOREIGN KEY (
 
 ALTER TABLE `dados_de_consumo` ADD CONSTRAINT `fk_benfeitoria_dados_de_consuo` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 
-ALTER TABLE `servicos_basicos` ADD CONSTRAINT `fk_resdencia_servicos_basicos` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
+
 
 ALTER TABLE `violencia` ADD CONSTRAINT `fk_benfeitoria_violencia` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 
@@ -27,7 +27,7 @@ ALTER TABLE `atividade_produtiva` ADD CONSTRAINT `fk_benfeitoria_atividade_econo
 
 ALTER TABLE `renda_outras_fontes` ADD CONSTRAINT `fk_benfeitoria_renda_outras_fontes` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 
-ALTER TABLE `servicos_basicos` ADD CONSTRAINT `fk_benfeitoria_servicos_basicos` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
+
 
 ALTER TABLE `credito` ADD CONSTRAINT `fk_benfeitoria_credito` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 

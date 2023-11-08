@@ -1,7 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.DestinacaoPesca;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.DestinoPescado;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,34 +18,44 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class DestinoPesca {
+public class Mamiferos {
 	
-	
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@Enumerated(EnumType.STRING)
-	private DestinacaoPesca destinacao;
-	
-	private double quantidade;
-	
-	@Enumerated(EnumType.STRING)
-	private DestinoPescado destino;
-	
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez destinoFixo;
-	
-	private int paraQuantos;	
+	private String especie;
 	
 	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoConsumo;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoComercio;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoCriacao;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoremedio;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoOutros;
+	
+	private String priblemasRelacionados;
+	
+	private String alimmentacao;
+	
+	private String desricaoEspontanea;
+	
+		
 	@ManyToOne
-	@JoinColumn(name="pescaArtesanal")
-	private PescaArtesanal pescaArtesanal;
-	
-	
-	
+	@JoinColumn(name="benfeitoria")
+	private Benfeitoria benfeitoria;
 
 }

@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums;
 
-public enum DestinoPesca {
+public enum DestinoPescado {
 	
 	CONSUMIDOR_DIRETO,
 	ATRAVESSADOR,

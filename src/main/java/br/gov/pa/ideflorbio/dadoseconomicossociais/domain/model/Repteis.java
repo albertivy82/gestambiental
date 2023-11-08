@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoPescaArtesanal;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,30 +10,36 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-
-
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class QuantidadePescaPorTipo {
-
+public class Repteis {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	private double quantidadePesca;
+	private String especie;
 	
-	@Enumerated(EnumType.STRING)
-	private TipoPescaArtesanal tipoPesca;
+	private String local;
 	
+	private String periodo;
+	
+	private String uso;
+	
+	private String ameacado;
+	
+	private String priblemasRelacionados;
+	
+	private String cacado;
+	
+	private String desricaoEspontanea;
+	
+		
 	@ManyToOne
-	@JoinColumn(name="pescaArtesanal")
-    private PescaArtesanal pescaArtesanal;
+	@JoinColumn(name="benfeitoria")
+	private Benfeitoria benfeitoria;
 
-	
-	
-	
-	
 }

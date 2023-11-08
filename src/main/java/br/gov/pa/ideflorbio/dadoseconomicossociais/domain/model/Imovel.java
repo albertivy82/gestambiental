@@ -65,6 +65,9 @@ public class Imovel implements Serializable{
 	@NotBlank
 	private String longitude;
 	
+	@NotNull
+	private double areaImovel;
+	
 	
 	@Enumerated(EnumType.STRING)
 	private Vizinhos vizinhos;

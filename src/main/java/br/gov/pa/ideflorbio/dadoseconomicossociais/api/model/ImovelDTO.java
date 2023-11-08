@@ -51,6 +51,6 @@ public class ImovelDTO {
 	
 	private String esporteLazer;
 	
-	private LocalidadeDTO localidade;
+	private LocalidadeIdDTO localidade;
 
 }

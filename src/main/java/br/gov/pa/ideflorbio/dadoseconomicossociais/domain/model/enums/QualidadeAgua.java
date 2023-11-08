@@ -4,5 +4,6 @@ public enum QualidadeAgua {
     Otima,
     Boa,
     Ruim,
+    Nao_se_aplica,
     Outro
 }
