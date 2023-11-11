@@ -34,7 +34,7 @@ public class Peixes {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez locaisEscificosAlimentacao;
+	private SimNaoTalvez locaisEspecificosAlimentacao;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)

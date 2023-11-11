@@ -2,11 +2,11 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import java.math.BigDecimal;
 
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.AtividadesProdutivas;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.AtividadesProdutivas;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +27,6 @@ public class AtividadeProdutivaInput {
 	private BigDecimal faturamentoAtividadeMesTotal;
 	
 	@NotNull
-	private ImovelIdInput residencia;
+	private BenfeitoriaIdInput benfeitoria;
 
 }

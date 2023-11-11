@@ -20,6 +20,6 @@ public class CreditoInput {
 	private BigDecimal valor;
 	
 	@NotNull
-	private ImovelIdInput residencia;
+	private BenfeitoriaIdInput benfeitoria;
 
 }

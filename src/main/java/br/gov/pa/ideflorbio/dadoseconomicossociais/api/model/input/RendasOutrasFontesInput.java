@@ -27,6 +27,6 @@ public class RendasOutrasFontesInput {
 	private BigDecimal rendaMesTotal;
 	
 	@NotNull
-	private ImovelIdInput residencia;
+	private BenfeitoriaIdInput benfeitoria;
 
 }

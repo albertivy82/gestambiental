@@ -3,6 +3,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,6 +28,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -152,5 +154,10 @@ public class Imovel implements Serializable{
         inverseJoinColumns = @JoinColumn(name = "outros_servicos")
     )
 	private Set<OutrosServicos> outrosServicos = new HashSet<>();
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "imovel")
+	private List<Benfeitoria> benfeitorias;
 		
 }

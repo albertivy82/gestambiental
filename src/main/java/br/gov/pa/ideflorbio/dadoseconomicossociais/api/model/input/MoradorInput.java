@@ -50,7 +50,8 @@ public class MoradorInput {
 	@NotBlank
 	private String religiao;
 	
-	private ImovelIdInput residencia;
+	@NotNull
+	private BenfeitoriaIdInput benfeitoria;
 
 
 }

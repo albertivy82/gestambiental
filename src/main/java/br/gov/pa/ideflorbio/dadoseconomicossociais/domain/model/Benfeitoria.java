@@ -29,6 +29,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
@@ -62,7 +64,7 @@ public class Benfeitoria {
 	private TipoSoloBenfeitoria tipoSolo;
 	
 	@NotNull
-	private double areabenfeitoria;
+	private double areaBenfeitoria;
 	
 
 	@NotNull
@@ -202,8 +204,11 @@ public class Benfeitoria {
 	@JsonIgnore
 	@OneToOne(mappedBy = "benfeitoria")
 	private PescaArtesanal pescaArtesanal;
-
-
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="imovel")
+	private Imovel imovel;
 
 
 }

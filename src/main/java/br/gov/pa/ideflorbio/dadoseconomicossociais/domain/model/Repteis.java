@@ -31,7 +31,7 @@ public class Repteis {
 	
 	private String ameacado;
 	
-	private String priblemasRelacionados;
+	private String problemasRelacionados;
 	
 	private String cacado;
 	

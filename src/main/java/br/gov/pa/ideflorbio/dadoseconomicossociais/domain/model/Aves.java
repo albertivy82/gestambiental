@@ -41,7 +41,7 @@ public class Aves {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoremedio;
+	private SimNaoTalvez usoRemedio;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -55,7 +55,7 @@ public class Aves {
 	
 	private String qualImpotanciaDaEspecie;
 	
-	private String alimmentacao;
+	private String alimentacao;
 	
 	private String desricaoEspontanea;
 	

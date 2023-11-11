@@ -1,32 +1,36 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Condicao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.ViolenciaTipo;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ViolenciaInput {
+public class PeixeInput {
+
+    private String especie;
+	
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private ViolenciaTipo tipo;
+	private SimNaoTalvez locaisEspeciais;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Condicao condicao;
+	private SimNaoTalvez locaisEspecificosAlimentacao;
 	
 	@NotNull
-	private int ocorrencias;
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoAlimnetacao;
 	
-	
-	private String destaqueDoMorador;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoComercio;
 	
 	@NotNull
 	private BenfeitoriaIdInput benfeitoria;
-
+		
 }

@@ -18,6 +18,6 @@ public class InstituicaoInput {
 	private String atividades;
 	
 	@NotNull
-	private ImovelIdInput residencia;
+	private BenfeitoriaIdInput benfeitoria;
 
 }
