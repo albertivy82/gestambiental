@@ -9,6 +9,9 @@ public class ViolenciasSofridasDTO {
 	
 	private Long id;
 	private String tipo;
+	private String condicao;
 	private int ocorrencias;
+	private String destaqueDoMorador;
+	private BenfeitoriaIdDTO benfeitoria; 
 
 }

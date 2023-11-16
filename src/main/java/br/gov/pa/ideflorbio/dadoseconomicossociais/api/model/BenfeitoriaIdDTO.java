@@ -1,8 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,49 +9,6 @@ import lombok.Setter;
 public class BenfeitoriaIdDTO {
 	
     private Long id;
-    
-    private String tipoBenfeitoria;
-	
-
-	private String funcao;
-
-	private String tipoSolo;
-	
-	private double areaBenfeitoria;
-	
-	private int paviementos;
-	
-	private String tipoConstrucao;
-	
-	private List<String> OrigemMaterialConstrucao;
-	
-	private String tipoCobertura;
-	
-	private String tipoEsquadrias;
-	
-	private String alagamentos;
-	
-	private String nivelAlagamentos;
-
-	private String efluentes;
-		
-	private String residuos;
-	
-	private String fonteEnergia;
-		
-	private String energiaAlimentos;
-		
-	private String informativoPredominante;
-	
-	private String importanciaDeProtegerFauna;
-	
-	private String importanciaDeProtegerAmibiente;
-	
-	private String qualEspacoPrecisaSerPreservado;
-	
-	private String probelmasRelacionadosAoAmbiente;
-	
-	private ImovelIdDTO imovel;
-	
-	
+  
+    	
 }

@@ -67,3 +67,36 @@ INSERT INTO `dadossocioambientais`.`escola` (`nome`, `educacao_ambiental`, `mere
 INSERT INTO `dadossocioambientais`.`posto_de_saude` (`nome`, `ambulatorial`, `urgencia_emergencia`, `medicos_por_turno`, `localidade`) VALUES ('POSTO MUNICIPAL', 'SIM', 'NÃO', '4', '1');
 INSERT INTO `dadossocioambientais`.`posto_de_saude` (`nome`, `ambulatorial`, `urgencia_emergencia`, `medicos_por_turno`, `localidade`) VALUES ('POSTO MUNICIPAL', 'SIM', 'SIM', '6', '2');
 INSERT INTO `dadossocioambientais`.`posto_de_saude` (`nome`, `ambulatorial`, `urgencia_emergencia`, `medicos_por_turno`, `localidade`) VALUES ('POSTO MUNICIPAL', 'NÃO', 'SIM', '2', '3');
+
+
+INSERT INTO `dadossocioambientais`.`benfeitoria` (
+  `tipo_benfeitoria`, `funcao`, `tipo_solo`, `area_benfeitoria`, `pavimentos`, 
+  `tipo_construcao`, `tipo_cobertura`, `tipo_esquadrias`, `alagamentos`, `nivel_alagamentos`, 
+  `efluentes`, `residuos`, `fonte_energia`, `energia_alimentos`, `informativo_predominante`, 
+  `importancia_de_proteger_fauna`, `importancia_de_proteger_ambiente`, `qual_espaco_precisa_ser_preservado`, 
+  `problemas_relacionados_ao_ambiente`, `imovel`) VALUES ('Residencia', 'Principal', 'Vejetacao', 120.5, 2, 
+ 'Madeira', 'Telha_de_Barro', 'madeira', 'FREQUENTEMENTE', 'ENCHENTE', 
+ 'Fossa_Septica', 'Coleta_Seletiva', 'Placa_Solar', 'Gas', 'Internet', 
+ 'Alta', 'Alta', 'Área Verde Local', 
+ 'Poluição Sonora', 1);
+
+INSERT INTO `dadossocioambientais`.`benfeitoria` (
+  `tipo_benfeitoria`, `funcao`, `tipo_solo`, `area_benfeitoria`, `pavimentos`, 
+  `tipo_construcao`, `tipo_cobertura`, `tipo_esquadrias`, `alagamentos`, `nivel_alagamentos`, 
+  `efluentes`, `residuos`, `fonte_energia`, `energia_alimentos`, `informativo_predominante`, 
+  `importancia_de_proteger_fauna`, `importancia_de_proteger_ambiente`, `qual_espaco_precisa_ser_preservado`, 
+  `problemas_relacionados_ao_ambiente`, `imovel`) VALUES ('Comercio', 'Principal', 'Vejetacao', 300.0, 1, 
+ 'Palha', 'Brasilit', 'aluminio', 'RARAMENTE', 'NÃO_SE_APLICA', 
+ 'Fossa_Septica', 'Coleta_Publica', 'Equatorial', 'Gas', 'Radio', 
+ 'Média', 'Média', 'Parques Urbanos', 
+ 'Desmatamento', 2);
+INSERT INTO `dadossocioambientais`.`benfeitoria` (
+  `tipo_benfeitoria`, `funcao`, `tipo_solo`, `area_benfeitoria`, `pavimentos`, 
+  `tipo_construcao`, `tipo_cobertura`, `tipo_esquadrias`, `alagamentos`, `nivel_alagamentos`, 
+  `efluentes`, `residuos`, `fonte_energia`, `energia_alimentos`, `informativo_predominante`, 
+  `importancia_de_proteger_fauna`, `importancia_de_proteger_ambiente`, `qual_espaco_precisa_ser_preservado`, 
+  `problemas_relacionados_ao_ambiente`, `imovel`) VALUES ('SemUso', 'Secundaria', 'Vejetacao', 200.0, 1, 
+ 'Alvenaria', 'Laje', 'PVC', 'RARAMENTE', 'NÃO_SE_APLICA', 
+ 'Fossa_Negra', 'Queimado', 'Equatorial', 'Carvao', 'Radio', 
+ 'Baixa', 'Baixa', 'Reservas Naturais', 
+ 'Emissão de Gases', 3);

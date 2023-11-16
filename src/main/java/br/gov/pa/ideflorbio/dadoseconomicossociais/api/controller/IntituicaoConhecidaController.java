@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.InstituicoesConhecidasDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.InstituicaoConhecidaDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.InstituicaoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
@@ -41,11 +41,11 @@ public class IntituicaoConhecidaController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
-	public InstituicoesConhecidasDTO adicionar(@RequestBody @Valid InstituicaoInput instituicaoInput) {
+	public InstituicaoConhecidaDTO adicionar(@RequestBody @Valid InstituicaoInput instituicaoInput) {
 		
 		try {
 			InstituicaoConhecida instituicao = mapper.map(instituicaoInput, InstituicaoConhecida.class);
-			return mapper.map(instituicoesCadastro.inserir(instituicao), InstituicoesConhecidasDTO.class);
+			return mapper.map(instituicoesCadastro.inserir(instituicao), InstituicaoConhecidaDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
@@ -53,14 +53,14 @@ public class IntituicaoConhecidaController {
 	}
 	
 	@PutMapping("/{id}")
-	public InstituicoesConhecidasDTO atualizar(@PathVariable Long id,
+	public InstituicaoConhecidaDTO atualizar(@PathVariable Long id,
 			@RequestBody @Valid InstituicaoInput instituicaoInput) {
 		
 		try {
 			InstituicaoConhecida instituicao =  instituicoesCadastro.buscarEntidade(id);
 			 instituicao.setBenfeitoria(new Benfeitoria());
 			 mapper.map(instituicaoInput, instituicao);
-			return mapper.map(instituicoesCadastro.inserir(instituicao), InstituicoesConhecidasDTO.class);
+			return mapper.map(instituicoesCadastro.inserir(instituicao), InstituicaoConhecidaDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
@@ -69,14 +69,14 @@ public class IntituicaoConhecidaController {
 
 	
 	@GetMapping
-	public List<InstituicoesConhecidasDTO> listar(){
+	public List<InstituicaoConhecidaDTO> listar(){
 		return instituicoesCadastro
-				.listarTodos().stream().map(t->mapper.map(t, InstituicoesConhecidasDTO.class)).toList();
+				.listarTodos().stream().map(t->mapper.map(t, InstituicaoConhecidaDTO.class)).toList();
 
 	}
 	
 	@GetMapping("/{id}")
-	public InstituicoesConhecidasDTO Buscar(@PathVariable Long id) {
+	public InstituicaoConhecidaDTO Buscar(@PathVariable Long id) {
 		return instituicoesCadastro.localizarEntidade(id);
 	}
 	

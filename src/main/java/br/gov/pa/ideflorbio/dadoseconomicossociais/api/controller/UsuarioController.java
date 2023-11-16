@@ -60,15 +60,15 @@ public class UsuarioController {
 	public UsuarioDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid UsuarioInput usuarioInput) {
 		usuarioInput.setSenha(passwordEncoder.encode((usuarioInput.getCpf())));
-		Usuario entrevistadorAtual = usuarioCadastro.buscarEntidade(id);
-		mapper.map(usuarioInput, entrevistadorAtual);
+		Usuario usuarioAtual = usuarioCadastro.buscarEntidade(id);
+		mapper.map(usuarioInput, usuarioAtual);
 		
 		try {
-		usuarioCadastro.checkAvailability(entrevistadorAtual);
+		usuarioCadastro.checkAvailability(usuarioAtual);
 		}catch(NegocioException e) {
 			throw e;
 		}
-		return mapper.map(usuarioCadastro.inserir(entrevistadorAtual), UsuarioDTO.class);
+		return mapper.map(usuarioCadastro.inserir(usuarioAtual), UsuarioDTO.class);
 		
 	}
 	

@@ -4,6 +4,7 @@ public enum NivelAlagamento {
 	
 	
 	MODERADO,
+	NÃO_SE_APLICA,
 	ENCHENTE
 	
 

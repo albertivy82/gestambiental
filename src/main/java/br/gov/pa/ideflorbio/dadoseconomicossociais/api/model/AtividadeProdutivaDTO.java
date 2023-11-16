@@ -16,5 +16,7 @@ public class AtividadeProdutivaDTO {
 	private int pessoasEnvolvidas;
 	
 	private BigDecimal faturamentoAtividadeMesTotal;
+	
+	private BenfeitoriaIdDTO benfeitoria;
 
 }

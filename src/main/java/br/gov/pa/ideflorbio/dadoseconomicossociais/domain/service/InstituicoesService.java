@@ -9,7 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.InstituicoesConhecidasDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.InstituicaoConhecidaDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.InstituicaoNaoEncontradaException;
@@ -64,12 +64,12 @@ public class InstituicoesService {
 		
 	}
 	
-	public InstituicoesConhecidasDTO localizarEntidade(Long id) {
+	public InstituicaoConhecidaDTO localizarEntidade(Long id) {
 		
 		InstituicaoConhecida instituicaoAtual = instituicoes.findById(id)
 				.orElseThrow(()-> new InstituicaoNaoEncontradaException(id));
 		
-		return mapper.map(instituicaoAtual, InstituicoesConhecidasDTO.class);
+		return mapper.map(instituicaoAtual, InstituicaoConhecidaDTO.class);
 	}
 	
 		

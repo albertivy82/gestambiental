@@ -68,7 +68,7 @@ public class Benfeitoria {
 	
 
 	@NotNull
-	private int paviementos;
+	private int pavimentos;
 	
 
 	@NotBlank
@@ -126,11 +126,11 @@ public class Benfeitoria {
 	
 	private String importanciaDeProtegerFauna;
 	
-	private String importanciaDeProtegerAmibiente;
+	private String importanciaDeProtegerAmbiente;
 	
 	private String qualEspacoPrecisaSerPreservado;
 	
-	private String probelmasRelacionadosAoAmbiente;
+	private String problemasRelacionadosAoAmbiente;
 	
 	
 	@JsonIgnore

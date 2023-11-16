@@ -405,7 +405,7 @@ CREATE TABLE `pesca_artesanal` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `freq_pesca_semanal` int NOT NULL,
   `horas_por_dia` double NOT NULL,
-  `local_de_pesca` VARCHAR(255) NOT NULL,
+  `local_da_pesca` VARCHAR(255) NOT NULL,
   `horario_prefencial_pesca` VARCHAR(255) NOT NULL,
   `descarte_por_pescaria` float NOT NULL,
   `gelo_por_pescaria` double NOT NULL,

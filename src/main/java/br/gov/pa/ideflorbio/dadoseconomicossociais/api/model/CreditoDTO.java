@@ -16,4 +16,6 @@ public class CreditoDTO {
 	
 	private BigDecimal valor;
 	
+	private BenfeitoriaIdDTO benfeitoria;
+	
 }

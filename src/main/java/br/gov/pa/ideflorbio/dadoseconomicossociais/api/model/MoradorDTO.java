@@ -3,7 +3,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 import java.sql.Date;
 import java.util.List;
 
-
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ParticipacaoInstituicao;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +31,10 @@ public class MoradorDTO {
 	private String religiao;
 	
 	private List<DoencaDTO> doenca;
+	
+	private List<ParticipacaoInstituicao> participacaoInstituicao;
+	
+	private BenfeitoriaIdDTO benfeitoria;
 	
 	
 

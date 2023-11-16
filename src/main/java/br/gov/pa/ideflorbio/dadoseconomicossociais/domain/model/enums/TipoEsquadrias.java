@@ -4,5 +4,6 @@ public enum TipoEsquadrias {
 	
 	madeira,
 	aluminio,
+	PVC,
 	vidro
 }

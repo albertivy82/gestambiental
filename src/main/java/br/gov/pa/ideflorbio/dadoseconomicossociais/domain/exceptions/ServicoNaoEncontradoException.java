@@ -10,7 +10,7 @@ public class ServicoNaoEncontradoException extends EntidadeNaoEncontradaExceptio
 	}
 	
 	public ServicoNaoEncontradoException(Long id) {
-		this("O seviçode código %d não existe".formatted(id));
+		this("O seviço de código %d não existe".formatted(id));
 	}
 
 	

@@ -4,5 +4,6 @@ public enum TipoCobertura {
     Telha_de_Barro,
     Brasilit,
     Palha,
+    Laje,
     Outros
 }

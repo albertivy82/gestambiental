@@ -5,12 +5,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class InstituicoesConhecidasDTO {
+public class InstituicaoConhecidaDTO {
 	
 	private Long id;
 	
     private String nome;
 	
 	private String atividades;
+	
+	private BenfeitoriaIdDTO benfeitoria;
 
 }

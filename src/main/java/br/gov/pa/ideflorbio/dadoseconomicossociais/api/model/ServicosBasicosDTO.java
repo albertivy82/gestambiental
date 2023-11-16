@@ -11,6 +11,6 @@ public class ServicosBasicosDTO {
 	
 	private String servicosDeficitarios;
 	
-	
+	private ImovelIdDTO benfeitoria;
 
 }

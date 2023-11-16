@@ -17,5 +17,7 @@ public class RendaOutrasFontesDTO {
 	private int beneficiarios;
 	
 	private BigDecimal rendaMesTotal;
+	
+	private BenfeitoriaIdDTO benfeitoria;
 
 }
