@@ -171,10 +171,24 @@ CREATE TABLE benfeitoria_material_construcao (
   FOREIGN KEY (benfeitoria_id) REFERENCES benfeitoria(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `dados_de_consumo` (
+CREATE TABLE `alimentacao` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `alimentacao_principal` varchar(255) NOT NULL,
-  `local_de_compras` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+
+CREATE TABLE `benfeitoria_alimentacao` (
+  `benfeitoria` bigint(30) NOT NULL,
+  `alimentacao` bigint(30) NOT NULL,
+  primary key (benfeitoria, alimentacao)
+ )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+
+CREATE TABLE `compras` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `onde_faz_compras` varchar(255) NOT NULL,
+  `detalhe_local_de_compras` varchar(255),
   `benfeitoria` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -415,7 +429,6 @@ CREATE TABLE `pesca_artesanal` (
   `combustivel_por_viagem` double NOT NULL,
   `custo_combustivel_por_viagem` double NOT NULL,
   `local_desembarque` VARCHAR(255) NOT NULL,
-  `conservacao_tipo` VARCHAR(255) NOT NULL,
   `pesca_por_safra` double NOT NULL,
   `local_pesca_safra` VARCHAR(255) NOT NULL,
   `local_de_reproducao_peixe` VARCHAR(255) NOT NULL,

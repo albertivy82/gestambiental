@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class DependenciasInput {
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoDependencia dependencia;
 	

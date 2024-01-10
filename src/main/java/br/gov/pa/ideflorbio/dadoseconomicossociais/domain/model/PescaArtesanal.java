@@ -89,14 +89,9 @@ public class PescaArtesanal {
     @NotBlank
     private String localDesembarque;
     
-    @NotBlank
-    @Enumerated(EnumType.STRING)
-    private ConservacaoTipo conservacaoTipo;
-    
-    
     @JsonIgnore
     @OneToMany(mappedBy = "pescaArtesanal")
-    private List<DestinoPesca> destinopesca;
+    private List<DestinoPesca> destinoPesca;
     
     @NotBlank
     private double pescaPorSafra;

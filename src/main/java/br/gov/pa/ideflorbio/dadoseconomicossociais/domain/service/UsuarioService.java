@@ -59,10 +59,8 @@ public class UsuarioService {
 		Optional<Usuario> checkaEmail = usuarios.findByEmail(usuario.getEmail());
 		Optional<Usuario> checkaCpf = usuarios.findByCpf(usuario.getCpf());
 		Optional<Usuario> checkaMatricula = usuarios.findByMatricula(usuario.getMatricula());
-		System.out.println(checkaEmail);
-		
+				
 		if(checkaEmail.isPresent()&&!checkaEmail.get().equals(usuario)){
-			System.out.println("lançou/////////?");
 			throw new NegocioException(String.format("O e-mail: %s não está disponível", usuario.getEmail()));
 		}
 		

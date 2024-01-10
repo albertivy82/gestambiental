@@ -15,7 +15,7 @@ ALTER TABLE `imovel` ADD CONSTRAINT `fk_localidade_imovel` FOREIGN KEY ( `locali
 
 
 
-ALTER TABLE `dados_de_consumo` ADD CONSTRAINT `fk_benfeitoria_dados_de_consuo` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
+ALTER TABLE `compras` ADD CONSTRAINT `fk_benfeitoria_compras` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 ALTER TABLE `dependencias` ADD CONSTRAINT `fk_benfeitoria_dependencias` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 ALTER TABLE `servicos_comunicacao` ADD CONSTRAINT `fk_benfeitoria_servicos_comunicacao` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 ALTER TABLE `vegetacao` ADD CONSTRAINT `fk_benfeitoria_vegetacao` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
@@ -34,7 +34,8 @@ ALTER TABLE `morador` ADD CONSTRAINT `fk_benfeitoria_morador` FOREIGN KEY ( `ben
 ALTER TABLE `pesca_artesanal` ADD CONSTRAINT `fk_benfeitoria_pesca_artesanal` FOREIGN KEY ( `benfeitoria`) REFERENCES `benfeitoria` ( `id` );
 
 
-
+ALTER TABLE `benfeitoria_alimentacao` ADD CONSTRAINT `fk_benfeitoria_alimentacao_benfeitoria` FOREIGN KEY ( `alimentacao` ) REFERENCES `alimentacao` ( `id` );
+ALTER TABLE `benfeitoria_alimentacao` ADD CONSTRAINT `fk_alimentacao_benfeitoria_alimentacao` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
 
 ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_imovel_entrevistado` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 ALTER TABLE `indicado_consulta_publica` ADD CONSTRAINT `fk_entrevistado_indicado_consulta_publica` FOREIGN KEY ( `entrevistado`) REFERENCES `entrevistado` ( `id` );

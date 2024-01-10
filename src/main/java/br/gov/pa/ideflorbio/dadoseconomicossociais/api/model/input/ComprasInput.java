@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Alimentacao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.LocalCompras;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -10,14 +10,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DadosDeConsumoInput {
+public class ComprasInput {
 
+	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Alimentacao alimentacaoPrincipal;
+	private LocalCompras ondeFazCompras;
 	
-	@NotBlank
-	private String LocalDeCompras;
+	private String detalheLocalDeCompras;
 	
 	@NotNull
 	private BenfeitoriaIdInput benfeitoria;

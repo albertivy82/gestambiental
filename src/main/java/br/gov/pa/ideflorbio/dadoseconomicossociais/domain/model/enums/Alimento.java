@@ -1,11 +1,11 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums;
 
-public enum Alimentacao {
+public enum Alimento {
 	
 	PEIXE,
 	AVES,
 	CARNES,
-	VEJETAIS,
+	VEGETAIS,
 	MARISCOS,
 	VARIADO, 
 	NAO_DECLARADO

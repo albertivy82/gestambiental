@@ -1,15 +1,15 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions;
 
-public class DependenciasException extends EntidadeNaoEncontradaException {
+public class DependenciaNaoEncontradaException extends EntidadeNaoEncontradaException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public DependenciasException(String message) {
+	public DependenciaNaoEncontradaException(String message) {
 		super(message);
 		
 	}
 	
-	public DependenciasException(Long id) {
+	public DependenciaNaoEncontradaException(Long id) {
 		this("A dependência de código %d não existe".formatted(id));
 	}
 

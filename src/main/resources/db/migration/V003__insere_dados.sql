@@ -100,3 +100,12 @@ INSERT INTO `dadossocioambientais`.`benfeitoria` (
  'Fossa_Negra', 'Queimado', 'Equatorial', 'Carvao', 'Radio', 
  'Baixa', 'Baixa', 'Reservas Naturais', 
  'Emissão de Gases', 3);
+
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('PEIXE');
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('AVES');
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('CARNES');
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('VEGETAIS');
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('MARISCOS');
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('VARIADO');
+INSERT INTO `dadossocioambientais`.`alimentacao` (`alimentacao_principal`) VALUES ('NAO_DECLARADO');
+

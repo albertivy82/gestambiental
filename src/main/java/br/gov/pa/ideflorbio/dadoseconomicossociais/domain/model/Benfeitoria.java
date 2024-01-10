@@ -30,6 +30,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -133,9 +135,19 @@ public class Benfeitoria {
 	private String problemasRelacionadosAoAmbiente;
 	
 	
+	@ManyToMany
+	@JoinTable(
+			name="benfeitoria_alimentacao",
+			joinColumns=@JoinColumn(name="benfeitoria"),
+			inverseJoinColumns=@JoinColumn(name="alimentacao")
+			
+	)
+	private Set<Alimentacao> alimentacao = new HashSet<>();
+	
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<DadosDeConsumo> consumo;
+	@OneToOne(mappedBy = "benfeitoria")
+	private Compras compras;
 	
 	
 	@JsonIgnore
