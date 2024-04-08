@@ -1,21 +1,17 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Documentacao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EsporteLazer;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.LimitesTerreno;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Servico;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Situacao_Fundiaria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSolo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Vizinhos;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -42,12 +38,15 @@ public class ImovelInput {
     
     @NotBlank
     private String longitude;
+
+	@NotNull
+	private double areaImovel;
     
     @Enumerated(EnumType.STRING)
     private Vizinhos vizinhos;
     
     @Enumerated(EnumType.STRING)
-    private Situacao_Fundiaria situacao_Fundiaria;
+    private Situacao_Fundiaria situacaoFundiaria;
     
     @Enumerated(EnumType.STRING)
     private Documentacao documentacaoImovel;
@@ -77,6 +76,9 @@ public class ImovelInput {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Transporte transporte;
+    
+    @NotBlank
+	private String programaInfraSaneamento;
     
     @NotBlank
     private String linhasDeBarco;

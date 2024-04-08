@@ -23,7 +23,7 @@ public class BenfeitoriaDTO {
 	
 	private String tipoConstrucao;
 	
-	private List<String> OrigemMaterialConstrucao;
+	private List<String> origemMaterialConstrucao;
 	
 	private String tipoCobertura;
 	

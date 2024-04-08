@@ -35,7 +35,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -52,16 +51,16 @@ public class Benfeitoria {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoBenfeitoria tipoBenfeitoria;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Funcao funcao;
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)	
 	private TipoSoloBenfeitoria tipoSolo;
 	
@@ -73,7 +72,7 @@ public class Benfeitoria {
 	private int pavimentos;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoConstrucao tipoConstrucao;
 	
@@ -82,47 +81,47 @@ public class Benfeitoria {
 	@Enumerated(EnumType.STRING)
 	@CollectionTable(name = "benfeitoria_material_construcao")
 	@Column(name = "origem_material_construcao")
-	private Set<OrigemMaterialConstrucao> OrigemMaterialConstrucao = new HashSet<>();
+	private Set<OrigemMaterialConstrucao> origemMaterialConstrucao = new HashSet<>();
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoCobertura tipoCobertura;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoEsquadrias tipoEsquadrias;
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Ocorrencia alagamentos;
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private NivelAlagamento nivelAlagamentos;
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Efluentes efluentes;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Residuos residuos;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private FonteEnergia fonteEnergia;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private EnergiaAlimentos energiaAlimentos;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private InformativoPredominante informativoPredominante;
 	

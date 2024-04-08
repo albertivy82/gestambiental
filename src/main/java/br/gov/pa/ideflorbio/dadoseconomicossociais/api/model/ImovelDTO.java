@@ -21,6 +21,8 @@ public class ImovelDTO {
 	
 	private String longitude;
 	
+	private double areaImovel;
+	
 	private String vizinhos = "NAO_DECLARADO";
 	
 	private String situacaoFundiaria;

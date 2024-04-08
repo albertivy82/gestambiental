@@ -22,7 +22,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,16 +31,16 @@ import lombok.Setter;
 public class BenfeitoriaInput {
 	
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoBenfeitoria tipoBenfeitoria;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Funcao funcao;
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)	
 	private TipoSoloBenfeitoria tipoSolo;
 	
@@ -50,10 +49,10 @@ public class BenfeitoriaInput {
 	
 
 	@NotNull
-	private int paviementos;
+	private int pavimentos;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoConstrucao tipoConstrucao;
 	
@@ -62,57 +61,57 @@ public class BenfeitoriaInput {
 	@Enumerated(EnumType.STRING)
 	@CollectionTable(name = "benfeitoria_material_construcao")
 	@Column(name = "origem_material_construcao")
-	private Set<OrigemMaterialConstrucao> OrigemMaterialConstrucao = new HashSet<>();
+	private Set<OrigemMaterialConstrucao> origemMaterialConstrucao = new HashSet<>();
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoCobertura tipoCobertura;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoEsquadrias tipoEsquadrias;
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Ocorrencia alagamentos;
 	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private NivelAlagamento nivelAlagamentos;
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Efluentes efluentes;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Residuos residuos;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private FonteEnergia fonteEnergia;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private EnergiaAlimentos energiaAlimentos;
 	
 
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private InformativoPredominante informativoPredominante;
 	
 	private String importanciaDeProtegerFauna;
 	
-	private String importanciaDeProtegerAmibiente;
-	
+	private String importanciaDeProtegerAmbiente;
+		
 	private String qualEspacoPrecisaSerPreservado;
 	
-	private String probelmasRelacionadosAoAmbiente;
+	private String problemasRelacionadosAoAmbiente;
 	
 	
 	@NotNull

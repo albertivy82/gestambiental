@@ -46,7 +46,7 @@ public class BenfeitoriaService {
 	
 	
 	public Benfeitoria inserir (Benfeitoria benfeitoria) {
-		
+		System.out.println(benfeitoria.getImovel().getId());
 		Long imovelId = benfeitoria.getImovel().getId();
 		Imovel imovel = imoveis.findById(imovelId).orElseThrow(()->new ImovelNaoEncontradoException(imovelId));
 		

@@ -39,7 +39,9 @@ public class BenfeitoriaController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public BenfeitoriaDTO adicionar (BenfeitoriaInput benfeitoriaInput) {
+	public BenfeitoriaDTO adicionar (@RequestBody @Valid BenfeitoriaInput benfeitoriaInput) {
+		
+		System.out.println(benfeitoriaInput.getImovel());
 		
 		try {
 			Benfeitoria benfeitoria = mapper.map(benfeitoriaInput, Benfeitoria.class);
