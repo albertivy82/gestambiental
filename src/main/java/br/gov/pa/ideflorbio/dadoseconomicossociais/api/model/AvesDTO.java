@@ -9,29 +9,31 @@ public class AvesDTO {
 	
 	private Long id;
 	
+	private String especie;
 	
-	private String possuiForneceimentoPublico;
-		
-	private String qualidadeFornecimentoPublico;
+	private String usoConsumo;
 	
-	private String corAguaForncimentoPublico;
+	private String usoComercio;
 	
-	public String saborAguaFornecimentoPublico;
-
-
-	public String cheiroAguaFornecimentoPublico;
 	
-	private String poco;
+	private String usoCriacao;
 	
-	private double profundidadePoco;
 	
-	private String corAguaPoco;
+	private String usoRemedio;
 	
-	public String saborAguaPoco;
+	private String usoOutros;
 	
-	public String cheiroAguaPoco;
+    private String problemasRelacionados;
 	
-	private String tratamentoAgua;
+	private String ameacaSofrida;
+	
+	private String localDeAglomeracao;
+	
+	private String qualImpotanciaDaEspecie;
+	
+	private String alimentacao;
+	
+	private String desricaoEspontanea;
 	
 	private BenfeitoriaIdDTO benfeitoria; 
 		

@@ -1,8 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.MetodoTratamentoAgua;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Poco;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.QualidadeAgua;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,37 +25,40 @@ public class Aves {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@NotBlank
+	private String especie;
+	
+	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez possuiForneceimentoPublico;
+	private SimNaoTalvez usoConsumo;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
-	private QualidadeAgua qualidadeFornecimentoPublico;
+	private SimNaoTalvez usoComercio;
 	
-	private String corAguaForncimentoPublico;
-	
-	public String saborAguaFornecimentoPublico;
-
-
-	public String cheiroAguaFornecimentoPublico;
-	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Poco poco;
+	private SimNaoTalvez usoCriacao;
 	
-	private double profundidadePoco;
-	
-	private String corAguaPoco;
-	
-	public String saborAguaPoco;
-	
-	public String cheiroAguaPoco;
-	
-	
-	@NotBlank
+	@NotNull
 	@Enumerated(EnumType.STRING)
-	private MetodoTratamentoAgua tratamentoAgua;
+	private SimNaoTalvez usoRemedio;
 	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private SimNaoTalvez usoOutros;
+	
+	private String problemasRelacionados;
+	
+	private String ameacaSofrida;
+	
+	private String localDeAglomeracao;
+	
+	private String qualImpotanciaDaEespecie;
+	
+	private String alimentacao;
+	
+	private String desricaoEspontanea;
+		
 		
 	@ManyToOne
 	@JoinColumn(name="benfeitoria")

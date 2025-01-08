@@ -1,6 +1,7 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -59,7 +60,7 @@ public class Localidade implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="localidade")
-	private List<Imovel> imovel;
+	private List<Entrevistado> entrevistados = new ArrayList<>();
 	
 	
 }

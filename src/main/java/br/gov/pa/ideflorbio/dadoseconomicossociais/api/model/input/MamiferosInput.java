@@ -33,7 +33,7 @@ private String especie;
 	@Enumerated(EnumType.STRING)
 	private SimNaoTalvez usoOutros;
 	
-	private String priblemasRelacionados;
+	private String problemasRelacionados;
 	
 	private String alimentacao;
 	

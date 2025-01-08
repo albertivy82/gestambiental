@@ -134,16 +134,6 @@ public class Benfeitoria {
 	private String problemasRelacionadosAoAmbiente;
 	
 	
-	@ManyToMany
-	@JoinTable(
-			name="benfeitoria_alimentacao",
-			joinColumns=@JoinColumn(name="benfeitoria"),
-			inverseJoinColumns=@JoinColumn(name="alimentacao")
-			
-	)
-	private Set<Alimentacao> alimentacao = new HashSet<>();
-	
-	
 	@JsonIgnore
 	@OneToOne(mappedBy = "benfeitoria")
 	private Compras compras;

@@ -1,16 +1,14 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
-public class ServicosBasicosDTO {
+public class EntrevistadoIdDTO {
 	
-	private Long id;
-	
-	private String servicosDeficitarios;
-	
-	private ImovelIdDTO benfeitoria;
-
+    private Long id;
+		
 }

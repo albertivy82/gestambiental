@@ -10,7 +10,7 @@ public class EntrevistadoNaoEncontradoException extends EntidadeNaoEncontradaExc
 	}
 	
 	public EntrevistadoNaoEncontradoException(Long id) {
-		this("Entrevistado de código %d não existe".formatted(id));
+		this("O imóvel de código %d não possui entrevistado cadastrado".formatted(id));
 	}
 
 	

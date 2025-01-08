@@ -10,15 +10,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ImovelDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.AtividadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntrevistadoNaoEncontradoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EntrevistadosRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.LocalidadesRepository;
 
 @Service
 public class EntrevistadoService {
@@ -32,6 +33,9 @@ public class EntrevistadoService {
 	EntrevistadosRepository entrevistados;
 	
 	@Autowired
+	LocalidadesRepository localidades;
+	
+	@Autowired
 	ImoveisRepository imoveis;
 	
 	@Autowired
@@ -40,16 +44,14 @@ public class EntrevistadoService {
 	@Transactional
 	public Entrevistado inserir(Entrevistado entrevistado) {
 		
-		Long idImovel = entrevistado.getImovel().getId();
-		Imovel imovel = imoveis.findById(idImovel)
-		.orElseThrow(()->new ImovelNaoEncontradoException(idImovel));
 		
-		if(imovel.getEntrevistado()!=null && entrevistado.getId()==null) {
-			throw new NegocioException("Esta Imovel já possui um entrevistado cadastrado. Atualize o cadastro ou apague o mesmo"
-					+ " para realizar novo cadastro");
-		}
+		Long idLocalidade = entrevistado.getLocalidade().getId();
+		Localidade localidade = localidades.findById(idLocalidade)
+				.orElseThrow(()->new LocalidadeNaoEncontradaException(idLocalidade));
+	
+		entrevistado.setLocalidade(localidade);
 		
-		entrevistado.setImovel(imovel);
+		
 		
 		return entrevistados.save(entrevistado);
 	}
@@ -64,11 +66,22 @@ public class EntrevistadoService {
 		return entrevistado;
 	}
 	
+	
 	public List<Entrevistado> listarTodos(){
 		
 	   return entrevistados.findAll(); 
 		
 	}
+	
+	
+	
+	
+     public List<EntrevistadoDTO> findByLocalidade(Long localidadeId){
+		
+		return entrevistados.findByLocalidadeId(localidadeId).stream().map(i->mapper.map(i, EntrevistadoDTO.class)).toList();
+		
+	}
+     
 	
 	public EntrevistadoDTO localizarEntidade(Long id) {
 		

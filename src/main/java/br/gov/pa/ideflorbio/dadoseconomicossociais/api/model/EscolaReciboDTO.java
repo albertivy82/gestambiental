@@ -11,6 +11,8 @@ public class EscolaReciboDTO {
 	
 	private String nome;
 	
+	private String iniciativa;
+	
 	private String merenda;
 	
 	private String transporte;

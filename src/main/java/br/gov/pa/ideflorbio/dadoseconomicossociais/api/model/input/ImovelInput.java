@@ -92,7 +92,7 @@ public class ImovelInput {
     private EsporteLazer esporteLazer;
     
     @NotNull
-    private LocalidadeIdInput localidade;
+    private EntrevistadoIdInput entrevistado;
 	
 
 }

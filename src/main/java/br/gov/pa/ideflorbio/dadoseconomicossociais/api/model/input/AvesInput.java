@@ -15,6 +15,7 @@ public class AvesInput {
 	
 	private String especie;
 	
+
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private SimNaoTalvez usoConsumo;
@@ -35,7 +36,7 @@ public class AvesInput {
 	@Enumerated(EnumType.STRING)
 	private SimNaoTalvez usoOutros;
 	
-	private String priblemasRelacionados;
+	private String problemasRelacionados;
 	
 	private String ameacaSofrida;
 	

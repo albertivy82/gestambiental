@@ -73,6 +73,8 @@ public class BenfeitoriaController {
 					.stream().map(b->mapper.map(b,BenfeitoriaDTO.class)).toList();
 		
 	}
+	
+	
 
 
 }

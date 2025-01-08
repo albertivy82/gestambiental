@@ -21,7 +21,7 @@ public class MamiferosDTO {
 	
 	private String usoOutros;
 	
-	private String priblemasRelacionados;
+	private String problemasRelacionados;
 	
 	private String alimentacao;
 	

@@ -78,11 +78,6 @@ CREATE TABLE `imovel` (
   `vizinhos` varchar(255) NOT NULL,
   `situacao_fundiaria` varchar(100) NOT NULL,
   `documentacao_imovel` varchar(100) NOT NULL,
-  `data_chegada` date NOT NULL,
-  `pretende_mudar` varchar(255) NOT NULL,
-  `motivo_vontade_mudanca` varchar(255) DEFAULT NULL,  
-  `relacao_area` varchar(255) NOT NULL,
-  `relacao_vizinhos` varchar(255) NOT NULL,
   `limites` varchar(100) NOT NULL,
   `iluminacao_publica` varchar(100) NOT NULL,
   `transporte` varchar(100) NOT NULL,
@@ -90,48 +85,44 @@ CREATE TABLE `imovel` (
   `linhas_de_barco` varchar(100) NOT NULL,
   `tipo_solo` varchar(100) NOT NULL,
   `esporte_lazer` varchar(100) NOT NULL,
+  `servicos_basicos` varchar(255) DEFAULT NULL,
   `localidade` bigint(30) NOT NULL,
-   PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 
 CREATE TABLE `entrevistado` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
   `apelido` varchar(100) DEFAULT NULL,
   `naturalidade` varchar(100) DEFAULT NULL,
-  `conhece_uc_proposta` varchar(100) DEFAULT NULL,
+  `sexo` varchar(20) DEFAULT NULL,
+  `nascimento_data` date NOT NULL,
+  `escolaridade` varchar(50) DEFAULT NULL,
+  `estado_civil` varchar(50) DEFAULT NULL,
+  `religiao` varchar(100) DEFAULT NULL,
+  `morador` varchar(20) DEFAULT NULL,
+  `data_chegada` date NOT NULL,
+  `relacao_area_imovel` varchar(255) NOT NULL,
+  `relacao_vizinhos` varchar(255) NOT NULL,
+  `tipo_alimentacao` varchar(100) DEFAULT NULL,
+  `local_compras` varchar(255) DEFAULT NULL,
+  `servicos_deficitarios` varchar(255) DEFAULT NULL,
+  `sofreu_assaltos` int(11) NOT NULL,
+  `presenciou_assalto` int(11) NOT NULL,
+  `problemas_de_violencia_local` varchar(255) DEFAULT NULL,
+  `pretende_mudar` varchar(20) DEFAULT NULL,
+  `motivo_vontade_mudanca` varchar(255) DEFAULT NULL,
+  `conhece_ucs` varchar(20) DEFAULT NULL,
+  `conhece_uc_proposta` varchar(20) DEFAULT NULL,
+  `conhece_area_uc` varchar(20) DEFAULT NULL,
+  `utiliza_area_uc` varchar(20) DEFAULT NULL,
   `proposta_melhorar_area` varchar(255) DEFAULT NULL,
-  `imovel` bigint(30) NOT NULL,
+  `indicado_consulta_publica` varchar(150) DEFAULT NULL,
+  `contato_indicado_consulta_publica` varchar(50) DEFAULT NULL,
+  `localidade` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-CREATE TABLE `atendimento_saude` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tipo_atendimento` varchar(100) NOT NULL,
-  `imovel` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-CREATE TABLE `outros_servicos` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `outros_servicos` varchar(100) NOT NULL,
-  `imovel` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
-CREATE TABLE `imovel_servicos_basicos` (
-  `imovel` bigint(30) NOT NULL,
-  `servicos_basicos` bigint(30) NOT NULL,
-  primary key (imovel, servicos_basicos)
- )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
- CREATE TABLE `imovel_atendimento_saude` (
-  `imovel` bigint(30) NOT NULL,
-  `atendimento_saude` bigint(30) NOT NULL,
-  primary key (imovel, atendimento_saude)
- )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE `imovel_outros_servicos` (
@@ -171,11 +162,6 @@ CREATE TABLE benfeitoria_material_construcao (
   FOREIGN KEY (benfeitoria_id) REFERENCES benfeitoria(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `alimentacao` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `alimentacao_principal` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE `benfeitoria_alimentacao` (
@@ -397,23 +383,6 @@ CREATE TABLE `morador_doenca` (
   `doenca` bigint(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-
-CREATE TABLE `indicado_consulta_publica` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `perfil` varchar(100) NOT NULL,
-  `telefone` varchar(30) DEFAULT NULL,
-  `entrevistado` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
-CREATE TABLE `servicos_basicos` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `servicos_deficitarios` varchar(100) NOT NULL,
-  `imovel` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `pesca_artesanal` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,

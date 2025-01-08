@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Esfera;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,6 +34,10 @@ public class Escola implements Serializable {
 	
 	@NotBlank
 	private String nome;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Esfera iniciativa;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
