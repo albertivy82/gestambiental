@@ -65,71 +65,63 @@ CREATE TABLE `grupo_permissao` (
  )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
-
-CREATE TABLE `imovel` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `rua` varchar(255) DEFAULT NULL,
-  `numero` varchar(10) DEFAULT NULL,
-  `bairro` varchar(255) DEFAULT NULL,
-  `referencial` varchar(255) NOT NULL,
-  `latitude` varchar(255) NOT NULL,
-  `longitude` varchar(255) NOT NULL,
-  `area_imovel` double NOT NULL,
-  `vizinhos` varchar(255) NOT NULL,
-  `situacao_fundiaria` varchar(100) NOT NULL,
-  `documentacao_imovel` varchar(100) NOT NULL,
-  `limites` varchar(100) NOT NULL,
-  `iluminacao_publica` varchar(100) NOT NULL,
-  `transporte` varchar(100) NOT NULL,
-  `programa_infra_saneamento` varchar(100) NOT NULL,
-  `linhas_de_barco` varchar(100) NOT NULL,
-  `tipo_solo` varchar(100) NOT NULL,
-  `esporte_lazer` varchar(100) NOT NULL,
-  `servicos_basicos` varchar(255) DEFAULT NULL,
-  `localidade` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
 CREATE TABLE `entrevistado` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) DEFAULT NULL,
-  `apelido` varchar(100) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `apelido` varchar(100) NOT NULL,
   `naturalidade` varchar(100) DEFAULT NULL,
-  `sexo` varchar(20) DEFAULT NULL,
+  `sexo` varchar(20) NOT NULL,
   `nascimento_data` date NOT NULL,
-  `escolaridade` varchar(50) DEFAULT NULL,
-  `estado_civil` varchar(50) DEFAULT NULL,
-  `religiao` varchar(100) DEFAULT NULL,
-  `morador` varchar(20) DEFAULT NULL,
+  `escolaridade` varchar(50) NOT NULL,
+  `estado_civil` varchar(50) NOT NULL,
+  `religiao` varchar(100) NOT NULL,
+  `morador` varchar(20) NOT NULL,
   `data_chegada` date NOT NULL,
   `relacao_area_imovel` varchar(255) NOT NULL,
   `relacao_vizinhos` varchar(255) NOT NULL,
   `tipo_alimentacao` varchar(100) DEFAULT NULL,
-  `local_compras` varchar(255) DEFAULT NULL,
-  `servicos_deficitarios` varchar(255) DEFAULT NULL,
+  `local_compras` varchar(255) NOT NULL,
+  `servicos_deficitarios` varchar(255) NOT NULL,
   `sofreu_assaltos` int(11) NOT NULL,
   `presenciou_assalto` int(11) NOT NULL,
-  `problemas_de_violencia_local` varchar(255) DEFAULT NULL,
-  `pretende_mudar` varchar(20) DEFAULT NULL,
-  `motivo_vontade_mudanca` varchar(255) DEFAULT NULL,
-  `conhece_ucs` varchar(20) DEFAULT NULL,
-  `conhece_uc_proposta` varchar(20) DEFAULT NULL,
-  `conhece_area_uc` varchar(20) DEFAULT NULL,
-  `utiliza_area_uc` varchar(20) DEFAULT NULL,
-  `proposta_melhorar_area` varchar(255) DEFAULT NULL,
-  `indicado_consulta_publica` varchar(150) DEFAULT NULL,
-  `contato_indicado_consulta_publica` varchar(50) DEFAULT NULL,
+  `problemas_de_violencia_local` varchar(255) NOT NULL,
+  `pretende_mudar` varchar(20) NOT NULL,
+  `motivo_vontade_mudanca` varchar(255) NOT NULL,
+  `conhece_ucs` varchar(20) NOT NULL,
+  `conhece_uc_proposta` varchar(20) NOT NULL,
+  `conhece_area_uc` varchar(20) NOT NULL,
+  `utiliza_area_uc` varchar(20) NOT NULL,
+  `proposta_melhorar_area` varchar(255) NOT NULL,
+  `indicado_consulta_publica` varchar(150) NOT NULL,
+  `contato_indicado_consulta_publica` varchar(50) NOT NULL,
   `localidade` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+CREATE TABLE `imovel` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `rua` varchar(255) NOT NULL,
+  `numero` varchar(10) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `referencial` varchar(255) NOT NULL,
+  `latitude` varchar(255) NOT NULL,
+  `longitude` varchar(255) NOT NULL,
+  `area_imovel` double NOT NULL,
+  `tipo_solo` varchar(60) NOT NULL,
+  `vizinhos_confinantes` varchar(255) NOT NULL,
+  `situacao_fundiaria` varchar(100) NOT NULL,
+  `documentacao_imovel` varchar(100) NOT NULL,
+  `limites` varchar(100) NOT NULL,
+  `linhas_de_barco` varchar(100) NOT NULL,
+  `pavimentacao` varchar(255) NOT NULL,
+  `iluminacao_publica` varchar(100) NOT NULL,
+  `equipamentos_urbanos` varchar(255) NOT NULL,
+  `esporte_lazer` varchar(100) NOT NULL,
+  `programa_infra_saneamento` varchar(100) NOT NULL,
+  `entrevistado` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE `imovel_outros_servicos` (
-  `imovel` bigint(30) NOT NULL,
-  `outros_servicos` bigint(30) NOT NULL,
-  primary key (imovel, outros_servicos)
- )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE benfeitoria (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -156,20 +148,14 @@ CREATE TABLE benfeitoria (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+
+
 CREATE TABLE benfeitoria_material_construcao (
   `benfeitoria_id` BIGINT(20) NOT NULL,
   `origem_material_construcao` VARCHAR(255) NOT NULL,
   FOREIGN KEY (benfeitoria_id) REFERENCES benfeitoria(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-CREATE TABLE `benfeitoria_alimentacao` (
-  `benfeitoria` bigint(30) NOT NULL,
-  `alimentacao` bigint(30) NOT NULL,
-  primary key (benfeitoria, alimentacao)
- )ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
 
 CREATE TABLE `compras` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,

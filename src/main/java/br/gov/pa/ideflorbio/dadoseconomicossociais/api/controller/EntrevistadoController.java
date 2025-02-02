@@ -4,8 +4,6 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.controller;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.EntrevistadoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
@@ -25,8 +24,8 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeN
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.EntrevistadoService;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.EntrevistadoService;
 import io.swagger.annotations.Api;
+import jakarta.validation.Valid;
 
 
 

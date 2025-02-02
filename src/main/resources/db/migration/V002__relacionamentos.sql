@@ -34,9 +34,6 @@ ALTER TABLE `morador` ADD CONSTRAINT `fk_benfeitoria_morador` FOREIGN KEY ( `ben
 ALTER TABLE `pesca_artesanal` ADD CONSTRAINT `fk_benfeitoria_pesca_artesanal` FOREIGN KEY ( `benfeitoria`) REFERENCES `benfeitoria` ( `id` );
 
 
-ALTER TABLE `benfeitoria_alimentacao` ADD CONSTRAINT `fk_benfeitoria_alimentacao_benfeitoria` FOREIGN KEY ( `alimentacao` ) REFERENCES `alimentacao` ( `id` );
-ALTER TABLE `benfeitoria_alimentacao` ADD CONSTRAINT `fk_alimentacao_benfeitoria_alimentacao` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` );
-
 ALTER TABLE `posto_de_saude` ADD CONSTRAINT `fk_localidade_posto_de_saude` FOREIGN KEY ( `localidade`) REFERENCES `localidade` ( `id` );
 
 ALTER TABLE `coordenada` ADD CONSTRAINT `fk_localidade_coordenada` FOREIGN KEY ( `localidade`) REFERENCES `localidade` ( `id` );
@@ -44,10 +41,8 @@ ALTER TABLE `coordenada` ADD CONSTRAINT `fk_localidade_coordenada` FOREIGN KEY (
 ALTER TABLE `morador_doenca` ADD CONSTRAINT `fk_morador_morador_doenca` FOREIGN KEY ( `morador` ) REFERENCES `morador` ( `id` );
 ALTER TABLE `morador_doenca` ADD CONSTRAINT `fk_doenca_morador_doenca` FOREIGN KEY ( `doenca` ) REFERENCES `doenca` ( `id` );
 
-ALTER TABLE `imovel_atendimento_saude` ADD CONSTRAINT `fk_imovel_atendimento_saude` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
-ALTER TABLE `imovel_atendimento_saude` ADD CONSTRAINT `fk_atendimento_saude_imovel` FOREIGN KEY ( `atendimento_saude` ) REFERENCES `atendimento_saude` ( `id` );
 
 ALTER TABLE `benfeitoria` ADD CONSTRAINT `fk_imovel_benfeitoria` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` );
 
 
-ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_imovel_entrevistado` FOREIGN KEY (`imovel`) REFERENCES `imovel` (`id`);
+ALTER TABLE `imovel` ADD CONSTRAINT `fk_entrevistado_imovel` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`);

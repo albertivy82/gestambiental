@@ -21,7 +21,7 @@ import lombok.Setter;
 public class EntrevistadoInput {
 
 	
-private String nome;
+   private String nome;
 	
 	private String naturalidade;
 	
@@ -96,8 +96,8 @@ private String nome;
 	private SimNao conheceAreaUc;
 	
 
-	@Enumerated(EnumType.STRING)
-	private SimNao utilizaAreaUc;
+	
+	private String utilizaAreaUc;
 	
 	private String propostaMelhorarArea;
 	

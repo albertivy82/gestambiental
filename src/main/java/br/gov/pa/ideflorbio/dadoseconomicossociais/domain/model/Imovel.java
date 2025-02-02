@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Documentacao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EsporteLazer;
@@ -11,14 +8,13 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.LimitesTer
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Situacao_Fundiaria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSolo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -60,48 +56,54 @@ public class Imovel implements Serializable{
 	@NotNull
 	private double areaImovel;
 	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private TipoSolo tipoSolo;
 	
 	@NotBlank
-	private String vizinhos;
+	private String vizinhosConfinantes;
 	
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Situacao_Fundiaria situacaoFundiaria;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Documentacao documentacaoImovel;
 	
-	
+
 	@Enumerated(EnumType.STRING)
     private LimitesTerreno limites;
+	
+		
+	@NotBlank
+	private String linhasDeBarco;
+	
+	@NotBlank
+	private String pavimentacao;
+	
 	
 	@Enumerated(EnumType.STRING)
 	private SimNao iluminacaoPublica;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Transporte transporte;
-	
 	@NotBlank
-	private String programaInfraSaneamento;
-	
-	@NotBlank
-	private String linhasDeBarco;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoSolo tipoSolo;
+	private String equipamentosUrbanos;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private EsporteLazer esporteLazer;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy="imovel")
-	private Entrevistado entrevistado;
+	@NotBlank
+	private String programaInfraSaneamento;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "imovel")
-	private List<Benfeitoria> benfeitorias;
+	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name = "entrevistado") 
+	private Entrevistado entrevistado;
+
+	
+	
 		
 }

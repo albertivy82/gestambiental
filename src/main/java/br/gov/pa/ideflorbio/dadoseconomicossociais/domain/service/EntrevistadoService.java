@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ImovelDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.AtividadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntrevistadoNaoEncontradoException;
@@ -18,7 +17,6 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeN
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EntrevistadosRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.LocalidadesRepository;
 
 @Service
@@ -35,8 +33,7 @@ public class EntrevistadoService {
 	@Autowired
 	LocalidadesRepository localidades;
 	
-	@Autowired
-	ImoveisRepository imoveis;
+	
 	
 	@Autowired
 	ModelMapper mapper;

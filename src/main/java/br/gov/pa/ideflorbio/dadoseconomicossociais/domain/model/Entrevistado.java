@@ -18,7 +18,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
@@ -114,8 +113,8 @@ public class Entrevistado implements Serializable{
 	private SimNao conheceAreaUc;
 	
 
-	@Enumerated(EnumType.STRING)
-	private SimNao utilizaAreaUc;
+	
+	private String utilizaAreaUc;
 	
 	private String propostaMelhorarArea;
 	
@@ -124,16 +123,12 @@ public class Entrevistado implements Serializable{
 	private String contatoIndicadoConsultaPublica;
 	
 		
-	
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="localidade")
 	private Localidade localidade;
 	
 	
-	@OneToOne
-	@JoinColumn(name="imovel")
-	private Imovel imovel;
 	
 
 }

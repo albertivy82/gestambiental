@@ -20,6 +20,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoCobert
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoConstrucao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoEsquadrias;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSoloBenfeitoria;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -30,8 +31,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -111,14 +110,18 @@ public class Benfeitoria {
 	private Residuos residuos;
 	
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private FonteEnergia fonteEnergia;
-	
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private EnergiaAlimentos energiaAlimentos;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private FonteEnergia fonteEnergia;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Transporte meiosLocomocao;
 	
 
 	@NotNull
