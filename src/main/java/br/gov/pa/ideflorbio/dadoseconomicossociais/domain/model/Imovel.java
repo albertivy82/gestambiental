@@ -92,7 +92,7 @@ public class Imovel implements Serializable{
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private EsporteLazer esporteLazer;
+	private EsporteLazer espacosEsporteLazer;
 	
 	@NotBlank
 	private String programaInfraSaneamento;

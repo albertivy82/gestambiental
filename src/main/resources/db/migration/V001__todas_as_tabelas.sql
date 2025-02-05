@@ -116,7 +116,7 @@ CREATE TABLE `imovel` (
   `pavimentacao` varchar(255) NOT NULL,
   `iluminacao_publica` varchar(100) NOT NULL,
   `equipamentos_urbanos` varchar(255) NOT NULL,
-  `esporte_lazer` varchar(100) NOT NULL,
+  `espacos_esporte_lazer` varchar(100) NOT NULL,
   `programa_infra_saneamento` varchar(100) NOT NULL,
   `entrevistado` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)

@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ImovelInput {
-	 @NotBlank
+	    @NotBlank
 	    private String rua;
 
 	    private String numero;
@@ -39,6 +39,9 @@ public class ImovelInput {
 	  
 		@Enumerated(EnumType.STRING)
 		private TipoSolo tipoSolo;
+		
+		@NotBlank
+		private String vizinhosConfinantes;
 
 	    @Enumerated(EnumType.STRING)
 	    private Situacao_Fundiaria situacaoFundiaria;
@@ -63,7 +66,7 @@ public class ImovelInput {
 
 	    @NotNull
 	    @Enumerated(EnumType.STRING)
-	    private EsporteLazer esporteLazer;
+	    private EsporteLazer espacosEsporteLazer;
 
 	    @NotBlank
 	    private String programaInfraSaneamento;

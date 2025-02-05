@@ -1,5 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEn
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Usuario;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.EntrevistadosRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 
@@ -51,8 +53,10 @@ public class ImovelService {
 		Entrevistado entrevistado = entrevistados.findById(idEntrevistado)
 		.orElseThrow(()->new EntrevistadoNaoEncontradoException(idEntrevistado));
 		
-		if(entrevistado.getId()!=null && imovel.getEntrevistado()!=null) {
-			throw new NegocioException("Esta Entrevistado já possui um imóvel cadastrado. Atualize o cadastro ou apague o mesmo"
+		Optional<Imovel> imovelComEntrevistado = imoveis.findByEntrevistadoId(entrevistado.getId());
+				
+		if(entrevistado.getId()!=null && imovel.getEntrevistado()!=null && imovelComEntrevistado.isPresent()) {
+			throw new NegocioException("Este Entrevistado já possui um imóvel cadastrado. Atualize o cadastro ou apague o mesmo"
 					+ " para realizar novo cadastro");
 		}
 		

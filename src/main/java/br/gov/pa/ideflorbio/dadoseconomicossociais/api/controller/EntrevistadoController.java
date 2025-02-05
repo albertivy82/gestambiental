@@ -77,9 +77,10 @@ public class EntrevistadoController {
 		return entrevitadosCadastro.localizarEntidade(id);
 	}
 	
-	@GetMapping("localidade-entrevistado/{idLocalidade}")
-	public List<EntrevistadoDTO> BuscarPoLocalidade(@PathVariable Long idLocalidade) {
-		return entrevitadosCadastro.findByLocalidade(idLocalidade);
+	@GetMapping("/localidade-entrevistado/{localidadeId}")
+	public List<EntrevistadoDTO> BuscarPoLocalidade(@PathVariable Long localidadeId) {
+		System.out.println("Requisição feita de entrevistado?");
+		return entrevitadosCadastro.findByLocalidade(localidadeId);
 	}
 	
 	

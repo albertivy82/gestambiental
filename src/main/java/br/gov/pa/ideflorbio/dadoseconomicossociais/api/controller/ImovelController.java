@@ -76,9 +76,9 @@ public class ImovelController {
 		return imoveisCadastro.localizarEntidade(id);
 	}
 	
-	@GetMapping("/imovel-entrevistado/{imovel}")
-	public ImovelDTO buscarPorEntrevistado(@PathVariable Long entrevistado) {
-	    Imovel imovel = imoveisCadastro.buscarPorEntrevistado(entrevistado);
+	@GetMapping("/imovel-entrevistado/{idEntrevistado}")
+	public ImovelDTO buscarPorEntrevistado(@PathVariable Long idEntrevistado) {
+	    Imovel imovel = imoveisCadastro.buscarPorEntrevistado(idEntrevistado);
 	    return mapper.map(imovel, ImovelDTO.class);
 	}
 
