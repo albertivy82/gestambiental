@@ -1,8 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Ocorrencia;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TempoQueNaoAvista;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,42 +30,38 @@ public class Fauna {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez ocorreMata;
+	private SimNao ocorreMata;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez ocorreRio;
+	private SimNao ocorreRio;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez ocorreLago;
+	private SimNao ocorreLago;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez ocorreRua;
+	private SimNao ocorreRua;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez ocorreQuintal;
+	private SimNao ocorreQuintal;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez outrasOcorrencias;
+	private String outrasOcorrencias;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Ocorrencia ferequenciaAtual;
+	private String frequenciaAtual;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Ocorrencia ferequenciaPassada;
+	private String frequenciaPassada;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TempoQueNaoAvista tempoQueNaoVe;
+	private String tempoQueNaoVe;
 	
 	@ManyToOne
-	@JoinColumn(name="benfeitoria")
-	private Benfeitoria benfeitoria;
+	@JoinColumn(name="entrevistado")
+	private Entrevistado entrevistado;
 
 }

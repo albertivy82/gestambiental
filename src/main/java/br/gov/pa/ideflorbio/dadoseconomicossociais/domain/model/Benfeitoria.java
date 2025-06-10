@@ -1,29 +1,16 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Efluentes;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EnergiaAlimentos;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.FonteEnergia;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Funcao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.InformativoPredominante;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.NivelAlagamento;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Ocorrencia;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.OrigemMaterialConstrucao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Residuos;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoBenfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoCobertura;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoConstrucao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoEsquadrias;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSoloBenfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -58,10 +45,19 @@ public class Benfeitoria {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Funcao funcao;
-
+	
+	
+	private String afastamentoDaPrincipal;
+	
+	
 	@NotNull
-	@Enumerated(EnumType.STRING)	
-	private TipoSoloBenfeitoria tipoSolo;
+	@Enumerated(EnumType.STRING)
+	private TipoSoloBenfeitoria impermeabilizacaoSolo;
+	
+	
+	private String limites;
+
+	
 	
 	@NotNull
 	private double areaBenfeitoria;
@@ -70,19 +66,11 @@ public class Benfeitoria {
 	@NotNull
 	private int pavimentos;
 	
-
+	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private TipoConstrucao tipoConstrucao;
+	private TipoConstrucao paredes;
 	
-	
-	@ElementCollection(targetClass = OrigemMaterialConstrucao.class)
-	@Enumerated(EnumType.STRING)
-	@CollectionTable(name = "benfeitoria_material_construcao")
-	@Column(name = "origem_material_construcao")
-	private Set<OrigemMaterialConstrucao> origemMaterialConstrucao = new HashSet<>();
-	
-
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoCobertura tipoCobertura;
@@ -93,118 +81,72 @@ public class Benfeitoria {
 	private TipoEsquadrias tipoEsquadrias;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Ocorrencia alagamentos;
+	private String origemMadeiraDaConstrucao;
+	@NotNull
+	private String origemPedraDaConstrucao;
+	@NotNull
+	private String origemAreiaDaConstrucao;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private NivelAlagamento nivelAlagamentos;
+    private String alagamentos;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Efluentes efluentes;
+    @NotNull
+    private String epocaOcorrencia;
+
+    @NotNull
+	private String efluentes;
 	
-
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Residuos residuos;
+    @NotNull
+	private String residuos;
 	
-
-
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private EnergiaAlimentos energiaAlimentos;
+    @NotNull
+	private String fonteEnergia;
+		
+    @NotNull
+	private String energiaAlimentos;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private FonteEnergia fonteEnergia;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Transporte meiosLocomocao;
 	
-
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private InformativoPredominante informativoPredominante;
+	private String linhasOnibus;
 	
-	private String importanciaDeProtegerFauna;
+	@NotNull
+	private String informativoPredominante;
 	
-	private String importanciaDeProtegerAmbiente;
-	
-	private String qualEspacoPrecisaSerPreservado;
-	
-	private String problemasRelacionadosAoAmbiente;
-	
-	
-	@JsonIgnore
-	@OneToOne(mappedBy = "benfeitoria")
-	private Compras compras;
 	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "benfeitoria")
-	private List<Dependencias> dependencia;
+	private  List<Morador> morador;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "benfeitoria")
+	private List<AtividadeProdutiva> atividadeProdutiva;
 	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "benfeitoria")
 	private List<ServicosComunicacao> servicosComunicacao;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Vegetacao> etnoVegetacao;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Fauna> etnoFauna;
-	
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Peixes> etnoPeixe;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Repteis> etnoRepteis;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Mamiferos> etnoMamiferos;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Aves> etnoAves;
-	
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "benfeitoria")
 	private Agua agua;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<Violencia> violenciaSofrida;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<InstituicaoConhecida> instituicaoConhecida;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private List<AtividadeProdutiva> atividadeProdutiva;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "benfeitoria")
 	private List<RendaOutrasFontes> rendaOutrasFontes;
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "benfeitoria")
 	private List<Credito> credito;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "benfeitoria")
-	private  List<Morador> morador;
-	
+		
 	@JsonIgnore
 	@OneToOne(mappedBy = "benfeitoria")
 	private PescaArtesanal pescaArtesanal;

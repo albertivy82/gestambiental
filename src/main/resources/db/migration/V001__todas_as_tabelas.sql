@@ -9,9 +9,10 @@ CREATE TABLE `localidade` (
 CREATE TABLE `escola` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) NOT NULL,
-  `educacao_ambiental` varchar(5) NOT NULL,
+  `iniciativa` varchar(255) NOT NULL,
   `merenda` varchar(5) NOT NULL,
   `transporte` varchar(5) NOT NULL,
+  `educacao_ambiental` varchar(5) NOT NULL,
   `localidade` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -79,14 +80,14 @@ CREATE TABLE `entrevistado` (
   `data_chegada` date NOT NULL,
   `relacao_area_imovel` varchar(255) NOT NULL,
   `relacao_vizinhos` varchar(255) NOT NULL,
-  `tipo_alimentacao` varchar(100) DEFAULT NULL,
+  `tipo_alimentacao` varchar(100) NOT NULL,
   `local_compras` varchar(255) NOT NULL,
   `servicos_deficitarios` varchar(255) NOT NULL,
   `sofreu_assaltos` int(11) NOT NULL,
   `presenciou_assalto` int(11) NOT NULL,
   `problemas_de_violencia_local` varchar(255) NOT NULL,
   `pretende_mudar` varchar(20) NOT NULL,
-  `motivo_vontade_mudanca` varchar(255) NOT NULL,
+  `motivo_vontade_mudanca` varchar(255) DEFAULT NULL,
   `conhece_ucs` varchar(20) NOT NULL,
   `conhece_uc_proposta` varchar(20) NOT NULL,
   `conhece_area_uc` varchar(20) NOT NULL,
@@ -94,9 +95,17 @@ CREATE TABLE `entrevistado` (
   `proposta_melhorar_area` varchar(255) NOT NULL,
   `indicado_consulta_publica` varchar(150) NOT NULL,
   `contato_indicado_consulta_publica` varchar(50) NOT NULL,
+  `instituicao_conhecida` varchar(255) DEFAULT NULL,
+  `importancia_de_proteger_ambiente` varchar(255) DEFAULT NULL,
+  `importancia_de_proteger_fauna` varchar(255) DEFAULT NULL,
+  `qual_espaco_precisa_ser_preservado` varchar(255) DEFAULT NULL,
+  `problemas_relacionados_ao_ambiente` varchar(255) DEFAULT NULL,
+  `como_cuida_saude_familia` varchar(255) DEFAULT NULL,
   `localidade` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`localidade`) REFERENCES `localidade` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 
 CREATE TABLE `imovel` (
    `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -148,14 +157,18 @@ CREATE TABLE benfeitoria (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `agua` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tipo_de_fornecimento` VARCHAR(255) NOT NULL,
+  `metodo_tratamento` VARCHAR(255) NOT NULL,
+  `cor_dagua` VARCHAR(255),
+  `cheiro_dagua` VARCHAR(255),
+  `sabor_dagua` VARCHAR(255),
+  `profundidade_poco` double,
+  `benfeitoria` bigint(20),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-
-
-CREATE TABLE benfeitoria_material_construcao (
-  `benfeitoria_id` BIGINT(20) NOT NULL,
-  `origem_material_construcao` VARCHAR(255) NOT NULL,
-  FOREIGN KEY (benfeitoria_id) REFERENCES benfeitoria(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `compras` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -184,6 +197,7 @@ CREATE TABLE `servicos_comunicacao` (
 
 CREATE TABLE `vegetacao` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `especie` VARCHAR(150),
   `uso_medicinal` VARCHAR(50) NOT NULL,
   `uso_alimentacao` VARCHAR(50) NOT NULL,
   `uso_ornamental` VARCHAR(50) NOT NULL,
@@ -203,7 +217,7 @@ CREATE TABLE `vegetacao` (
   `quem_ensinou_uso` VARCHAR(255),
   `repassa_conhecimento` VARCHAR(255),
   `observacoes_espontaneas` VARCHAR(255),
-  `benfeitoria` bigint(20) NOT NULL,
+  `entrevistado` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -219,7 +233,7 @@ CREATE TABLE `fauna` (
   `ferequencia_atual` VARCHAR(50) NOT NULL,
   `ferequencia_passada` VARCHAR(50) NOT NULL,
   `tempo_que_nao_ve` VARCHAR(50) NOT NULL,
-  `benfeitoria` bigint(20),
+  `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -230,7 +244,7 @@ CREATE TABLE `peixes` (
   `locais_especificos_alimentacao` VARCHAR(255) NOT NULL,
   `uso_alimnetacao` VARCHAR(50) NOT NULL,
   `uso_comercio` VARCHAR(50) NOT NULL,
-  `benfeitoria` bigint(20),
+  `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -244,7 +258,7 @@ CREATE TABLE `repteis` (
   `problemas_relacionados` VARCHAR(255),
   `cacado` VARCHAR(50),
   `descricao_espontanea` VARCHAR(255),
-  `benfeitoria` bigint(20),
+  `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -259,7 +273,7 @@ CREATE TABLE `mamiferos` (
   `priblemas_relacionados` VARCHAR(150),
   `alimentacao` VARCHAR(255),
   `desricao_espontanea` VARCHAR(255),
-  `benfeitoria` bigint(20),
+  `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -277,44 +291,10 @@ CREATE TABLE `aves` (
   `qual_impotancia_da_especie` VARCHAR(255),
   `alimentacao` VARCHAR(255),
   `desricao_espontanea` VARCHAR(255),
-  `benfeitoria` bigint(20),
+  `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE `agua` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `possui_forneceimento_publico` VARCHAR(255) NOT NULL,
-  `qualidade_fornecimento_publico` VARCHAR(50),
-  `cor_agua_forncimento_publico` VARCHAR(255),
-  `sabor_agua_fornecimento_publico` VARCHAR(255),
-  `cheiro_agua_fornecimento_publico` VARCHAR(255),
-  `poco` VARCHAR(255) NOT NULL,
-  `profundidade_poco` double,
-  `cor_agua_poco` VARCHAR(255),
-  `sabor_agua_Poco` VARCHAR(255),
-  `cheiro_agua_poco` VARCHAR(255),
-  `tratamento_agua` VARCHAR(255) NOT NULL,
-  `benfeitoria` bigint(20),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-CREATE TABLE `violencia` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ocorrencias` int NOT NULL,
-  `tipo` varchar(255) NOT NULL,
-  `condicao` varchar(50) NOT NULL,
-  `destaque_de_morador` varchar(50),
-  `benfeitoria` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-CREATE TABLE `instituicao_conhecida` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `atividades` varchar(255) NOT NULL,
-  `benfeitoria` bigint(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `atividade_produtiva` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -357,17 +337,6 @@ CREATE TABLE `morador` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-
-CREATE TABLE `doenca` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `doenca_nome` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-CREATE TABLE `morador_doenca` (
-  `morador` bigint(30) NOT NULL,
-  `doenca` bigint(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE `pesca_artesanal` (

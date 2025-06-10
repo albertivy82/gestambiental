@@ -75,6 +75,14 @@ public class BenfeitoriaController {
 	}
 	
 	
+	@GetMapping("/{id}")
+	public BenfeitoriaDTO buscarPorId (@PathVariable Long id) {
+		
+		return mapper.map(benfeitoriaCad.buscarEntidade(id), BenfeitoriaDTO.class);
+		
+	}
+	
+	
 
 
 }

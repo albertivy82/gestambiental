@@ -1,15 +1,15 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions;
 
-public class FaunaException extends EntidadeNaoEncontradaException {
+public class FaunaNaoEncontradaException extends EntidadeNaoEncontradaException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public FaunaException(String message) {
+	public FaunaNaoEncontradaException(String message) {
 		super(message);
 		
 	}
 	
-	public FaunaException(Long id) {
+	public FaunaNaoEncontradaException(Long id) {
 		this("Os dados de fauna cadastrados com código %d não existem".formatted(id));
 	}
 

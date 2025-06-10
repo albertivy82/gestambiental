@@ -9,31 +9,19 @@ public class AguaDTO {
 	
 	private Long id;
 	
-    private String especie;
+	private String tipoDeFornecimento;
 	
+	private String qualidadeDaAgua;
 	
+	private String metodoTratamento;
 	
-	private String usoConsumo;
+	private String corDagua;
 	
-	private String usoComercio;
+	private String cheiroDagua;
 	
-	private String usoCriacao;
+	private String saborDagua;
 	
-	private String usoRemedio;
-		
-	private String usoOutros;
-	
-	private String priblemasRelacionados;
-	
-	private String ameacaSofrida;
-	
-	private String localDeAglomeracao;
-	
-	private String qualImpotanciaDaEspecie;
-	
-	private String alimentacao;
-	
-	private String desricaoEspontanea;
+	private double profundidadePoco;
 	
 	private BenfeitoriaIdDTO benfeitoria; 
 		

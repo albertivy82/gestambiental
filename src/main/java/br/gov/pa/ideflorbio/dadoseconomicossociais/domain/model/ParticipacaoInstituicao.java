@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Instituicao;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,8 +21,13 @@ public class ParticipacaoInstituicao {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@Enumerated(EnumType.STRING)
-	private Instituicao instituicao;
+	
+	private String instituicao;
+	
+	/*
+	 * SINDICATO, COLONIA_DE_PESCA, ASSOCIACAO, CONSELHO, PARTIDO_POLITICO, IGREJA,
+	 * NAO_DECLARADO, OUTRO
+	 */
 	
 	private String tipoDeRgistro;
 	

@@ -2,8 +2,11 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Escolaridade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EstadoCivil;
@@ -18,6 +21,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
@@ -88,6 +92,7 @@ public class Entrevistado implements Serializable{
 	@NotBlank
 	private String localCompras;
 	
+	private String comoCuidaSaudeFamilia;
 	
 	@NotBlank
 	private String servicosDeficitarios;
@@ -102,6 +107,9 @@ public class Entrevistado implements Serializable{
 	private String problemasDeViolenciaLocal;
 
 	
+	private String instituicaoConhecida;
+	
+	
 	@Enumerated(EnumType.STRING)
 	private SimNao conheceUcs;
 	
@@ -113,6 +121,13 @@ public class Entrevistado implements Serializable{
 	private SimNao conheceAreaUc;
 	
 
+    private String importanciaDeProtegerAmbiente;
+    
+    private String importanciaDeProtegerFauna;
+	
+	private String qualEspacoPrecisaSerPreservado;
+	
+	private String problemasRelacionadosAoAmbiente;
 	
 	private String utilizaAreaUc;
 	
@@ -122,7 +137,34 @@ public class Entrevistado implements Serializable{
 	
 	private String contatoIndicadoConsultaPublica;
 	
-		
+	
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrevistado")
+	private List<Vegetacao> etnoVegetacao;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrevistado")
+	private List<Fauna> etnoFauna;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrevistado")
+	private List<Peixes> etnoPeixe;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrevistado")
+	private List<Repteis> etnoRepteis;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrevistado")
+	private List<Mamiferos> etnoMamiferos;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrevistado")
+	private List<Aves> etnoAves;
+	
+			
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="localidade")

@@ -29,13 +29,22 @@ public class DestinoPesca {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@Enumerated(EnumType.STRING)
-	private DestinacaoPesca destinacao;
+	
+	private String finalidade;
+	/*
+	 * Consumo, venda, Doacao, Troca, Outros
+	 */
 	
 	private double quantidade;
 	
-	@Enumerated(EnumType.STRING)
-	private DestinoPescado destino;
+	
+	private String destino;
+	
+	/*Somente se não for consumo
+	 * CONSUMIDOR_DIRETO, ATRAVESSADOR, ENTREPOSTO, OUTROS_PESCADORES,
+	 * SUPERMERCADOS, POSTO_DE_COMBUSTIVEL, COLONIA, ASSOCIACAO, COOPERATIVA, FEIRA,
+	 * OUTROS, NAO_DECLARADO
+	 */
 	
 	@Enumerated(EnumType.STRING)
 	private SimNaoTalvez destinoFixo;

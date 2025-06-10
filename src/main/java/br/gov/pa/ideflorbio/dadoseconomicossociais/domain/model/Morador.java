@@ -2,9 +2,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,7 +10,6 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Escolarida
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EstadoCivil;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Perfil;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Sexo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,8 +17,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
@@ -70,23 +65,15 @@ public class Morador implements Serializable{
 	
 	private String ondeEstuda;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez trabalho;
+	@NotBlank
+	private String trabalho;
 	
 	@NotBlank
 	private String religiao;
 	
-	
-	@ManyToMany
-	@JoinTable(
-	        name="morador_doenca",
-	        joinColumns=
-	            @JoinColumn(name="morador"),
-	        inverseJoinColumns=
-	            @JoinColumn(name="doenca")
-	    )
-	private Set<Doenca> doenca = new HashSet<>();
+	@NotBlank
+	private String doencas;
+	//ver arquivo moléstias
 	
 	@OneToMany(mappedBy = "morador")
 	private List<ParticipacaoInstituicao> participacaoInstituicao;

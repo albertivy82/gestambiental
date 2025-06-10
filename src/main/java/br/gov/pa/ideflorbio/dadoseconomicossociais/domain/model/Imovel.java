@@ -1,6 +1,10 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Documentacao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EsporteLazer;
@@ -15,6 +19,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -97,6 +102,9 @@ public class Imovel implements Serializable{
 	@NotBlank
 	private String programaInfraSaneamento;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="imovel")
+	private List<Benfeitoria> benfeitoria = new ArrayList<>();
 	
 	@NotNull
 	@OneToOne

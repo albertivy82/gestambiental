@@ -36,7 +36,7 @@ public class PermissaoController {
 	@Autowired
 	ModelMapper mapper;
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public PermissaoDTO adicionar(@RequestBody @Valid PermissaoInput permissaoInput) {
@@ -46,7 +46,7 @@ public class PermissaoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@PutMapping("/{id}")
 	public PermissaoDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid PermissaoInput permissaoInput) {
@@ -57,7 +57,7 @@ public class PermissaoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping
 	public List<PermissaoDTO> listar(){
 		return permissaoCadastro
@@ -65,13 +65,13 @@ public class PermissaoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping("/buscaporid/{id}")
 	public PermissaoDTO Buscar(@PathVariable Long id) {
 		return permissaoCadastro.buscaPorId(id);
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

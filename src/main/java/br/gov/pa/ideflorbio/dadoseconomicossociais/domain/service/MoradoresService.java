@@ -11,14 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.MoradorDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.DoencaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.MoradorNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Doenca;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Morador;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.DoencasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.MoradoresRepository;
 
 @Service
@@ -32,9 +29,6 @@ public class MoradoresService {
 	
 	@Autowired
 	BenfeitoriasRepository benfeitorias;
-	
-	@Autowired
-	DoencasRepository doencas;
 	
 	
 	@Autowired
@@ -62,29 +56,7 @@ public class MoradoresService {
 		return moradorAtual;
 		
 	}
-	@Transactional
-	public void vincularDoenca(Long idMorador, Long idDoenca) {
-		Morador morador = moradores.findById(idMorador)
-				.orElseThrow(()-> new BenfeitoriaNaoEncontradaException(idMorador));
 		
-		Doenca doenca = doencas.findById(idDoenca)
-				.orElseThrow(()-> new DoencaNaoEncontradaException(idDoenca));
-		
-		morador.getDoenca().add(doenca);
-		
-	}	
-	
-	@Transactional
-	public void desvicunlarDoenca(Long idMorador, Long idDoenca) {
-		Morador morador = moradores.findById(idMorador)
-				.orElseThrow(()-> new MoradorNaoEncontradoException(idMorador));
-		
-		Doenca doenca = doencas.findById(idDoenca)
-				.orElseThrow(()-> new DoencaNaoEncontradaException(idDoenca));
-		
-		morador.getDoenca().remove(doenca);
-		
-	}	
 	
 	public List<Morador> listarTodos(){
 		

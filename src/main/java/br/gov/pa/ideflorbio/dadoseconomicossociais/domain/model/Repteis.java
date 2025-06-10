@@ -35,11 +35,11 @@ public class Repteis {
 	
 	private String cacado;
 	
-	private String desricaoEspontanea;
+	private String descricaoEspontanea;
 	
 		
 	@ManyToOne
-	@JoinColumn(name="benfeitoria")
-	private Benfeitoria benfeitoria;
+	@JoinColumn(name="entrevistado")
+	private Entrevistado entrevistado;
 
 }

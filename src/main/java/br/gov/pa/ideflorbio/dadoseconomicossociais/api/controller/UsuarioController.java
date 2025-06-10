@@ -41,7 +41,7 @@ public class UsuarioController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public UsuarioDTO adicionar(@RequestBody @Valid UsuarioInput usuarioInput) {
@@ -55,7 +55,7 @@ public class UsuarioController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@PutMapping("/{id}")
 	public UsuarioDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid UsuarioInput usuarioInput) {
@@ -72,14 +72,14 @@ public class UsuarioController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("alterar-senha/{id}")
 	public void alterarSenha(@PathVariable Long id, @RequestBody @Valid SenhaInput senha) {
 		
 		usuarioCadastro.AlterarSenha(id, senha.getSenhaAtual(), senha.getNovaSenha());
 	}
 
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping
 	public List<UsuarioDTO> listar(){
 		return usuarioCadastro
@@ -88,26 +88,26 @@ public class UsuarioController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping("/buscaporid/{id}")
 	public UsuarioDTO Buscar(@PathVariable Long id) {
 		return usuarioCadastro.buscaPorId(id);
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping("/buscapornome/{nome}")
 	public UsuarioDTO BuscarPorNome(@PathVariable String nome) {
 		return usuarioCadastro.buscarPorNome(nome);
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping("/buscapormatricula/{matricula}")
 	public UsuarioDTO BuscarPorMatricula(@PathVariable String matricula) {
 		return usuarioCadastro.buscarPorMatricula(matricula);
 	}
 	
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

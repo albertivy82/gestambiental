@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.PostoDeSaudeDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.PostoDeSaudeInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Localidade;
@@ -35,10 +36,10 @@ public class PostoDeSaudeController {
 	
 	@Autowired
 	PostoDeSaudeService postoCadastro;
-	
 	@Autowired
 	ModelMapper mapper;
 	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public PostoDeSaudeDTO adicionar(@RequestBody @Valid PostoDeSaudeInput postoInput) {
@@ -52,6 +53,7 @@ public class PostoDeSaudeController {
 			}
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public PostoDeSaudeDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid PostoDeSaudeInput postoInput) {
@@ -65,6 +67,7 @@ public class PostoDeSaudeController {
 		}
 	}
 	
+	@CheckSecurity.Geral.PodeConsultar
 	@GetMapping
 	public List<PostoDeSaudeDTO> listar(){
 		return postoCadastro
@@ -72,17 +75,20 @@ public class PostoDeSaudeController {
 
 	}
 	
+	@CheckSecurity.Geral.PodeConsultar
 	@GetMapping("/{id}")
 	public PostoDeSaudeDTO Buscar(@PathVariable Long id) {
 		return postoCadastro.localizarEntidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeConsultar
 	@GetMapping("/localidade-posto/{localidadeId}")
 	public List<PostoDeSaudeDTO> buscarPorLocalidade(@PathVariable Long localidadeId){
 		System.out.println("Requisição feita?");
 		return postoCadastro.buscarPorLocalidade(localidadeId);
 	}
 	
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

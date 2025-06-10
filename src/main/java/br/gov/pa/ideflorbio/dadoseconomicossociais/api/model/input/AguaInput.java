@@ -1,12 +1,8 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.MetodoTratamentoAgua;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Poco;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.QualidadeAgua;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,41 +11,29 @@ import lombok.Setter;
 @Setter
 public class AguaInput {
 
-
 	
-	@NotBlank
+	
+	
+	private String tipoDeFornecimento;
+	
+	private String outro;
+	
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez possuiForneceimentoPublico;
+	private QualidadeAgua qualidadeDaAgua;
 	
-	@Enumerated(EnumType.STRING)
-	private QualidadeAgua qualidadeFornecimentoPublico;
+	private String metodoTratamento;
 	
-	private String corAguaForncimentoPublico;
+	private String corDagua;
 	
-	public String saborAguaFornecimentoPublico;
-
-
-	public String cheiroAguaFornecimentoPublico;
+	private String cheiroDagua;
 	
-	@NotBlank
-	@Enumerated(EnumType.STRING)
-	private Poco poco;
+	private String saborDagua;
 	
 	private double profundidadePoco;
 	
-	private String corAguaPoco;
-	
-	public String saborAguaPoco;
-	
-	public String cheiroAguaPoco;
-	
-	
-	@NotBlank
-	@Enumerated(EnumType.STRING)
-	private MetodoTratamentoAgua tratamentoAgua;
-
 	
 	@NotNull
 	private BenfeitoriaIdInput benfeitoria;
-		
+	
+
 }

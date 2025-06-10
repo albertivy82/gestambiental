@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EscolaReciboDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.EscolaInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Escola;
@@ -41,6 +42,7 @@ public class EscolaController {
 	@Autowired
 	ModelMapper mapper;
 	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public EscolaReciboDTO adicionar(@RequestBody @Valid EscolaInput escolaInput) {
@@ -54,6 +56,7 @@ public class EscolaController {
 			}
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public EscolaReciboDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid EscolaInput escolaInput) {
@@ -67,6 +70,7 @@ public class EscolaController {
 		}
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping
 	public List<EscolaReciboDTO> listar(){
 		return escolaCadastro
@@ -74,17 +78,20 @@ public class EscolaController {
 
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/{id}")
 	public EscolaReciboDTO Buscar(@PathVariable Long id) {
 		return escolaCadastro.localizarEntidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/localidade-escola/{localidadeId}")
 	public List<EscolaReciboDTO> buscarPorLocalidade (@PathVariable Long localidadeId){
 		return escolaCadastro.buscarPorLocalidade(localidadeId);
 		
 	}
 	
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

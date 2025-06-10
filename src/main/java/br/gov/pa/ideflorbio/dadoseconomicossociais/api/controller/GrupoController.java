@@ -37,7 +37,7 @@ public class GrupoController {
 	ModelMapper mapper;
 	
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public GrupoDTO adicionar(@RequestBody @Valid GrupoInput grupoInput) {
@@ -47,7 +47,7 @@ public class GrupoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@PutMapping("/{id}")
 	public GrupoDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid GrupoInput grupoInput) {
@@ -58,7 +58,7 @@ public class GrupoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping
 	public List<GrupoDTO> listar(){
 		return grupoCadastro
@@ -66,13 +66,13 @@ public class GrupoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping("/buscaporid/{id}")
 	public GrupoDTO Buscar(@PathVariable Long id) {
 		return grupoCadastro.buscaPorId(id);
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

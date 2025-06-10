@@ -9,49 +9,69 @@ import lombok.Setter;
 @Setter
 public class BenfeitoriaDTO {
 	
-	private Long id;
-	
-    private String tipoBenfeitoria;
-	
-	private String funcao;
+	    private Long id;
+	    
+	    private String tipoBenfeitoria;
+	    
+	    private String funcao;
+	    
+	    private String afastamentoDaPrincipal;
+	    
+	    private String impermeabilizacaoSolo;
+	    
+	    private String limites;
+	    
+	    private double areaBenfeitoria;
+	    
+	    private int pavimentos;
+	    
+	    private String paredes;
+	    
+	    private String tipoCobertura;
+	    
+	    private String tipoEsquadrias;
+	    
+	    private String origemMadeiraDaConstrucao;
+	    
+	    private String origemPedraDaConstrucao;
+	    
+	    private String origemAreiaDaConstrucao;
+	    
+	    private String alagamentos;
 
-	private String tipoSolo;
-	
-	private double areaBenfeitoria;
-	
-	private int pavimentos;
-	
-	private String tipoConstrucao;
-	
-	private List<String> origemMaterialConstrucao;
-	
-	private String tipoCobertura;
-	
-	private String tipoEsquadrias;
-	
-	private String alagamentos;
-	
-	private String nivelAlagamentos;
+	    private String epocaOcorrencia;
 
-	private String efluentes;
-		
-	private String residuos;
-	
-	private String fonteEnergia;
-		
-	private String energiaAlimentos;
-		
-	private String informativoPredominante;
-	
-	private String importanciaDeProtegerFauna;
-	
-	private String importanciaDeProtegerAmbiente;
-	
-	private String qualEspacoPrecisaSerPreservado;
-	
-	private String problemasRelacionadosAoAmbiente;
-	
-	private ImovelIdDTO imovel;
+	    private String efluentes;
+	        
+	    private String residuos;
+	    
+	    private String fonteEnergia;
+	        
+	    private String energiaAlimentos;
+	    
+	    private String meiosLocomocao;
+	    
+	    private String linhasOnibus;
+	        
+	    private String informativoPredominante;
+
+	    private List<DependenciasDTO> dependencia;
+
+	    private List<MoradorDTO> morador;
+	    
+	    private List<AtividadeProdutivaDTO> atividadeProdutiva;
+
+	    private List<ServicosComunicacaoDTO> servicosComunicacao;
+	    
+	    private AguaDTO agua;
+	    
+	    private List<RendaOutrasFontesDTO> rendaOutrasFontes;
+
+	    private List<CreditoDTO> credito;
+
+	    private PescaArtesanalDTO pescaArtesanal;
+
+	    private ImovelIdDTO imovel;
 	
 
 }

@@ -12,9 +12,6 @@ public interface BenfeitoriasRepository extends JpaRepository<Benfeitoria, Long>
 	@Query(value= "SELECT * FROM BENFEITORIA WHERE IMOVEL = ?1", nativeQuery=true)
 	List<Benfeitoria> findByImovelId(Long imovelId);
 	
-	@Query(value = "SELECT origem_material_construcao FROM benfeitoria_material_construcao WHERE benfeitoria_id = ?1", nativeQuery = true)
-    List<String> findOrigemMaterialConstrucaoByBenfeitoriaId(Long benfeitoriaId);
-	
 	
 
 }

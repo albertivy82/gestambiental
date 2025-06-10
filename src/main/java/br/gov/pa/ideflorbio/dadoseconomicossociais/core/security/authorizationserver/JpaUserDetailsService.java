@@ -1,6 +1,7 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.authorizationserver;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,14 @@ public class JpaUserDetailsService implements UserDetailsService {
 	
 	private Collection<GrantedAuthority> getAuthorities(Usuario usuario){
 		
-		return usuario.getGrupo().getPermissoes().stream()
-					.map(permissoes-> new SimpleGrantedAuthority(permissoes.getNome().toUpperCase()))
-			   .collect(Collectors.toSet());
+		Set<GrantedAuthority> authorities = usuario.getGrupo().getPermissoes().stream()
+		        .map(permissao -> new SimpleGrantedAuthority(permissao.getNome().toUpperCase()))
+		        .collect(Collectors.toSet());
+
+		    // Adiciona a role do grupo (ex: ROLE_ADMINISTRADOR)
+		    authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getGrupo().getNome().toUpperCase()));
+
+		    return authorities;
 	}
 
 }

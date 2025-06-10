@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -30,23 +30,23 @@ public class Peixes {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez locaisEspeciais;
+	private SimNao locaisEspeciais;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez locaisEspecificosAlimentacao;
+	private SimNao locaisEspecificosAlimentacao;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoAlimnetacao;
+	private SimNao usoAlimnetacao;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoComercio;
+	private SimNao usoComercio;
 	
 		
 	@ManyToOne
-	@JoinColumn(name="benfeitoria")
-	private Benfeitoria benfeitoria;
+	@JoinColumn(name="entrevistado")
+	private Entrevistado entrevistado;
 
 }

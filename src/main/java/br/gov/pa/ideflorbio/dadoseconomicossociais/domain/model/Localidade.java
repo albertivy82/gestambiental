@@ -51,8 +51,8 @@ public class Localidade implements Serializable{
 	private List<Coordenada> coordenadas;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "localidade")
-	private PostoDeSaude postoDeSaude;
+	@OneToMany(mappedBy = "localidade")
+	private List<PostoDeSaude> postoDeSaude;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="localidade")

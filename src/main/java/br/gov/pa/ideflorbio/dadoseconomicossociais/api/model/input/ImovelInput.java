@@ -17,11 +17,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ImovelInput {
-	    @NotBlank
+	    
+	
+	  @NotBlank
 	    private String rua;
 
+	    @NotBlank 
 	    private String numero;
 
+	    @NotBlank 
 	    private String bairro;
 
 	    @NotBlank
@@ -36,19 +40,22 @@ public class ImovelInput {
 	    @NotNull
 	    private double areaImovel;
 	    
-	  
-		@Enumerated(EnumType.STRING)
-		private TipoSolo tipoSolo;
-		
-		@NotBlank
-		private String vizinhosConfinantes;
+	    @NotNull 
+	    @Enumerated(EnumType.STRING)
+	    private TipoSolo tipoSolo;
+	    
+	    @NotBlank
+	    private String vizinhosConfinantes;
 
+	    @NotNull 
 	    @Enumerated(EnumType.STRING)
 	    private Situacao_Fundiaria situacaoFundiaria;
 
+	    @NotNull 
 	    @Enumerated(EnumType.STRING)
 	    private Documentacao documentacaoImovel;
 
+	    @NotNull 
 	    @Enumerated(EnumType.STRING)
 	    private LimitesTerreno limites;
 

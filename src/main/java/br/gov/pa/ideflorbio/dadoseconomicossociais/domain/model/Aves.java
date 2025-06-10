@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,23 +29,22 @@ public class Aves {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoConsumo;
+	private SimNao usoConsumo;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoComercio;
+	private SimNao usoComercio;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoCriacao;
+	private SimNao usoCriacao;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoRemedio;
+	private SimNao usoRemedio;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoOutros;
+	private String usoOutros;
 	
 	private String problemasRelacionados;
 	
@@ -61,7 +60,7 @@ public class Aves {
 		
 		
 	@ManyToOne
-	@JoinColumn(name="benfeitoria")
-	private Benfeitoria benfeitoria;
+	@JoinColumn(name="entrevistado")
+	private Entrevistado entrevistado;
 
 }

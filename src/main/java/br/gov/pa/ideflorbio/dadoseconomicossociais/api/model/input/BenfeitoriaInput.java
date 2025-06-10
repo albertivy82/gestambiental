@@ -1,25 +1,12 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Efluentes;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EnergiaAlimentos;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.FonteEnergia;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Funcao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.InformativoPredominante;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.NivelAlagamento;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Ocorrencia;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.OrigemMaterialConstrucao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Residuos;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoBenfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoCobertura;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoConstrucao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoEsquadrias;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSoloBenfeitoria;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
@@ -32,89 +19,77 @@ public class BenfeitoriaInput {
 	
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoBenfeitoria tipoBenfeitoria;
-	
+    @Enumerated(EnumType.STRING)
+    private TipoBenfeitoria tipoBenfeitoria;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Funcao funcao;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Funcao funcao;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)	
-	private TipoSoloBenfeitoria tipoSolo;
-	
-	@NotNull
-	private double areaBenfeitoria;
-	
+    private String afastamentoDaPrincipal;
 
-	@NotNull
-	private int pavimentos;
-	
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoSoloBenfeitoria impermeabilizacaoSolo;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoConstrucao tipoConstrucao;
-	
-	
-	@ElementCollection(targetClass = OrigemMaterialConstrucao.class)
-	@Enumerated(EnumType.STRING)
-	@CollectionTable(name = "benfeitoria_material_construcao")
-	@Column(name = "origem_material_construcao")
-	private Set<OrigemMaterialConstrucao> origemMaterialConstrucao = new HashSet<>();
-	
+    private String limites;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoCobertura tipoCobertura;
-	
+    @NotNull
+    private double areaBenfeitoria;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoEsquadrias tipoEsquadrias;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Ocorrencia alagamentos;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private NivelAlagamento nivelAlagamentos;
+    @NotNull
+    private int pavimentos;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Efluentes efluentes;
-	
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoConstrucao paredes;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Residuos residuos;
-	
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoCobertura tipoCobertura;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private FonteEnergia fonteEnergia;
-	
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoEsquadrias tipoEsquadrias;
 
+    @NotNull
+	private String origemMadeiraDaConstrucao;
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private EnergiaAlimentos energiaAlimentos;
+	private String origemPedraDaConstrucao;
+	@NotNull
+	private String origemAreiaDaConstrucao;
 	
+	@NotNull
+    private String alagamentos;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private InformativoPredominante informativoPredominante;
+    @NotNull
+    private String epocaOcorrencia;
+
+    @NotNull
+	private String efluentes;
 	
-	private String importanciaDeProtegerFauna;
+    @NotNull
+	private String residuos;
 	
-	private String importanciaDeProtegerAmbiente;
+    @NotNull
+	private String fonteEnergia;
 		
-	private String qualEspacoPrecisaSerPreservado;
-	
-	private String problemasRelacionadosAoAmbiente;
+    @NotNull
+	private String energiaAlimentos;
 	
 	
 	@NotNull
-	private ImovelIdInput imovel;
+	@Enumerated(EnumType.STRING)
+	private Transporte meiosLocomocao;
+	
+	@NotNull
+	private String linhasOnibus;
+	
+	@NotNull
+	private String informativoPredominante;
+	
+
+    @NotNull
+    private ImovelIdInput imovel;
 
 }

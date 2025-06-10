@@ -1,5 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.EntrevistadoIdInput;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,8 @@ import lombok.Setter;
 public class VegetacaoDTO {
 	
 	private Long id;
+	
+	private String especie;
 	
 	private String usoMedicinal;
 	
@@ -47,6 +50,6 @@ public class VegetacaoDTO {
 	
 	private String observacoesEspontaneas;
 	
-	private BenfeitoriaIdDTO benfeitoria; 
+	private EntrevistadoIdInput entrevistado; 
 		
 }

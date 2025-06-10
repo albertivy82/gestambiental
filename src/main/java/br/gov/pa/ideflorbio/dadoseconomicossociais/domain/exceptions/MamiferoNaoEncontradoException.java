@@ -1,15 +1,15 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions;
 
-public class MamiferosException extends EntidadeNaoEncontradaException {
+public class MamiferoNaoEncontradoException extends EntidadeNaoEncontradaException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public MamiferosException(String message) {
+	public MamiferoNaoEncontradoException(String message) {
 		super(message);
 		
 	}
 	
-	public MamiferosException(Long id) {
+	public MamiferoNaoEncontradoException(Long id) {
 		this("Os dados sobre mamíferos de código %d não existe".formatted(id));
 	}
 

@@ -82,14 +82,5 @@ public class MoradorController {
 		moradoresCadastro.excluir(id);
 	}
 	
-	@PutMapping("/{id}/doencas/{idDoencas}")
-	public void vincularDoenca(@PathVariable Long id, @PathVariable Long idDoencas) {
-		moradoresCadastro.vincularDoenca(id, idDoencas);
-	}
 	
-	@DeleteMapping("/{id}/doencas/{idDoencas}")
-	public void desvincularDoenca(@PathVariable Long id, @PathVariable Long idDoencas) {
-		moradoresCadastro.desvicunlarDoenca(id, idDoencas);
-	}
-
 }

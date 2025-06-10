@@ -25,7 +25,7 @@ public class GrupoPermissaoController {
 	@Autowired
 	GrupoService grupoCadastro;
 
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping
 	public List<PermissaoDTO> listar(@PathVariable Long id){
 		
@@ -33,13 +33,13 @@ public class GrupoPermissaoController {
 		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@PutMapping("/{idPermissao}")
 	public void VincularGrupoPermissao(@PathVariable Long id, @PathVariable Long idPermissao) {
 		grupoCadastro.VinculaPermissao(id, idPermissao);		
 	}
 	
-	@CheckSecurity.Usuario.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{idPermissao}")
 	public void DesvincularGrupoPermissao(@PathVariable Long id, @PathVariable Long idPermissao) {
 		grupoCadastro.DesvinculaPermissao(id, idPermissao);	

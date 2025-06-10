@@ -37,27 +37,28 @@ public class LocalidadeController {
 	ModelMapper mapper;
 	
 	
-	@CheckSecurity.GerenciaLocalidade.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public LocalidadeDTO adicionar(@RequestBody @Valid LocalidadeInput localidadeInput) {
 		return localidadeCadastro.inserir(localidadeInput);
 	}
 	
-	@CheckSecurity.GerenciaLocalidade.PodeConsultar
+	@CheckSecurity.Geral.PodeConsultar
 	@GetMapping
 	public List<LocalidadeDTO> listar(){
 		return localidadeCadastro
 				.listarTodos().stream().map(t->mapper.map(t, LocalidadeDTO.class)).toList();
 	}
 	
-	@CheckSecurity.GerenciaLocalidade.PodeConsultar
+	@CheckSecurity.Geral.PodeConsultar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@GetMapping("/{id}")
 	public LocalidadeDTO Buscar(@PathVariable Long id) {
 		return localidadeCadastro.localizarEntidade(id);
 	}
 	
-	@CheckSecurity.GerenciaLocalidade.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@PutMapping("/{id}")
 	public LocalidadeDTO atualizar(@PathVariable Long id, 
 			@RequestBody @Valid LocalidadeInput localidadeInput) {
@@ -66,7 +67,7 @@ public class LocalidadeController {
 	}
 	
 	
-	@CheckSecurity.GerenciaLocalidade.PodeEditar
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

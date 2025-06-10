@@ -1,6 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
@@ -12,68 +12,70 @@ import lombok.Setter;
 public class VegetacaoInput {
 
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoMedicinal;
+	private String especie;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoAlimentacao;
+	private SimNao usoMedicinal;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoOrnamental;
+	private SimNao usoAlimentacao;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoComercial;
+	private SimNao usoOrnamental;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usaFlor;
+	private SimNao usoComercial;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usaFolha;
+	private SimNao usaFlor;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usaSemente;
+	private SimNao usaFolha;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usaFruto;
+	private SimNao usaSemente;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usaCasca;
+	private SimNao usaFruto;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usaRaiz;
+	private SimNao usaCasca;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoLeiteLatex;
+	private SimNao usaRaiz;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez outrosUsos;
+	private SimNao usoLeiteLatex;
+	
+	
+	private String outrosUsos;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez coletaLocalPublico;
+	private SimNao coletaLocalPublico;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez coletaCultivo;
+	private SimNao coletaCultivo;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez coletaCompra;
+	private SimNao coletaCompra;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez coletaAmbienteEspecifica;
+	private SimNao coletaAmbienteEspecifica;
 	
 	
 	private String quemEnsinouUso;
@@ -83,6 +85,6 @@ public class VegetacaoInput {
 	private String observacoesEspontaneas;
 	
 	@NotNull
-	private BenfeitoriaIdInput benfeitoria;
+	private EntrevistadoIdInput entrevistado;
 		
 }

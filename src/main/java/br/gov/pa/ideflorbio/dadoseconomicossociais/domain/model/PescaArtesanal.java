@@ -1,17 +1,10 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.ConservacaoTipo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoPescariaCusteio;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -54,19 +47,12 @@ public class PescaArtesanal {
     @NotBlank
     private float descartePorPescaria;
     
-    //COMO VOCÊ CONSERVA OS PEIXES DURANTE A PESCARIA?
-    @ElementCollection(targetClass = ConservacaoTipo.class)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "pesca_artesanal_conservacao_peixe")
-    @Column(name = "conservacaoPeixe")
-    private Set<ConservacaoTipo> conservacaoPeixe = new HashSet<>();
+    //ConservacaoTipo
+    private String conservacaoPeixe;
 
     
-    @ElementCollection(targetClass = TipoPescariaCusteio.class)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "pesca_artesanal_custeio")
-    @Column(name = "custeio")
-    private Set<TipoPescariaCusteio> custeio = new HashSet<>();
+    //TipoPescariaCusteio
+    private String custeio;
     
     @NotBlank
     private double geloPorPescaria;
@@ -89,10 +75,7 @@ public class PescaArtesanal {
     @NotBlank
     private String localDesembarque;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "pescaArtesanal")
-    private List<DestinoPesca> destinoPesca;
-    
+      
     @NotBlank
     private double pescaPorSafra;
     
@@ -107,15 +90,19 @@ public class PescaArtesanal {
     
     @NotBlank
     @Enumerated(EnumType.STRING)
-    private SimNaoTalvez conheceDefeso;
+    private SimNao conheceDefeso;
     
     @NotBlank
     @Enumerated(EnumType.STRING)
-    private SimNaoTalvez concordaDefeso;
+    private SimNao concordaDefeso;
     
     @NotBlank
     @Enumerated(EnumType.STRING)
-    private SimNaoTalvez recebeDefeso;
+    private SimNao recebeDefeso;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "pescaArtesanal")
+    private List<DestinoPesca> destinoPesca;
     
     
     @JsonIgnore

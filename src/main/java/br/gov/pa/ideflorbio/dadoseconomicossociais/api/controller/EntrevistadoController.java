@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.EntrevistadoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.EntrevistadoInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.LocalidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
@@ -40,6 +41,7 @@ public class EntrevistadoController {
 	@Autowired
 	ModelMapper mapper;
 	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public EntrevistadoDTO adicionar(@RequestBody @Valid EntrevistadoInput entrevistadoInput) {
@@ -53,6 +55,7 @@ public class EntrevistadoController {
 		}
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public EntrevistadoDTO atualizar(@PathVariable Long id, 
 		@RequestBody @Valid EntrevistadoInput entrevistadoInput) {
@@ -66,17 +69,20 @@ public class EntrevistadoController {
 		}
 	}
 
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping
 	public List<EntrevistadoDTO> listar(){
 		return entrevitadosCadastro
 				.listarTodos().stream().map(t->mapper.map(t, EntrevistadoDTO.class)).toList();
 	}
 	
+	@CheckSecurity.Geral.PodeEditar	
 	@GetMapping("/{id}")
 	public EntrevistadoDTO Buscar(@PathVariable Long id) {
 		return entrevitadosCadastro.localizarEntidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/localidade-entrevistado/{localidadeId}")
 	public List<EntrevistadoDTO> BuscarPoLocalidade(@PathVariable Long localidadeId) {
 		System.out.println("Requisição feita de entrevistado?");
@@ -84,6 +90,7 @@ public class EntrevistadoController {
 	}
 	
 	
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
