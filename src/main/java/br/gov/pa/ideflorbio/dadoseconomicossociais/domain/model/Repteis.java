@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,23 +22,30 @@ public class Repteis {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
+	@NotNull
 	private String especie;
 	
+	@NotNull
 	private String local;
 	
-	private String periodo;
+	@NotNull
+	private String desova;
 	
-	private String uso;
+	private String localDesova;
 	
-	private String ameacado;
+	private String periodoDesova;
 	
-	private String problemasRelacionados;
+	@NotNull
+	private String usoDaEspecie;
 	
-	private String cacado;
+	@NotNull
+	private String ameacaParaEspecie;
+	
+	@NotNull
+	private String problemasGerados;
 	
 	private String descricaoEspontanea;
 	
-		
 	@ManyToOne
 	@JoinColumn(name="entrevistado")
 	private Entrevistado entrevistado;

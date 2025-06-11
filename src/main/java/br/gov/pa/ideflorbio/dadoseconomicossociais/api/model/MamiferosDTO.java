@@ -9,24 +9,18 @@ public class MamiferosDTO {
 	
 	private Long id;
 	
-    private String especie;
+	private String especie;
 	
-	private String usoConsumo;
+	private String local;
 	
-	private String usoComercio;
-	
-	private String usoCriacao;
-	
-	private String usoRemedio;
-	
-	private String usoOutros;
-	
-	private String problemasRelacionados;
+	private String usoDaEspecie;
+		
+	private String problemasGerados;
 	
 	private String alimentacao;
 	
 	private String desricaoEspontanea;
 	
-	private BenfeitoriaIdDTO benfeitoria; 
+	private EntrevistadoIdDTO entrevistado; 
 		
 }

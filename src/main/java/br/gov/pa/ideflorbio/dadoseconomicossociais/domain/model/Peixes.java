@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,24 +22,23 @@ public class Peixes {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
+	@NotNull
 	private String especie;
 	
+	@NotNull
+	private String climaOcorrencia;
+		
+	@NotNull
+	private String locaisEspecificosReprodução;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao locaisEspeciais;
+	private String locaisEspecificosAlimentacao;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao locaisEspecificosAlimentacao;
+	private String maisImportanteDaRegiao;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoAlimnetacao;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoComercio;
+	private String usosDaEspécie;
 	
 		
 	@ManyToOne

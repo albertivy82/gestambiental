@@ -1,8 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,35 +8,24 @@ import lombok.Setter;
 @Setter
 public class MamiferosInput {
 
-private String especie;
+	@NotNull
+	private String especie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoConsumo;
+	private String local;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoComercio;
+	private String usoDaEspecie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoCriacao;
+	private String problemasGerados;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoRemedio;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoOutros;
-	
-	private String problemasRelacionados;
-	
 	private String alimentacao;
 	
 	private String desricaoEspontanea;
 	
 	@NotNull
-	private BenfeitoriaIdInput benfeitoria;
+	private EntrevistadoIdInput entrevistado;
 		
 }

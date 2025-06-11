@@ -25,6 +25,6 @@ public class RepteisInput {
 	private String desricaoEspontanea;
 	
 	@NotNull
-	private BenfeitoriaIdInput benfeitoria;
+	private EntrevistadoIdInput entrevistado;
 		
 }

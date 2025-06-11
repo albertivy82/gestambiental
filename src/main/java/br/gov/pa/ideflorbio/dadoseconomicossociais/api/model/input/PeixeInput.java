@@ -1,8 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,26 +8,26 @@ import lombok.Setter;
 @Setter
 public class PeixeInput {
 
-    private String especie;
-	
+    
+    @NotNull
+	private String especie;
+    
+    @NotNull
+	private String climaOcorrencia;
+		
+	@NotNull
+	private String locaisEspecificosReprodução;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez locaisEspeciais;
+	private String locaisEspecificosAlimentacao;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez locaisEspecificosAlimentacao;
+	private String maisImportanteDaRegiao;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoAlimnetacao;
+	private String usosDaEspécie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNaoTalvez usoComercio;
-	
-	@NotNull
-	private BenfeitoriaIdInput benfeitoria;
+	private EntrevistadoIdInput entrevistado;
 		
 }

@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,40 +22,23 @@ public class Fauna {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
+	@NotNull
 	private String especie;
 	
+	@NotNull
+	private String ondeOcorre;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao ocorreMata;
+	private String abundanciaAtual;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao ocorreRio;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao ocorreLago;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao ocorreRua;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao ocorreQuintal;
-	
-	@NotNull
-	private String outrasOcorrencias;
-	
-	@NotNull
-	private String frequenciaAtual;
-	
-	@NotNull
-	private String frequenciaPassada;
+	private String abundanciaPassada;
 	
 	@NotNull
 	private String tempoQueNaoVe;
+	
+	@NotNull
+	private String usoDaEspecie;
 	
 	@ManyToOne
 	@JoinColumn(name="entrevistado")

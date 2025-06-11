@@ -9,22 +9,24 @@ public class RepteisDTO {
 	
 	private Long id;
 	
-    private String especie;
+	private String especie;
 	
 	private String local;
 	
-	private String periodo;
+	private String desova;
 	
-	private String uso;
+	private String localDesova;
 	
-	private String ameacado;
+	private String periodoDesova;
 	
-	private String problemasRelacionados;
+	private String usoDaEspecie;
 	
-	private String cacado;
+	private String ameacaParaEspecie;
 	
-	private String desricaoEspontanea;
+	private String problemasGerados;
 	
-	private BenfeitoriaIdDTO benfeitoria; 
+	private String descricaoEspontanea;
+	
+	private EntrevistadoIdDTO entrevistado; 
 		
 }

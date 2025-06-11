@@ -7,27 +7,20 @@ import lombok.Setter;
 @Setter
 public class PeixesDTO {
 	
-	private Long id;
+    private Long id;
 	
-private String especie;
+	private String especie;
 	
-	
-	
-	
-	private String locaisEspeciais;
-	
-	
+	private String climaOcorrencia;
+		
+	private String locaisEspecificosReprodução;
 	
 	private String locaisEspecificosAlimentacao;
+		
+	private String maisImportanteDaRegiao;
+
+	private String usosDaEspécie;
 	
-	
-	
-	private String usoAlimnetacao;
-	
-	
-	
-	private String usoComercio;
-	
-	private BenfeitoriaIdDTO benfeitoria; 
+	private EntrevistadoIdDTO entrevistado; 
 		
 }

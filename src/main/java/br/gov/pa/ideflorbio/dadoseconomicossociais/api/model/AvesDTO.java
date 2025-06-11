@@ -11,30 +11,16 @@ public class AvesDTO {
 	
 	private String especie;
 	
-	private String usoConsumo;
+	private String climaOcorrencia;
 	
-	private String usoComercio;
-	
-	
-	private String usoCriacao;
-	
-	
-	private String usoRemedio;
-	
-	private String usoOutros;
-	
-    private String problemasRelacionados;
-	
-	private String ameacaSofrida;
+	private String usosDaEspécie;
 	
 	private String localDeAglomeracao;
 	
-	private String qualImpotanciaDaEspecie;
+	private String problemasGerados;
 	
-	private String alimentacao;
+	private String ameacaSofrida;
 	
-	private String desricaoEspontanea;
-	
-	private BenfeitoriaIdDTO benfeitoria; 
+	private EntrevistadoIdDTO entrevistado; 
 		
 }

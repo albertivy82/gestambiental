@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,40 +22,24 @@ public class Aves {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
+	@NotNull
 	private String especie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoConsumo;
+	private String climaOcorrencia;
+		
+	@NotNull
+	private String usosDaEspécie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoComercio;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoCriacao;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoRemedio;
-	
-	@NotNull
-	private String usoOutros;
-	
-	private String problemasRelacionados;
-	
-	private String ameacaSofrida;
-	
 	private String localDeAglomeracao;
 	
-	private String qualImpotanciaDaEespecie;
+	@NotNull
+	private String problemasGerados;
 	
-	private String alimentacao;
+	@NotNull
+	private String ameacaSofrida;
 	
-	private String desricaoEspontanea;
-		
-		
 	@ManyToOne
 	@JoinColumn(name="entrevistado")
 	private Entrevistado entrevistado;

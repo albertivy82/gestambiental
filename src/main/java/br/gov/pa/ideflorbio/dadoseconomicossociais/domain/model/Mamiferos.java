@@ -1,9 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,29 +22,19 @@ public class Mamiferos {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
+	@NotNull
 	private String especie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoConsumo;
+	private String local;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoComercio;
+	private String usoDaEspecie;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoCriacao;
+	private String problemasGerados;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SimNao usoRemedio;
-	
-	@NotNull
-	private String usoOutros;
-	
-	private String problemasRelacionados;
-	
 	private String alimentacao;
 	
 	private String desricaoEspontanea;

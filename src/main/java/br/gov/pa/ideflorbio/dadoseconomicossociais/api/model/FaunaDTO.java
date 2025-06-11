@@ -9,45 +9,22 @@ public class FaunaDTO {
 	
 	private Long id;
 	
-private String especie;
+    private String especie;
+    
+	private String ondeOcorre;
 	
 	
+	private String abundanciaAtual;
 	
 	
-	private String ocorreMata;
-	
-	
-	
-	private String ocorreRio;
-	
-	
-	
-	private String ocorreLago;
-	
-	
-	
-	private String ocorreRua;
-	
-	
-	
-	private String ocorreQuintal;
-	
-	
-	
-	private String outrasOcorrencias;
-	
-	
-	
-	private String ferequenciaAtual;
-	
-	
-	
-	private String ferequenciaPassada;
-	
+	private String abundanciaPassada;
 	
 	
 	private String tempoQueNaoVe;
 	
-	private BenfeitoriaIdDTO benfeitoria; 
+	
+	private String usoDaEspecie;
+	
+	private EntrevistadoIdDTO entrevistado; 
 		
 }
