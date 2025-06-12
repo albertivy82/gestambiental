@@ -13,13 +13,13 @@ public class PeixesDTO {
 	
 	private String climaOcorrencia;
 		
-	private String locaisEspecificosReprodução;
+	private String locaisEspecificosReproducao;
 	
 	private String locaisEspecificosAlimentacao;
 		
 	private String maisImportanteDaRegiao;
 
-	private String usosDaEspécie;
+	private String usosDaEspecie;
 	
 	private EntrevistadoIdDTO entrevistado; 
 		

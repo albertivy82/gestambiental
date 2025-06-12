@@ -29,7 +29,7 @@ public class Aves {
 	private String climaOcorrencia;
 		
 	@NotNull
-	private String usosDaEspécie;
+	private String usosDaEspecie;
 	
 	@NotNull
 	private String localDeAglomeracao;

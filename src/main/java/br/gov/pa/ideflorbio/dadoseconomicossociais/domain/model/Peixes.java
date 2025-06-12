@@ -29,7 +29,7 @@ public class Peixes {
 	private String climaOcorrencia;
 		
 	@NotNull
-	private String locaisEspecificosReprodução;
+	private String locaisEspecificosReproducao;
 	
 	@NotNull
 	private String locaisEspecificosAlimentacao;
@@ -38,7 +38,7 @@ public class Peixes {
 	private String maisImportanteDaRegiao;
 	
 	@NotNull
-	private String usosDaEspécie;
+	private String usosDaEspecie;
 	
 		
 	@ManyToOne

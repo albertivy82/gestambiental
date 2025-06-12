@@ -13,7 +13,7 @@ public class AvesDTO {
 	
 	private String climaOcorrencia;
 	
-	private String usosDaEspécie;
+	private String usosDaEspecie;
 	
 	private String localDeAglomeracao;
 	

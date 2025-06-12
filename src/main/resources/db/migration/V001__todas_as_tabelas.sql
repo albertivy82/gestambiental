@@ -197,7 +197,7 @@ CREATE TABLE `servicos_comunicacao` (
 
 CREATE TABLE `vegetacao` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `especie` VARCHAR(150),
+  `especie` VARCHAR(150) NOT NULL,
   `uso_medicinal` VARCHAR(50) NOT NULL,
   `uso_alimentacao` VARCHAR(50) NOT NULL,
   `uso_ornamental` VARCHAR(50) NOT NULL,
@@ -214,33 +214,33 @@ CREATE TABLE `vegetacao` (
   `coleta_cultivo` VARCHAR(50) NOT NULL,
   `coleta_compra` VARCHAR(50) NOT NULL,
   `coleta_ambiente_especifica` VARCHAR(50) NOT NULL,
-  `quem_ensinou_uso` VARCHAR(255),
-  `repassa_conhecimento` VARCHAR(255),
-  `observacoes_espontaneas` VARCHAR(255),
+  `quem_ensinou_uso` VARCHAR(255) NOT NULL,
+  `repassa_conhecimento` VARCHAR(255) NOT NULL,
+  `observacoes_espontaneas` VARCHAR(255) NOT NULL,
   `entrevistado` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `fauna` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `especie` VARCHAR(150),
+  `especie` VARCHAR(150) NOT NULL,
   `onde_ocorre` VARCHAR(50) NOT NULL,
   `abundancia_atual` VARCHAR(50) NOT NULL,
   `abundancia_passada` VARCHAR(50) NOT NULL,
   `tempo_que_nao_ve` VARCHAR(50) NOT NULL,
-  `uso_da_dspecie` VARCHAR(50) NOT NULL,
+  `uso_da_especie` VARCHAR(50) NOT NULL,
    `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `peixes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `especie` VARCHAR(255),
-  `clima_ocorrencia` VARCHAR(255),
+  `especie` VARCHAR(255) NOT NULL,
+  `clima_ocorrencia` VARCHAR(255) NOT NULL,
   `locais_especificos_reproducao` VARCHAR(150) NOT NULL,
   `locais_especificos_alimentacao` VARCHAR(255) NOT NULL,
-  `maisImportanteDaRegiao` VARCHAR(50) NOT NULL,
-  `usosDaEspécie` VARCHAR(50) NOT NULL,
+  `mais_importante_da_regiao` VARCHAR(50) NOT NULL,
+  `usos_da_especie` VARCHAR(50) NOT NULL,
   `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -262,11 +262,11 @@ CREATE TABLE `repteis` (
 
 CREATE TABLE `mamiferos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `especie` VARCHAR(255),
+  `especie` VARCHAR(255) NOT NULL,
   `local` VARCHAR(50) NOT NULL,
   `uso_da_especie` VARCHAR(50) NOT NULL,
   `problemas_gerados` VARCHAR(50) NOT NULL,
-  `alimentacao` VARCHAR(255),
+  `alimentacao` VARCHAR(255) NOT NULL,
   `desricao_espontanea` VARCHAR(255),
   `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
@@ -274,18 +274,12 @@ CREATE TABLE `mamiferos` (
 
 CREATE TABLE `aves` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `especie` VARCHAR(255),
-  `uso_consumo` VARCHAR(50) NOT NULL,
-  `usoComercio` VARCHAR(50) NOT NULL,
-  `uso-criacao` VARCHAR(50) NOT NULL,
-  `uso_remedio` VARCHAR(50) NOT NULL,
-  `uso_outros` VARCHAR(50) NOT NULL,
-  `problemas_relacionados` VARCHAR(255),
-  `ameaca_sofrida` VARCHAR(255),
-  `local_de_aglomeracao` VARCHAR(255),
-  `qual_impotancia_da_especie` VARCHAR(255),
-  `alimentacao` VARCHAR(255),
-  `desricao_espontanea` VARCHAR(255),
+  `especie` VARCHAR(255) NOT NULL,
+  `clima_ocorrencia` VARCHAR(50) NOT NULL,
+  `usos_da_especie` VARCHAR(50) NOT NULL,
+  `local_de_aglomeracao` VARCHAR(50) NOT NULL,
+  `problemas_gerados` VARCHAR(50) NOT NULL,
+  `ameaca_sofrida` VARCHAR(50) NOT NULL,
   `entrevistado` bigint(20),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;

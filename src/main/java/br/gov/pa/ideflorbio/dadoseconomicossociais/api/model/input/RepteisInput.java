@@ -8,21 +8,29 @@ import lombok.Setter;
 @Setter
 public class RepteisInput {
 
-   private String especie;
+	@NotNull
+    private String especie;
 	
+	@NotNull
 	private String local;
 	
-	private String periodo;
+	@NotNull
+    private String desova;
 	
-	private String uso;
+	private String localDesova;
 	
-	private String ameacado;
+	private String periodoDesova;
 	
-	private String problemasRelacionados;
+	@NotNull
+	private String usoDaEspecie;
 	
-	private String cacado;
+	@NotNull
+	private String ameacaParaEspecie;
 	
-	private String desricaoEspontanea;
+	@NotNull
+	private String problemasGerados;
+	
+	private String descricaoEspontanea;
 	
 	@NotNull
 	private EntrevistadoIdInput entrevistado;

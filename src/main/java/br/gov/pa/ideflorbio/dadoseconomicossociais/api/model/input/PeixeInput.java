@@ -16,7 +16,7 @@ public class PeixeInput {
 	private String climaOcorrencia;
 		
 	@NotNull
-	private String locaisEspecificosReprodução;
+	private String locaisEspecificosReproducao;
 	
 	@NotNull
 	private String locaisEspecificosAlimentacao;
@@ -25,7 +25,7 @@ public class PeixeInput {
 	private String maisImportanteDaRegiao;
 	
 	@NotNull
-	private String usosDaEspécie;
+	private String usosDaEspecie;
 	
 	@NotNull
 	private EntrevistadoIdInput entrevistado;

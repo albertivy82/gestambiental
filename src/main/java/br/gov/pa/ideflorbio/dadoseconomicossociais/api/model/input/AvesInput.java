@@ -16,7 +16,7 @@ public class AvesInput {
 	private String climaOcorrencia;
 		
 	@NotNull
-	private String usosDaEspécie;
+	private String usosDaEspecie;
 	
 	@NotNull
 	private String localDeAglomeracao;

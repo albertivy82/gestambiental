@@ -12,25 +12,19 @@ public class FaunaInput {
 	private String especie;
 	
 	@NotNull
-	private String local;
+	private String ondeOcorre;
 	
 	@NotNull
-	private String desova;
+	private String abundanciaAtual;
 	
-	private String localDesova;
+	@NotNull
+	private String abundanciaPassada;
 	
-	private String periodoDesova;
+	@NotNull
+	private String tempoQueNaoVe;
 	
 	@NotNull
 	private String usoDaEspecie;
-	
-	@NotNull
-	private String ameacaParaEspecie;
-	
-	@NotNull
-	private String problemasGerados;
-	
-	private String descricaoEspontanea;
 	
 	@NotNull
 	private EntrevistadoIdInput entrevistado;
