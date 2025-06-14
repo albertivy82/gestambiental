@@ -20,7 +20,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -132,12 +131,7 @@ public class Benfeitoria {
 	private List<ServicosComunicacao> servicosComunicacao;
 	
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "benfeitoria")
-	private Agua agua;
-	
-
-	@JsonIgnore
+		@JsonIgnore
 	@OneToMany(mappedBy = "benfeitoria")
 	private List<RendaOutrasFontes> rendaOutrasFontes;
 	
@@ -147,10 +141,7 @@ public class Benfeitoria {
 	private List<Credito> credito;
 	
 		
-	@JsonIgnore
-	@OneToOne(mappedBy = "benfeitoria")
-	private PescaArtesanal pescaArtesanal;
-	
+		
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="imovel")

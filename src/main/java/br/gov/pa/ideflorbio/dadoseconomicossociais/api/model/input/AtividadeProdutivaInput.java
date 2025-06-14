@@ -18,11 +18,9 @@ public class AtividadeProdutivaInput {
 	@Enumerated(EnumType.STRING)
 	private AtividadesProdutivas atividade;
 	
-	@NotNull
-	@PositiveOrZero(message = "informe um valor válido")
 	private int pessoasEnvolvidas;
 	
-	@NotNull
+	
 	@PositiveOrZero(message = "informe um valor válido")
 	private BigDecimal faturamentoAtividadeMesTotal;
 	

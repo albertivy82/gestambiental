@@ -40,7 +40,6 @@ public class Agua {
 	
 	private double profundidadePoco;
 	
-
 	@ManyToOne
 	@JoinColumn(name = "benfeitoria")
 	private Benfeitoria benfeitoria;

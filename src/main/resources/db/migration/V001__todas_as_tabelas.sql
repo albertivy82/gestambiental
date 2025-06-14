@@ -136,23 +136,26 @@ CREATE TABLE benfeitoria (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `tipo_benfeitoria` VARCHAR(50) NOT NULL,
   `funcao` VARCHAR(50) NOT NULL,
-  `tipo_solo` VARCHAR(50) NOT NULL,
+  `afastamento_da_principal` VARCHAR(50),
+  `impermeabilizacao_solo` VARCHAR(50) NOT NULL,
+  `limites` VARCHAR(150) NOT NULL,
   `area_benfeitoria` DOUBLE NOT NULL,
   `pavimentos` INT NOT NULL,
-  `tipo_construcao` VARCHAR(150) NOT NULL,
+  `paredes` VARCHAR(150) NOT NULL,
   `tipo_cobertura` VARCHAR(150) NOT NULL,
   `tipo_esquadrias` VARCHAR(150) NOT NULL,
+  `origem_madeira_da_construcao` VARCHAR(150) NOT NULL,
+	`origem_pedra_da_construcao` VARCHAR(150) NOT NULL,
+	`origem_areia_da_construcao` VARCHAR(150) NOT NULL,
   `alagamentos` VARCHAR(150) NOT NULL,
-  `nivel_alagamentos` VARCHAR(150) NOT NULL,
+  `epoca_ocorrencia` VARCHAR(150) NOT NULL,
   `efluentes` VARCHAR(150) NOT NULL,
   `residuos` VARCHAR(150) NOT NULL,
   `fonte_energia` VARCHAR(150) NOT NULL,
   `energia_alimentos` VARCHAR(150) NOT NULL,
+  `meios_locomocao` VARCHAR(150) NOT NULL,
+  `linhas_onibus` VARCHAR(150) NOT NULL,
   `informativo_predominante` VARCHAR(150) NOT NULL,
-  `importancia_de_proteger_fauna` VARCHAR(250),
-  `importancia_de_proteger_ambiente` VARCHAR(250),
-  `qual_espaco_precisa_ser_preservado` VARCHAR(250),
-  `problemas_relacionados_ao_ambiente` VARCHAR(250),
   `imovel` bigint(20) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -313,19 +316,29 @@ CREATE TABLE `credito` (
 
 CREATE TABLE `morador` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `perfil` varchar(255) NOT NULL,
   `data_nascimento` date NOT NULL,
+  `idade` int(3) NOT NULL,
+  `sexo` varchar(255) NOT NULL,
   `escolaridade` varchar(255) NOT NULL,
   `estado_civil` varchar(255) NOT NULL,
-  `idade` int(3) NOT NULL,
   `onde_estuda` varchar(255) DEFAULT NULL,
-  `perfil` varchar(255) NOT NULL,
-  `religiao` varchar(255) NOT NULL,
-  `sexo` varchar(255) NOT NULL,
   `trabalho` varchar(5) NOT NULL,
+  `religiao` varchar(255) NOT NULL,
+  `doencas` varchar(255) NOT NULL,
   `benfeitoria` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+
+CREATE TABLE `participacao_instituicao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `instituicao` varchar(5) NOT NULL,
+  `tipoDeRgistro` varchar(255) NOT NULL,
+  `Registro` varchar(255) NOT NULL,
+  `morador` bigint(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE `pesca_artesanal` (
@@ -335,6 +348,8 @@ CREATE TABLE `pesca_artesanal` (
   `local_da_pesca` VARCHAR(255) NOT NULL,
   `horario_prefencial_pesca` VARCHAR(255) NOT NULL,
   `descarte_por_pescaria` float NOT NULL,
+  `conservacaoPeixe` VARCHAR(255) NOT NULL,
+  `custeio`VARCHAR(255) NOT NULL,
   `gelo_por_pescaria` double NOT NULL,
   `custo_gelo_por_pescaria` double NOT NULL,
   `composicao_rancho` VARCHAR(255) NOT NULL,
@@ -353,21 +368,10 @@ CREATE TABLE `pesca_artesanal` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE `pesca_artesanal_conservacao_peixe` (
-  `pesca_artesanal` bigint(20) NOT NULL,
-  `conservacao_peixe` VARCHAR(255) NOT NULL,
-  FOREIGN KEY (`pesca_artesanal`) REFERENCES `pesca_artesanal` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-CREATE TABLE `pesca_artesanal_custeio` (
-  `pesca_artesanal` bigint(20) NOT NULL,
-  `custeio` VARCHAR(255) NOT NULL,
-  FOREIGN KEY (`pesca_artesanal`) REFERENCES `pesca_artesanal` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `destino_pesca` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `destinacao` VARCHAR(255),
+  `finalidade` VARCHAR(255),
   `quantidade` double,
   `destino` VARCHAR(255),
   `destino_fixo` VARCHAR(255),

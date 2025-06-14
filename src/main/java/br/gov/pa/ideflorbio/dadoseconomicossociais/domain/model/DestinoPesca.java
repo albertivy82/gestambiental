@@ -1,7 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.DestinacaoPesca;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.DestinoPescado;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

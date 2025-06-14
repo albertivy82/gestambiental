@@ -4,9 +4,13 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ImovelNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
@@ -17,6 +21,9 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepo
 
 @Service
 public class BenfeitoriaService {
+	
+	private static final String ENTIDADE_EM_USO 
+	= "A benfeitoria de código %d não pode ser removida, pois está em uso";
 	
 	@Autowired
 	BenfeitoriasRepository benfeitorias;
@@ -30,16 +37,7 @@ public class BenfeitoriaService {
 	
 	
 	
-	public Benfeitoria buscarEntidade(Long id) {
-		
-		return benfeitorias.findById(id)
-				.orElseThrow(()->new BenfeitoriaNaoEncontradaException(id));
-		
-	}
-	
-	
 	public Benfeitoria inserir (Benfeitoria benfeitoria) {
-		System.out.println(benfeitoria.getImovel().getId());
 		Long imovelId = benfeitoria.getImovel().getId();
 		Imovel imovel = imoveis.findById(imovelId).orElseThrow(()->new ImovelNaoEncontradoException(imovelId));
 		
@@ -48,6 +46,23 @@ public class BenfeitoriaService {
 		return benfeitorias.save(benfeitoria);
 	}
 	
+	
+     public Benfeitoria buscarEntidade(Long id) {
+		
+		return benfeitorias.findById(id)
+				.orElseThrow(()->new BenfeitoriaNaoEncontradaException(id));
+		
+	 }
+	
+	public List<Benfeitoria> listarTodos(){
+		
+		   return benfeitorias.findAll(); 
+			
+	}
+		
+	 
+	     
+	
 	public List<Benfeitoria> buscarPorImovel(Long imovelId) {
 		
 			List<Benfeitoria> benfeitoriasDB = benfeitorias.findByImovelId(imovelId);
@@ -55,6 +70,24 @@ public class BenfeitoriaService {
 		return benfeitoriasDB;
 		
 	}
+	
+	
+	
+	
+	@Transactional
+	public void excluir(Long id) {
+		try {
+			benfeitorias.deleteById(id);
+			benfeitorias.flush();
+		}catch(EmptyResultDataAccessException e) {
+			
+			throw new BenfeitoriaNaoEncontradaException(id);
+			
+		}catch(DataIntegrityViolationException e) {
+			
+			throw new EntidadeEmUsoException(ENTIDADE_EM_USO.formatted(id));
+		}
+	}	
 	
 	
 	

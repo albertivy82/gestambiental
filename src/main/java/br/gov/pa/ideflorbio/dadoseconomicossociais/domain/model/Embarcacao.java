@@ -26,7 +26,6 @@ public class Embarcacao {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	
 	private String numeracao;
     
 	@Enumerated(EnumType.STRING)

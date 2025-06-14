@@ -64,7 +64,7 @@ public class AtividadesProdutivasService {
 		return atividadesProdutivas.findAll();
 	}
 	
-	public AtividadeProdutivaDTO localzarentidade(Long id) {
+	public AtividadeProdutivaDTO localzarEntidade(Long id) {
 		
 		AtividadeProdutiva atividadeProdutiva = atividadesProdutivas.findById(id)
 				.orElseThrow(()->new AtividadeNaoEncontradaException(id));
@@ -72,6 +72,16 @@ public class AtividadesProdutivasService {
 		return mapper.map(atividadeProdutiva, AtividadeProdutivaDTO.class);
 		
 	}
+	
+	
+	
+	public List<AtividadeProdutiva> buscarPorBenfeitoria(Long benfeitoriaId) {
+			
+			List<AtividadeProdutiva> atividadesProdutivasDB = atividadesProdutivas.findByBenfeitoriaId(benfeitoriaId);
+		    return atividadesProdutivasDB;
+	}
+	
+	
 	
 	@Transactional
 	public void excluir(long id) {

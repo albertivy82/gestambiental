@@ -11,9 +11,12 @@ public class AtividadeProdutivaDTO {
 	
 	private Long id;
 	
+	
 	private String atividade;
 	
+	
 	private int pessoasEnvolvidas;
+	
 	
 	private BigDecimal faturamentoAtividadeMesTotal;
 	

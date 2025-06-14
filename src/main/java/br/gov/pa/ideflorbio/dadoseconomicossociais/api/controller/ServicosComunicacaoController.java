@@ -15,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.RendaOutrasFontesDTO;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.RendasOutrasFontesInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ServicosComunicacaoDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ServicosComunicacaoInput;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.RendaOutrasFontes;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.RendasService;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosComunicacao;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.ServicosComunicacaoService;
 import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 
-@Api(tags = "Renda")
+@Api(tags = "Serviços de Comunicação")
 @RestController
-@RequestMapping("/outras-fontes-de-renda")
-public class RendasController {
+@RequestMapping("/servico-de-comunicacao")
+public class ServicosComunicacaoController {
 	
 	@Autowired
 	ModelMapper mapper;
 	
 	@Autowired
-	RendasService rendasCadastro;
+	ServicosComunicacaoService servicosComunicacaoCadastro;
 	
 	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
-	public RendaOutrasFontesDTO adicionar(@RequestBody @Valid RendasOutrasFontesInput rendaInput) {
+	public ServicosComunicacaoDTO adicionar(@RequestBody @Valid ServicosComunicacaoInput servicoComunicacaoInput) {
 		
 		try {
-			RendaOutrasFontes renda = mapper.map(rendaInput, RendaOutrasFontes.class);
-			return mapper.map(rendasCadastro.inserir(renda), RendaOutrasFontesDTO.class);
+			ServicosComunicacao servicoComunicacao = mapper.map(servicoComunicacaoInput, ServicosComunicacao.class);
+			return mapper.map(servicosComunicacaoCadastro.inserir(servicoComunicacao), ServicosComunicacaoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
@@ -54,14 +54,14 @@ public class RendasController {
 	
 	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
-	public RendaOutrasFontesDTO atualizar(@PathVariable Long id,
-			@RequestBody @Valid RendasOutrasFontesInput rendaInput) {
+	public ServicosComunicacaoDTO atualizar(@PathVariable Long id,
+			@RequestBody @Valid ServicosComunicacaoInput servicoComunicacaoInput) {
 		
 		try {
-			 RendaOutrasFontes renda =  rendasCadastro.buscarEntidade(id);
-			 renda.setBenfeitoria(new Benfeitoria());
-			 mapper.map(rendaInput, renda);
-			return mapper.map(rendasCadastro.inserir(renda), RendaOutrasFontesDTO.class);
+			 ServicosComunicacao servicoComunicacao =  servicosComunicacaoCadastro.buscarEntidade(id);
+			 servicoComunicacao.setBenfeitoria(new Benfeitoria());
+			 mapper.map(servicoComunicacaoInput, servicoComunicacao);
+			return mapper.map(servicosComunicacaoCadastro.inserir(servicoComunicacao), ServicosComunicacaoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
@@ -69,30 +69,30 @@ public class RendasController {
 	
 	@CheckSecurity.Geral.PodeEditar
 	@GetMapping
-	public List<RendaOutrasFontesDTO> listar(){
-		return rendasCadastro
-				.listarTodos().stream().map(t->mapper.map(t, RendaOutrasFontesDTO.class)).toList();
+	public List<ServicosComunicacaoDTO> listar(){
+		return servicosComunicacaoCadastro
+				.listarTodos().stream().map(t->mapper.map(t, ServicosComunicacaoDTO.class)).toList();
 
 	}
 	
 	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/{id}")
-	public RendaOutrasFontesDTO Buscar(@PathVariable Long id) {
-		return rendasCadastro.localzarEntidade(id);
+	public ServicosComunicacaoDTO Buscar(@PathVariable Long id) {
+		return servicosComunicacaoCadastro.localizarEntidade(id);
 	}
 	
 	@CheckSecurity.Geral.PodeEditar
-	@GetMapping("/benfeitoria-outras-fontes-de-renda/{benfeitoriaId}")
-	public List<RendaOutrasFontesDTO> BuscarPoBenfeitoria(@PathVariable Long benfeitoriaId) {
-		return rendasCadastro.buscarPorBenfeitoria(benfeitoriaId)
-				.stream().map(m->mapper.map(m,RendaOutrasFontesDTO.class)).toList();
+	@GetMapping("/benfeitoria-servico-de-comunicacao/{benfeitoriaId}")
+	public List<ServicosComunicacaoDTO> BuscarPoBenfeitoria(@PathVariable Long benfeitoriaId) {
+		return servicosComunicacaoCadastro.buscarPorBenfeitoria(benfeitoriaId)
+				.stream().map(m->mapper.map(m,ServicosComunicacaoDTO.class)).toList();
 	}
 	
 	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
-		rendasCadastro.excluir(id);
+		servicosComunicacaoCadastro.excluir(id);
 	}
 	
 	

@@ -1,14 +1,9 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.ConservacaoTipo;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNaoTalvez;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoPescariaCusteio;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,46 +13,73 @@ import lombok.Setter;
 public class PescaArtesanalInput {
 
    
-	
-    private double horasPorDia = 0;
-	
-	
-    private String localDaPesca = "Não informado";
-    private String horarioPrefencialPesca = "Não informado";
-    private float descartePorPescaria = 0;
-    private Set<ConservacaoTipo> conservacaoPeixenew = new HashSet<>(Arrays.asList(ConservacaoTipo.Nenhum));
-    private Set<TipoPescariaCusteio> custeio = new HashSet<>(Arrays.asList(TipoPescariaCusteio.NAO_DECLARADO));;
-    private double geloPorPescaria=0;
-    private double custoGeloPorPescaria=0;
-    private String composicaoRancho= "Não informado";
-    private double custoRanchoPorViagem = 0;
-    private double combustivelPorViagem = 0;
-    private double custoCombustivelPorViagem = 0;
-    private String localDesembarque= "Não informado";
+	@NotBlank
+	private int freqPescaSemanal;
     
-    @NotNull
-	@Enumerated(EnumType.STRING)
-    private ConservacaoTipo conservacaoTipo;
+	@NotBlank
+    private double horasPorDia;
     
+    @NotBlank
+    private String localDaPesca;
     
-    private double pescaPorSafra = 0;
+    @NotBlank
+    private String horarioPrefencialPesca;
     
+    @NotBlank
+    private float descartePorPescaria;
     
-    private String localPescaSafra= "Não informado";
-    private String localDeReproducaoPeixe= "Não informado";
-    private String periodoDefeso= "Não informado";
+    //ConservacaoTipo
+    private String conservacaoPeixe;
+
     
-    @NotNull
-	@Enumerated(EnumType.STRING)
-    private SimNaoTalvez conheceDefeso;
+    //TipoPescariaCusteio
+    private String custeio;
     
-    @NotNull
-	@Enumerated(EnumType.STRING)
-    private SimNaoTalvez concordaDefeso;
+    @NotBlank
+    private double geloPorPescaria;
     
-    @NotNull
-	@Enumerated(EnumType.STRING)
-    private SimNaoTalvez recebeDefeso;
+    @NotBlank
+    private double custoGeloPorPescaria;
+    
+    @NotBlank
+    private String composicaoRancho;
+    
+    @NotBlank
+    private double custoRanchoPorViagem;
+    
+    @NotBlank
+    private double combustivelPorViagem;
+    
+    @NotBlank
+    private double custoCombustivelPorViagem;
+    
+    @NotBlank
+    private String localDesembarque;
+    
+      
+    @NotBlank
+    private double pescaPorSafra;
+    
+    @NotBlank
+    private String localPescaSafra;
+    
+    @NotBlank
+    private String localDeReproducaoPeixe;
+    
+    @NotBlank
+    private String periodoDefeso; 
+    
+    @NotBlank
+    @Enumerated(EnumType.STRING)
+    private SimNao conheceDefeso;
+    
+    @NotBlank
+    @Enumerated(EnumType.STRING)
+    private SimNao concordaDefeso;
+    
+    @NotBlank
+    @Enumerated(EnumType.STRING)
+    private SimNao recebeDefeso;
     
     @NotNull
 	private BenfeitoriaIdInput benfeitoria;

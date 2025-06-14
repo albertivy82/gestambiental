@@ -8,11 +8,9 @@ import lombok.Setter;
 public class ServicosComunicacaoDTO {
 	
 	private Long id;
-	
-	
+		
 	private String tipoServicoComunicacao;
-	
-	
+		
 	private String operadoraServicoComunicacao;
 	
 	private BenfeitoriaIdDTO benfeitoria; 

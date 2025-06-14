@@ -1,7 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,23 +52,7 @@ public class BenfeitoriaDTO {
 	    private String linhasOnibus;
 	        
 	    private String informativoPredominante;
-
-	    private List<DependenciasDTO> dependencia;
-
-	    private List<MoradorDTO> morador;
-	    
-	    private List<AtividadeProdutivaDTO> atividadeProdutiva;
-
-	    private List<ServicosComunicacaoDTO> servicosComunicacao;
-	    
-	    private AguaDTO agua;
-	    
-	    private List<RendaOutrasFontesDTO> rendaOutrasFontes;
-
-	    private List<CreditoDTO> credito;
-
-	    private PescaArtesanalDTO pescaArtesanal;
-
+	     
 	    private ImovelIdDTO imovel;
 	
 

@@ -12,7 +12,9 @@ public class RendaOutrasFontesDTO {
 	
 	private Long id;
 	
+	
 	private String fonte;
+	
 	
 	private int beneficiarios;
 	

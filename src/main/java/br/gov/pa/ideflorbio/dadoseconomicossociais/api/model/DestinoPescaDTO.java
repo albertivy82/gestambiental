@@ -7,11 +7,11 @@ import lombok.Setter;
 public class DestinoPescaDTO {
 
     private Long id;
-    private String destinacao;
-    private double quantidade;
-    private String destino;
-    private String destinoFixo;
-    private int paraQuantos;
+    private String finalidade;
+	private double quantidade;
+	private String destino;
+	private String destinoFixo;
+	private int paraQuantos;	
     private PescaArtesanalDTO pescaArtesanal; 
 }
 

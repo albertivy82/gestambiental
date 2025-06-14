@@ -19,7 +19,6 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Credito;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.CreditosRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.ImoveisRepository;
 
 
 @Service
@@ -73,6 +72,15 @@ public class CreditoService {
 		return mapper.map(Credito, CreditoDTO.class);
 		
 	}
+	
+	
+    public List<Credito> buscarPorBenfeitoria(Long benfeitoriaId) {
+		
+		List<Credito> creditosDB = creditos.findByBenfeitoriaId(benfeitoriaId);
+		
+	    return creditosDB;
+	}
+	
 	
 	@Transactional
 	public void excluir(long id) {

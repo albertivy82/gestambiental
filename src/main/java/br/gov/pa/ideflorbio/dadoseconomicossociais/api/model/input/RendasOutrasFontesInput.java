@@ -15,14 +15,12 @@ import lombok.Setter;
 @Setter
 public class RendasOutrasFontesInput {
 	
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	private FontesRenda fonte;
 	
-	@NotNull
+	
 	private int beneficiarios;
 	
-	@NotNull
 	@PositiveOrZero(message = "informe um valor válido")
 	private BigDecimal rendaMesTotal;
 	

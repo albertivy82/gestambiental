@@ -9,23 +9,23 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.MoradorDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.PescaArtesanalDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.MoradorNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.PescaArtesanalNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Morador;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.PescaArtesanal;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.MoradoresRepository;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.PescaArtesanalRepository;
 
 @Service
-public class MoradoresService {
+public class PescaArtesanalService {
 	
 	private static final String ENTIDADE_EM_USO 
-	= "O morador de código %d não pode ser removida, pois está em uso";
+	= "O pescaArtesanal de código %d não pode ser removida, pois está em uso";
 	
 	@Autowired
-	MoradoresRepository moradores;
+	PescaArtesanalRepository pescas;
 	
 	@Autowired
 	BenfeitoriasRepository benfeitorias;
@@ -35,58 +35,58 @@ public class MoradoresService {
 	ModelMapper mapper;
 	
 	@Transactional
-	public Morador inserir(Morador morador) {
+	public PescaArtesanal inserir(PescaArtesanal pescaArtesanal) {
 		
-		Long idBenfeitoria = morador.getBenfeitoria().getId();
+		Long idBenfeitoria = pescaArtesanal.getBenfeitoria().getId();
 		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
 		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		morador.setBenfeitoria(benfeitoria);
+		pescaArtesanal.setBenfeitoria(benfeitoria);
 		
-		return moradores.save(morador);
+		return pescas.save(pescaArtesanal);
 	}
 	
 	
 	@Transactional
-	public Morador buscarEntidade(Long id) {
+	public PescaArtesanal buscarEntidade(Long id) {
 		
-		Morador moradorAtual = moradores.findById(id)
-				.orElseThrow(()->new MoradorNaoEncontradoException(id));
+		PescaArtesanal pescaArtesanalAtual = pescas.findById(id)
+				.orElseThrow(()->new PescaArtesanalNaoEncontradaException(id));
 				
-		return moradorAtual;
+		return pescaArtesanalAtual;
 		
 	}
 		
 	
-	public List<Morador> listarTodos(){ return moradores.findAll(); }
+	public List<PescaArtesanal> listarTodos(){ return pescas.findAll(); }
 	
 	
-	public MoradorDTO localizarEntidade(Long id) {
+	public PescaArtesanalDTO localizarEntidade(Long id) {
 		
-			Morador morador = moradores.findById(id)
+			PescaArtesanal pescaArtesanal = pescas.findById(id)
 					.orElseThrow(()-> new BenfeitoriaNaoEncontradaException(id));
 		
-		return mapper.map(morador, MoradorDTO.class);
+		return mapper.map(pescaArtesanal, PescaArtesanalDTO.class);
 	}
 	
 	
 	
-	public List<Morador> buscarPorBenfeitoria(Long benfeitoriaId) {
+	public List<PescaArtesanal> buscarPorBenfeitoria(Long benfeitoriaId) {
 		
-		List<Morador> moradoresDB = moradores.findByBenfeitoriaId(benfeitoriaId);
+		List<PescaArtesanal> pescasDB = pescas.findByBenfeitoriaId(benfeitoriaId);
 		
-	    return moradoresDB;
+	    return pescasDB;
 	}
 	
 		
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			moradores.deleteById(id);
-			moradores.flush();
+			pescas.deleteById(id);
+			pescas.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
-			throw new MoradorNaoEncontradoException(id);
+			throw new PescaArtesanalNaoEncontradaException(id);
 			
 		}catch(DataIntegrityViolationException e) {
 			

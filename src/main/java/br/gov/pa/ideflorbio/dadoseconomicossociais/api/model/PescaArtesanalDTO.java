@@ -1,7 +1,6 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
-import java.util.List;
-
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,29 +8,74 @@ import lombok.Setter;
 @Setter
 public class PescaArtesanalDTO {
 
-    private Long id;
-    private int freqPescaSemanal;
+	@NotBlank
+	private int freqPescaSemanal;
+    
+	@NotBlank
     private double horasPorDia;
+    
+   
     private String localDaPesca;
+    
+   
     private String horarioPrefencialPesca;
+    
+   
     private float descartePorPescaria;
-    private List<String> conservacaoPeixe;
-    private List<String> custeio;
+    
+    //ConservacaoTipo
+    private String conservacaoPeixe;
+
+    
+    //TipoPescariaCusteio
+    private String custeio;
+    
+   
     private double geloPorPescaria;
+    
+   
     private double custoGeloPorPescaria;
+    
+   
     private String composicaoRancho;
+    
+   
     private double custoRanchoPorViagem;
+    
+   
     private double combustivelPorViagem;
+    
+   
     private double custoCombustivelPorViagem;
+    
+   
     private String localDesembarque;
-    private String conservacaoTipo;
+    
+      
+   
     private double pescaPorSafra;
+    
+   
     private String localPescaSafra;
+    
+   
     private String localDeReproducaoPeixe;
-    private String periodoDefeso;
+    
+   
+    private String periodoDefeso; 
+    
+   
+    
     private String conheceDefeso;
+    
+   
+    
     private String concordaDefeso;
+    
+   
+    
     private String recebeDefeso;
+    
     private BenfeitoriaIdDTO benfeitoria;
     
 }

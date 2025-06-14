@@ -17,77 +17,83 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.AtividadeProdutivaDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.AtividadeProdutivaInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.AtividadeProdutiva;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.AtividadeProdutiva;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.service.AtividadesProdutivasService;
 import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 
-
 @Api(tags = "Atividade Produtiva")
 @RestController
 @RequestMapping("/atividade-produtiva")
-public class AividadeProdutivaController {
-	
-	
-	@Autowired
-	AtividadesProdutivasService atividadesProdutivasCadastro;
+public class AtividadeProdutivaController {
 	
 	@Autowired
 	ModelMapper mapper;
 	
+	@Autowired
+	AtividadesProdutivasService atividadeProdutivaesCadastro;
+	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
-	public AtividadeProdutivaDTO adicionar(@RequestBody @Valid AtividadeProdutivaInput atividadesInput) {
+	public AtividadeProdutivaDTO adicionar(@RequestBody @Valid AtividadeProdutivaInput atividadeProdutivaInput) {
 		
 		try {
-			AtividadeProdutiva atividadesProdutiva = mapper.map(atividadesInput, AtividadeProdutiva.class);
-			return mapper.map(atividadesProdutivasCadastro.inserir(atividadesProdutiva), AtividadeProdutivaDTO.class);
+			AtividadeProdutiva atividadeProdutiva = mapper.map(atividadeProdutivaInput, AtividadeProdutiva.class);
+			return mapper.map(atividadeProdutivaesCadastro.inserir(atividadeProdutiva), AtividadeProdutivaDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
 		
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public AtividadeProdutivaDTO atualizar(@PathVariable Long id,
-			@RequestBody @Valid AtividadeProdutivaInput atividadesInput) {
+			@RequestBody @Valid AtividadeProdutivaInput atividadeProdutivaInput) {
 		
 		try {
-			 AtividadeProdutiva atividadesProdutivas =  atividadesProdutivasCadastro.buscarEntidade(id);
-			 atividadesProdutivas.setBenfeitoria(new Benfeitoria());
-			 mapper.map(atividadesInput, atividadesProdutivas);
-			return mapper.map(atividadesProdutivasCadastro.inserir(atividadesProdutivas), AtividadeProdutivaDTO.class);
+			 AtividadeProdutiva atividadeProdutiva =  atividadeProdutivaesCadastro.buscarEntidade(id);
+			 atividadeProdutiva.setBenfeitoria(new Benfeitoria());
+			 mapper.map(atividadeProdutivaInput, atividadeProdutiva);
+			return mapper.map(atividadeProdutivaesCadastro.inserir(atividadeProdutiva), AtividadeProdutivaDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
-		
+	}
+	
+	@CheckSecurity.Geral.PodeEditar
+	@GetMapping
+	public List<AtividadeProdutivaDTO> listar(){
+		return atividadeProdutivaesCadastro
+				.listarTodos().stream().map(t->mapper.map(t, AtividadeProdutivaDTO.class)).toList();
 
 	}
 	
-	
-	@GetMapping
-	public List<AtividadeProdutivaDTO> listar(){
-		return atividadesProdutivasCadastro
-				.listarTodos().stream().map(t->mapper.map(t, AtividadeProdutivaDTO.class)).toList();
-	}
-	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/{id}")
 	public AtividadeProdutivaDTO Buscar(@PathVariable Long id) {
-		return atividadesProdutivasCadastro.localzarentidade(id);
+		return atividadeProdutivaesCadastro.localzarEntidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
+	@GetMapping("/benfeitoria-atividadeProdutiva/{benfeitoriaId}")
+	public List<AtividadeProdutivaDTO> BuscarPoBenfeitoria(@PathVariable Long benfeitoriaId) {
+		return atividadeProdutivaesCadastro.buscarPorBenfeitoria(benfeitoriaId)
+				.stream().map(m->mapper.map(m,AtividadeProdutivaDTO.class)).toList();
+	}
 	
-	
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
-		atividadesProdutivasCadastro.excluir(id);
+		atividadeProdutivaesCadastro.excluir(id);
 	}
 	
-
-
+	
 }

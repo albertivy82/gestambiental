@@ -1,7 +1,8 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoBarco;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoCasco;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +10,13 @@ import lombok.Setter;
 @Setter
 public class EmbarcacaoInput {
 
-	@NotBlank
-    private String numeracao  ="Não Informado";
-	@NotBlank
-    private TipoBarco tipoBarco = TipoBarco.NAO_INFORMADO;
-	@NotBlank
-    private TipoCasco tipoCasco = TipoCasco.Nada_consta;
+private String numeracao;
+    
+	@Enumerated(EnumType.STRING)
+    private TipoBarco tipoBarco;
+    
+	@Enumerated(EnumType.STRING)
+    private TipoCasco tipoCasco;
 	
     private PescaArtesanalIdInput pescaArtesanal; 
 }

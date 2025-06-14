@@ -36,3 +36,5 @@ ALTER TABLE `pesca_artesanal` ADD CONSTRAINT `fk_benfeitoria_pesca_artesanal` FO
 ALTER TABLE `benfeitoria` ADD CONSTRAINT `fk_imovel_benfeitoria` FOREIGN KEY ( `imovel` ) REFERENCES `imovel` ( `id` ) ON DELETE CASCADE;
 
 ALTER TABLE `imovel` ADD CONSTRAINT `fk_entrevistado_imovel` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `morador` ADD CONSTRAINT `fk_articipacao_instituicao_morador` FOREIGN KEY (`morador`) REFERENCES `morador` (`id`) ON DELETE CASCADE;

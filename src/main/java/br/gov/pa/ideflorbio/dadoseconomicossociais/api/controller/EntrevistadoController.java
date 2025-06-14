@@ -85,7 +85,6 @@ public class EntrevistadoController {
 	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/localidade-entrevistado/{localidadeId}")
 	public List<EntrevistadoDTO> BuscarPoLocalidade(@PathVariable Long localidadeId) {
-		System.out.println("Requisição feita de entrevistado?");
 		return entrevitadosCadastro.findByLocalidade(localidadeId);
 	}
 	

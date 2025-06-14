@@ -12,11 +12,7 @@ import lombok.Setter;
 public class AguaInput {
 
 	
-	
-	
-	private String tipoDeFornecimento;
-	
-	private String outro;
+    private String tipoDeFornecimento;
 	
 	@Enumerated(EnumType.STRING)
 	private QualidadeAgua qualidadeDaAgua;

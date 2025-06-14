@@ -63,13 +63,19 @@ public class RendasService {
 		return rendas.findAll();
 	}
 	
-	public RendaOutrasFontesDTO localzarentidade(Long id) {
+	public RendaOutrasFontesDTO localzarEntidade(Long id) {
 		
 		RendaOutrasFontes renda = rendas.findById(id)
 				.orElseThrow(()->new RendaNaoEncontradaException(id));
 		
 		return mapper.map(renda, RendaOutrasFontesDTO.class);
 		
+	}
+	
+     public List<RendaOutrasFontes> buscarPorBenfeitoria(Long benfeitoriaId) {
+		
+		List<RendaOutrasFontes> rendasDB = rendas.findByBenfeitoriaId(benfeitoriaId);
+	    return rendasDB;
 	}
 	
 	@Transactional

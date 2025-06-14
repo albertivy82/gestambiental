@@ -9,23 +9,23 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.MoradorDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.AguaDTO;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.AguaNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.BenfeitoriaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.MoradorNaoEncontradoException;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Agua;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Morador;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.AguaRepository;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.BenfeitoriasRepository;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.MoradoresRepository;
 
 @Service
-public class MoradoresService {
+public class AguaService {
 	
 	private static final String ENTIDADE_EM_USO 
-	= "O morador de código %d não pode ser removida, pois está em uso";
+	= "Os dados sobre Água de código %d não pode ser removida, pois está em uso";
 	
 	@Autowired
-	MoradoresRepository moradores;
+	AguaRepository aguas;
 	
 	@Autowired
 	BenfeitoriasRepository benfeitorias;
@@ -35,58 +35,58 @@ public class MoradoresService {
 	ModelMapper mapper;
 	
 	@Transactional
-	public Morador inserir(Morador morador) {
+	public Agua inserir(Agua agua) {
 		
-		Long idBenfeitoria = morador.getBenfeitoria().getId();
+		Long idBenfeitoria = agua.getBenfeitoria().getId();
 		Benfeitoria benfeitoria = benfeitorias.findById(idBenfeitoria)
 		.orElseThrow(()->new BenfeitoriaNaoEncontradaException(idBenfeitoria));
 		
-		morador.setBenfeitoria(benfeitoria);
+		agua.setBenfeitoria(benfeitoria);
 		
-		return moradores.save(morador);
+		return aguas.save(agua);
 	}
 	
 	
 	@Transactional
-	public Morador buscarEntidade(Long id) {
+	public Agua buscarEntidade(Long id) {
 		
-		Morador moradorAtual = moradores.findById(id)
-				.orElseThrow(()->new MoradorNaoEncontradoException(id));
+		Agua aguaAtual = aguas.findById(id)
+				.orElseThrow(()->new AguaNaoEncontradoException(id));
 				
-		return moradorAtual;
+		return aguaAtual;
 		
 	}
 		
 	
-	public List<Morador> listarTodos(){ return moradores.findAll(); }
+	public List<Agua> listarTodos(){ return aguas.findAll(); }
 	
 	
-	public MoradorDTO localizarEntidade(Long id) {
+	public AguaDTO localizarEntidade(Long id) {
 		
-			Morador morador = moradores.findById(id)
+			Agua agua = aguas.findById(id)
 					.orElseThrow(()-> new BenfeitoriaNaoEncontradaException(id));
 		
-		return mapper.map(morador, MoradorDTO.class);
+		return mapper.map(agua, AguaDTO.class);
 	}
 	
 	
 	
-	public List<Morador> buscarPorBenfeitoria(Long benfeitoriaId) {
+	public List<Agua> buscarPorBenfeitoria(Long benfeitoriaId) {
 		
-		List<Morador> moradoresDB = moradores.findByBenfeitoriaId(benfeitoriaId);
+		List<Agua> aguasDB = aguas.findByBenfeitoriaId(benfeitoriaId);
 		
-	    return moradoresDB;
+	    return aguasDB;
 	}
 	
 		
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			moradores.deleteById(id);
-			moradores.flush();
+			aguas.deleteById(id);
+			aguas.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
-			throw new MoradorNaoEncontradoException(id);
+			throw new AguaNaoEncontradoException(id);
 			
 		}catch(DataIntegrityViolationException e) {
 			

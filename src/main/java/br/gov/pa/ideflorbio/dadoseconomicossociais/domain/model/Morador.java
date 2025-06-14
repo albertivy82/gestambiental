@@ -40,6 +40,8 @@ public class Morador implements Serializable{
 	@EqualsAndHashCode.Include
 	private Long id;
 	
+	@Enumerated(EnumType.STRING)
+	private Perfil perfil;
 	
 	@NotNull
 	@DateTimeFormat(pattern = "YYYY-MM-DD")
@@ -48,20 +50,17 @@ public class Morador implements Serializable{
 	@NotNull
 	private int idade;
 	
-	@Enumerated(EnumType.STRING)
-	private Perfil perfil;
-	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private EstadoCivil estadoCivil;
+	private Escolaridade escolaridade;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Escolaridade escolaridade;
+	private EstadoCivil estadoCivil;
 	
 	private String ondeEstuda;
 	

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ImovelDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.ImovelInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
@@ -38,7 +39,7 @@ public class ImovelController {
 	@Autowired
 	ModelMapper mapper;
 	
-	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public ImovelDTO adicionar(@RequestBody @Valid ImovelInput imovelInput) {
@@ -51,7 +52,7 @@ public class ImovelController {
 		}
 		
 	}
-	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public ImovelDTO atualizar(@PathVariable Long id,
 			@RequestBody @Valid ImovelInput imovelInput) {
@@ -66,22 +67,26 @@ public class ImovelController {
 		}
 	}
 
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping
 	public List<ImovelDTO> listar(){
 		return imoveisCadastro.listarTodos().stream().map(t->mapper.map(t, ImovelDTO.class)).toList();
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/{id}")
 	public ImovelDTO Buscar(@PathVariable Long id) {
 		return imoveisCadastro.localizarEntidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/imovel-entrevistado/{idEntrevistado}")
 	public ImovelDTO buscarPorEntrevistado(@PathVariable Long idEntrevistado) {
 	    Imovel imovel = imoveisCadastro.buscarPorEntrevistado(idEntrevistado);
 	    return mapper.map(imovel, ImovelDTO.class);
 	}
 
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {

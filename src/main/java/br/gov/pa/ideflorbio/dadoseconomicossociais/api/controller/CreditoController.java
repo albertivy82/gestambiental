@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.CreditoDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.CreditoInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
@@ -26,63 +27,73 @@ import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 
-
-@Api(tags = "Créditos")
+@Api(tags = "Credito")
 @RestController
 @RequestMapping("/credito")
 public class CreditoController {
 	
-	
-	@Autowired
-	CreditoService creditoCadastro;
-	
 	@Autowired
 	ModelMapper mapper;
 	
+	@Autowired
+	CreditoService creditosCadastro;
+	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public CreditoDTO adicionar(@RequestBody @Valid CreditoInput creditoInput) {
 		
 		try {
 			Credito credito = mapper.map(creditoInput, Credito.class);
-			return mapper.map(creditoCadastro.inserir(credito), CreditoDTO.class);
+			return mapper.map(creditosCadastro.inserir(credito), CreditoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
 		
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public CreditoDTO atualizar(@PathVariable Long id,
 			@RequestBody @Valid CreditoInput creditoInput) {
 		
 		try {
-			 Credito credito =  creditoCadastro.buscarEntidade(id);
+			 Credito credito =  creditosCadastro.buscarEntidade(id);
 			 credito.setBenfeitoria(new Benfeitoria());
 			 mapper.map(creditoInput, credito);
-			return mapper.map(creditoCadastro.inserir(credito), CreditoDTO.class);
+			return mapper.map(creditosCadastro.inserir(credito), CreditoDTO.class);
 		}catch(ResidenciaNaoEncontradaException e) {
 			throw new EntidadeNaoEncontradaException(e.getMessage());
 		}
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping
 	public List<CreditoDTO> listar(){
-		return creditoCadastro
+		return creditosCadastro
 				.listarTodos().stream().map(t->mapper.map(t, CreditoDTO.class)).toList();
+
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/{id}")
 	public CreditoDTO Buscar(@PathVariable Long id) {
-		return creditoCadastro.localzarentidade(id);
+		return creditosCadastro.localzarentidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
+	@GetMapping("/benfeitoria-credito/{benfeitoriaId}")
+	public List<CreditoDTO> BuscarPoBenfeitoria(@PathVariable Long benfeitoriaId) {
+		return creditosCadastro.buscarPorBenfeitoria(benfeitoriaId)
+				.stream().map(m->mapper.map(m,CreditoDTO.class)).toList();
+	}
+	
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
-		creditoCadastro.excluir(id);
+		creditosCadastro.excluir(id);
 	}
 	
-
-
+	
 }

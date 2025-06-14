@@ -9,8 +9,8 @@ public class AguaDTO {
 	
 	private Long id;
 	
-	private String tipoDeFornecimento;
-	
+    private String tipoDeFornecimento;
+		
 	private String qualidadeDaAgua;
 	
 	private String metodoTratamento;

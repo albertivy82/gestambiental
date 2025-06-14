@@ -63,6 +63,15 @@ public class EntrevistadoService {
 		return entrevistado;
 	}
 	
+	public EntrevistadoDTO localizarEntidade(Long id) {
+		
+		Entrevistado entrevistado = entrevistados.findById(id)
+				.orElseThrow(()-> new EntrevistadoNaoEncontradoException(id));
+	
+	return mapper.map(entrevistado, EntrevistadoDTO.class);
+}
+
+	
 	
 	public List<Entrevistado> listarTodos(){
 		
@@ -70,23 +79,13 @@ public class EntrevistadoService {
 		
 	}
 	
-	
-	
-	
+		
      public List<EntrevistadoDTO> findByLocalidade(Long localidadeId){
 		
 		return entrevistados.findByLocalidadeId(localidadeId).stream().map(i->mapper.map(i, EntrevistadoDTO.class)).toList();
 		
 	}
      
-	
-	public EntrevistadoDTO localizarEntidade(Long id) {
-		
-			Entrevistado entrevistado = entrevistados.findById(id)
-					.orElseThrow(()-> new EntrevistadoNaoEncontradoException(id));
-		
-		return mapper.map(entrevistado, EntrevistadoDTO.class);
-	}
 	
 		
 	@Transactional

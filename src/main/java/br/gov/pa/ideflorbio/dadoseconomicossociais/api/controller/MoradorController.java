@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.MoradorDTO;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input.MoradorInput;
+import br.gov.pa.ideflorbio.dadoseconomicossociais.core.security.CheckSecurity;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ResidenciaNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
@@ -28,7 +29,7 @@ import jakarta.validation.Valid;
 
 @Api(tags = "Morador")
 @RestController
-@RequestMapping("/moradores")
+@RequestMapping("/morador")
 public class MoradorController {
 	
 	@Autowired
@@ -37,6 +38,7 @@ public class MoradorController {
 	@Autowired
 	MoradoresService moradoresCadastro;
 	
+	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping()
 	public MoradorDTO adicionar(@RequestBody @Valid MoradorInput moradorInput) {
@@ -50,6 +52,7 @@ public class MoradorController {
 		
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@PutMapping("/{id}")
 	public MoradorDTO atualizar(@PathVariable Long id,
 			@RequestBody @Valid MoradorInput moradorInput) {
@@ -64,6 +67,7 @@ public class MoradorController {
 		}
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping
 	public List<MoradorDTO> listar(){
 		return moradoresCadastro
@@ -71,11 +75,20 @@ public class MoradorController {
 
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
 	@GetMapping("/{id}")
 	public MoradorDTO Buscar(@PathVariable Long id) {
 		return moradoresCadastro.localizarEntidade(id);
 	}
 	
+	@CheckSecurity.Geral.PodeEditar
+	@GetMapping("/benfeitoria-morador/{benfeitoriaId}")
+	public List<MoradorDTO> BuscarPoBenfeitoria(@PathVariable Long benfeitoriaId) {
+		return moradoresCadastro.buscarPorBenfeitoria(benfeitoriaId)
+				.stream().map(m->mapper.map(m,MoradorDTO.class)).toList();
+	}
+	
+	@CheckSecurity.RestritoAdmin.ApenasAdmin
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void apagarRegistro (@PathVariable Long id) {
