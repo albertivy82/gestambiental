@@ -28,9 +28,6 @@ public class MoradorInput {
 	private Date dataNascimento;
 	
 	@NotNull
-	private int idade;
-	
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	

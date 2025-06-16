@@ -48,9 +48,6 @@ public class Morador implements Serializable{
 	private Date dataNascimento;
 	
 	@NotNull
-	private int idade;
-	
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	

@@ -318,7 +318,6 @@ CREATE TABLE `morador` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `perfil` varchar(255) NOT NULL,
   `data_nascimento` date NOT NULL,
-  `idade` int(3) NOT NULL,
   `sexo` varchar(255) NOT NULL,
   `escolaridade` varchar(255) NOT NULL,
   `estado_civil` varchar(255) NOT NULL,
