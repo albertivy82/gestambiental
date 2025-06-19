@@ -380,7 +380,7 @@ CREATE TABLE `destino_pesca` (
   FOREIGN KEY (`pesca_artesanal`) REFERENCES `pesca_artesanal` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE `quantidadePescaPorTipo` (
+CREATE TABLE `quantidade_pesca_por_tipo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `quantidade_pesca` double,
   `tipo_pesca` VARCHAR(255),

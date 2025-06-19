@@ -30,5 +30,5 @@ public class EspecieDTO {
     private String importancia;
     
     private String mesesMaiorOcorrencia;
-    private PescaAetesanalIdDTO pescaArtesanal;
+    private PescaArtesanalIdDTO pescaArtesanal;
 }

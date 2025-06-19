@@ -33,23 +33,23 @@ public class PeixesService {
 	ModelMapper mapper;
 	
 	@Transactional
-	public Peixes inserir(Peixes vegetacao) {
+	public Peixes inserir(Peixes peixe) {
 		
 		
-		Long idEntrevistado = vegetacao.getEntrevistado().getId();
+		Long idEntrevistado = peixe.getEntrevistado().getId();
 		Entrevistado entrevistado = entrevistados.findById(idEntrevistado)
 		.orElseThrow(()->new EntrevistadoNaoEncontradoException(idEntrevistado));
-		vegetacao.setEntrevistado(entrevistado);
+		peixe.setEntrevistado(entrevistado);
 		
-		return peixes.save(vegetacao);
+		return peixes.save(peixe);
 	}
 	
 	
 	public Peixes buscarEntidade(Long id) {
 		
-		Peixes vegetacaoAtual = peixes.findById(id)
+		Peixes peixeAtual = peixes.findById(id)
 				.orElseThrow(()-> new PeixeNaoEncontradoException(id));
-		return inserir(vegetacaoAtual);
+		return inserir(peixeAtual);
 	}
 	
 	
@@ -63,15 +63,15 @@ public class PeixesService {
 	
 	public PeixesDTO localizarEntidade(Long id) {
 		
-			Peixes vegetacao = peixes.findById(id)
+			Peixes peixe = peixes.findById(id)
 					.orElseThrow(()-> new PeixeNaoEncontradoException(id));
 		
-		return mapper.map(vegetacao, PeixesDTO.class);
+		return mapper.map(peixe, PeixesDTO.class);
 	}
 	
 	public List<PeixesDTO> buscarPorEntrevistado(Long entrevistadoId){
 		List<PeixesDTO> peixesPorEntrevistado = peixes.findByEntrevistado(entrevistadoId)
-				.stream().map(vegetacao->mapper.map(vegetacao, PeixesDTO.class)).toList();
+				.stream().map(peixe->mapper.map(peixe, PeixesDTO.class)).toList();
 		
 		return peixesPorEntrevistado;
 	}
