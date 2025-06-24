@@ -15,10 +15,7 @@ public class EspecieDTO {
     private double quantidadePescada;
     
     
-    private String quantidadeDaPesca;
-    
-    
-    private String tamanhoDaPesca;
+   private String tamanhoDaPesca;
     
     
     private String exploracaoNivel;

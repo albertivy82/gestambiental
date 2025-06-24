@@ -18,9 +18,6 @@ public class EspecieInput {
     private double quantidadePescada;
     
     @Enumerated(EnumType.STRING)
-    private TamanhoPesca quantidadeDaPesca;
-    
-    @Enumerated(EnumType.STRING)
     private TamanhoPesca tamanhoDaPesca;
     
     @Enumerated(EnumType.STRING)

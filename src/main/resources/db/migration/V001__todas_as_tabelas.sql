@@ -404,7 +404,6 @@ CREATE TABLE `especie` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `especie` VARCHAR(255) NOT NULL,
   `quantidade_pescada` double NOT NULL,
-  `quantidade_da_pesca` VARCHAR(255),
   `tamanho_da_pesca` VARCHAR(255),
   `exploracao_nivel` VARCHAR(255),
   `preco_venda_medio_kg` double NOT NULL,
