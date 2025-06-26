@@ -12,7 +12,6 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.ParticipacaoInstitu
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.MoradorNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.ParticipacaoInstituicaoNaoEncontradaException;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.PeixeNaoEncontradoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Morador;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ParticipacaoInstituicao;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.repository.MoradoresRepository;
@@ -65,7 +64,7 @@ public class ParticipacaoInstituicaoService {
 	public ParticipacaoInstituicaoDTO localizarEntidade(Long id) {
 		
 			ParticipacaoInstituicao participacaoInstituicao = participacoes.findById(id)
-					.orElseThrow(()-> new PeixeNaoEncontradoException(id));
+					.orElseThrow(()-> new MoradorNaoEncontradoException(id));
 		
 		return mapper.map(participacaoInstituicao, ParticipacaoInstituicaoDTO.class);
 	}
@@ -84,7 +83,7 @@ public class ParticipacaoInstituicaoService {
 			participacoes.flush();
 		}catch(EmptyResultDataAccessException e) {
 			
-			throw new PeixeNaoEncontradoException(id);
+			throw new MoradorNaoEncontradoException(id);
 			
 		}catch(DataIntegrityViolationException e) {
 			
