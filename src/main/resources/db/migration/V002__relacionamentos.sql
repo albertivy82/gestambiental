@@ -9,15 +9,6 @@ ALTER TABLE `grupo_permissao` ADD CONSTRAINT `fk_grupo_permissao_grupo` FOREIGN 
 
 
 ALTER TABLE `entrevistado` ADD CONSTRAINT `fk_localidade_entrevistado` FOREIGN KEY ( `localidade` ) REFERENCES `localidade` ( `id` ) ON DELETE CASCADE;
-ALTER TABLE `vegetacao` ADD CONSTRAINT `fk_entrevistado_vegetacao` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
-ALTER TABLE `fauna` ADD CONSTRAINT `fk_entrevistado_fauna` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
-ALTER TABLE `peixes` ADD CONSTRAINT `fk_entrevistado_peixes` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
-ALTER TABLE `repteis` ADD CONSTRAINT `fk_entrevistado_repteis` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
-ALTER TABLE `mamiferos` ADD CONSTRAINT `fk_entrevistado_mamiferos` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
-ALTER TABLE `aves` ADD CONSTRAINT `fk_entrevistado_aves` FOREIGN KEY (`entrevistado`) REFERENCES `entrevistado` (`id`) ON DELETE CASCADE;
-
-
-
 
 ALTER TABLE `compras` ADD CONSTRAINT `fk_benfeitoria_compras` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` )ON DELETE CASCADE;
 ALTER TABLE `dependencias` ADD CONSTRAINT `fk_benfeitoria_dependencias` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` ) ON DELETE CASCADE;
@@ -27,9 +18,6 @@ ALTER TABLE `atividade_produtiva` ADD CONSTRAINT `fk_benfeitoria_atividade_econo
 ALTER TABLE `renda_outras_fontes` ADD CONSTRAINT `fk_benfeitoria_renda_outras_fontes` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` ) ON DELETE CASCADE;
 ALTER TABLE `credito` ADD CONSTRAINT `fk_benfeitoria_credito` FOREIGN KEY ( `benfeitoria` ) REFERENCES `benfeitoria` ( `id` ) ON DELETE CASCADE;
 ALTER TABLE `morador` ADD CONSTRAINT `fk_benfeitoria_morador` FOREIGN KEY ( `benfeitoria`) REFERENCES `benfeitoria` ( `id` ) ON DELETE CASCADE;
-ALTER TABLE `pesca_artesanal` ADD CONSTRAINT `fk_benfeitoria_pesca_artesanal` FOREIGN KEY ( `benfeitoria`) REFERENCES `benfeitoria` ( `id` ) ON DELETE CASCADE;
-
-
 
 
 

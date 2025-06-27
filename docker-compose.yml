@@ -1,13 +1,24 @@
-version: "3.9"
+version: '3.8'
 
 services:
-  algafood-mysql:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
+  app:
+    build: .
     environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
-    networks:
-      - socioeconomia
- # socioeconomia-api:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_HOST=db
+      - DB_NAME=dadossocioambientais
+      - DB_USER=root
+      - DB_PASS=Senha001%Senha002  # Corrigido para bater com o MYSQL_ROOT_PASSWORD
+      - JWT_KEYSTORE_PASSWORD=875621
+      - JWT_KEYPAIR_ALIAS=gestambiental
+    depends_on:
+      - db
+    volumes:
+      - ./logs:/logs
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=Senha001%Senha002
+      - MYSQL_DATABASE=dadossocioambientais

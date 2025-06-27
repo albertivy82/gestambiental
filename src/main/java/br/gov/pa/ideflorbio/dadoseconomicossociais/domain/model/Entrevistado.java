@@ -138,36 +138,6 @@ public class Entrevistado implements Serializable{
 	@JoinColumn(name="localidade")
 	private Localidade localidade;
 	
-	/*
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "entrevistado") private List<Vegetacao> etnoVegetacao;
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "entrevistado") private List<Fauna> etnoFauna;
-	 * 
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "entrevistado") private List<Peixes> etnoPeixe;
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "entrevistado") private List<Repteis> etnoRepteis;
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "entrevistado") private List<Mamiferos> etnoMamiferos;
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @OneToMany(mappedBy = "entrevistado") private List<Aves> etnoAves;
-	 */
-	
-			
-	
-	
 	
 	
 
