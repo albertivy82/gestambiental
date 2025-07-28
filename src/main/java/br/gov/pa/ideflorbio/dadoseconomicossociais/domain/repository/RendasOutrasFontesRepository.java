@@ -11,7 +11,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.RendaOutrasFonte
 @Repository
 public interface RendasOutrasFontesRepository extends JpaRepository<RendaOutrasFontes, Long>{
 	
-	@Query(value= "SELECT * FROM RENDA_OUTRAS_FONTES WHERE BENFEITORIA = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM renda_outras_fontes WHERE benfeitoria = ?1", nativeQuery=true)
 	List<RendaOutrasFontes> findByBenfeitoriaId(Long benfeiroriaId);
 
 }

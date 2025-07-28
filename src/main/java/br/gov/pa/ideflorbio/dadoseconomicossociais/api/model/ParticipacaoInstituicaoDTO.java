@@ -9,7 +9,7 @@ public class ParticipacaoInstituicaoDTO {
 
 	private Long id;
     private String instituicao;
-	private String tipoDeRgistro;
+	private String tipoDeRegistro;
 	private String Registro;
 	private MoradorIdDTO morador; 
 

@@ -12,7 +12,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Imovel;
 @Repository
 public interface ImoveisRepository extends JpaRepository<Imovel, Long>{
 	
-	@Query(value= "SELECT * FROM IMOVEL WHERE ENTREVISTADO = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM imovel WHERE entrevistado = ?1", nativeQuery=true)
 	Optional<Imovel> findByEntrevistadoId(Long entrevistadoId);
 	
 	

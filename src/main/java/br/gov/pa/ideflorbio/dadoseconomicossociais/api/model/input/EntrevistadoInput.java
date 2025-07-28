@@ -1,10 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Escolaridade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EstadoCivil;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Sexo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
@@ -26,15 +21,14 @@ public class EntrevistadoInput {
 	    private String naturalidade;
 
 	    @NotNull
-	    @DateTimeFormat(pattern = "YYYY-MM-DD")
-	    private Date nascimentoData;
+	    private int nascimentoData;
 
 	    @Enumerated(EnumType.STRING)
 	    private Sexo sexo;
 	    private String apelido;
 
-	    @Enumerated(EnumType.STRING)
-	    private Escolaridade escolaridade;
+	    @NotBlank
+	    private String escolaridade;
 
 	    @Enumerated(EnumType.STRING)
 	    private EstadoCivil estadoCivil;
@@ -43,9 +37,8 @@ public class EntrevistadoInput {
 	    @Enumerated(EnumType.STRING)
 	    private SimNao morador;
 
-	    @NotNull
-	    @DateTimeFormat(pattern = "YYYY-MM-DD")
-	    private Date dataChegada;
+	    @NotBlank
+		private String dataChegada;
 
 	    @NotNull
 	    @Enumerated(EnumType.STRING)

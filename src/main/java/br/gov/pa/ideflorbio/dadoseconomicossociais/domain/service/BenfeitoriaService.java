@@ -36,7 +36,7 @@ public class BenfeitoriaService {
 	ModelMapper mapper;
 	
 	
-	
+	@Transactional
 	public Benfeitoria inserir (Benfeitoria benfeitoria) {
 		Long imovelId = benfeitoria.getImovel().getId();
 		Imovel imovel = imoveis.findById(imovelId).orElseThrow(()->new ImovelNaoEncontradoException(imovelId));

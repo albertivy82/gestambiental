@@ -18,7 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-// V EDUCAÇÃO
+
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter

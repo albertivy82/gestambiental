@@ -19,7 +19,12 @@ public class CorsConfig {
 	FilterRegistrationBean<CorsFilter> corsFilterRegistrationBean() {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.setAllowedOrigins(Arrays.asList("http://127.0.0.1:3000", "http://127.0.0.1:8081" ));
+		config.setAllowedOrigins(Arrays.asList(
+			    "http://127.0.0.1:3000",
+			    "http://127.0.0.1:8081",
+			    "http://dados-economico-sociais.ideflorbio.pa.gov.br",
+			    "http://177.74.56.24"
+			));
 		config.setAllowedMethods(List.of("*"));
 		config.setAllowedHeaders(List.of("*"));
 

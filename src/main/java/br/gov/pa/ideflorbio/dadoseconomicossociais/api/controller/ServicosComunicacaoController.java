@@ -40,7 +40,7 @@ public class ServicosComunicacaoController {
 	
 	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping()
+	@PostMapping
 	public ServicosComunicacaoDTO adicionar(@RequestBody @Valid ServicosComunicacaoInput servicoComunicacaoInput) {
 		
 		try {

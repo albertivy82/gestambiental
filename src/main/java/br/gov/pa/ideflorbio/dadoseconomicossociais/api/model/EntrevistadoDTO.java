@@ -13,7 +13,7 @@ public class EntrevistadoDTO {
 	    private Long id;
 	    private String nome;
 	    private String naturalidade;
-	    private String nascimentoData;
+	    private int nascimentoData;
 	    private String sexo;
 	    private String apelido;
 	    private String escolaridade;

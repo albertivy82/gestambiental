@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.exc.PropertyBindingException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeEmUsoException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.exceptions.NegocioException;
+import jakarta.validation.ConstraintViolationException;
 
 
 @ControllerAdvice
@@ -257,6 +258,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	
+	
+	
 	private Problem.ProblemBuilder createProblemBuilder(HttpStatusCode status, ProblemType problemType, String detail){
 		return Problem.builder()
 				.status(status.value())
@@ -266,6 +269,33 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				.timestamp(LocalDateTime.now());
 		
 	}
+	
+	
+	
+
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException ex, WebRequest request) {
+	    HttpStatus status = HttpStatus.BAD_REQUEST;
+	    ProblemType problemType = ProblemType.DADOS_INVALIDOS;
+	    String detail = "Um ou mais campos estão inválidos. Corrija e tente novamente.";
+
+	    List<Problem.Field> problemFields = ex.getConstraintViolations()
+	        .stream()
+	        .map(violation -> Problem.Field.builder()
+	            .name(violation.getPropertyPath().toString())
+	            .userMessage(violation.getMessage())
+	            .build())
+	        .collect(Collectors.toList());
+
+	    Problem problem = createProblemBuilder(status, problemType, detail)
+	        .userMessage(detail)
+	        .fields(problemFields)
+	        .timestamp(LocalDateTime.now())
+	        .build();
+
+	    return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+
 	
 	
 	

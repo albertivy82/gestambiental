@@ -1,5 +1,5 @@
 # Usa a imagem do OpenJDK 17 como base
-FROM openjdk:17
+FROM openjdk:26-slim
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
@@ -10,5 +10,5 @@ COPY ./target/*.jar /app/api.jar
 # Expõe a porta em que sua aplicação irá rodar (ajuste conforme necessário)
 EXPOSE 8080
 
-# Define o comando para iniciar sua aplicação
-CMD ["java", "-jar", "api.jar"]
+# Aguarda 40 segundos e inicia a aplicação
+CMD ["sh", "-c", "sleep 40 && java -jar api.jar"]

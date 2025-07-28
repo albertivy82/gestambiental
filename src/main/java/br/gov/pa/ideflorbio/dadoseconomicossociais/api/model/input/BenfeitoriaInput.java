@@ -1,14 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Funcao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoBenfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoCobertura;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoConstrucao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoEsquadrias;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSoloBenfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,18 +10,15 @@ public class BenfeitoriaInput {
 	
 	
 	@NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoBenfeitoria tipoBenfeitoria;
+    private String tipoBenfeitoria;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private Funcao funcao;
+    private String funcao;
 
     private String afastamentoDaPrincipal;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoSoloBenfeitoria impermeabilizacaoSolo;
+    private String impermeabilizacaoSolo;
 
     private String limites;
 
@@ -41,16 +29,13 @@ public class BenfeitoriaInput {
     private int pavimentos;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoConstrucao paredes;
+    private String paredes;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoCobertura tipoCobertura;
+    private String tipoCobertura;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private TipoEsquadrias tipoEsquadrias;
+    private String tipoEsquadrias;
 
     @NotNull
 	private String origemMadeiraDaConstrucao;
@@ -79,8 +64,7 @@ public class BenfeitoriaInput {
 	
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Transporte meiosLocomocao;
+	private String meiosLocomocao;
 	
 	@NotNull
 	private String linhasOnibus;

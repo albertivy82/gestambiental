@@ -2,9 +2,7 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model.input;
 
 import java.math.BigDecimal;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.AtividadesProdutivas;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
@@ -14,9 +12,8 @@ import lombok.Setter;
 @Setter
 public class AtividadeProdutivaInput {
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private AtividadesProdutivas atividade;
+	@NotBlank
+	private String atividade;
 	
 	private int pessoasEnvolvidas;
 	

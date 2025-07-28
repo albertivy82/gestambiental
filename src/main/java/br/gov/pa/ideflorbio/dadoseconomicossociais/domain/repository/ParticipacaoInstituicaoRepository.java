@@ -12,7 +12,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ParticipacaoInst
 public interface ParticipacaoInstituicaoRepository extends JpaRepository<ParticipacaoInstituicao, Long>{
 	
 	
-	@Query(value="SELECT * FROM PARTICIPACAO_INSTITUICAO WHERE MORADOR = ?1", nativeQuery = true)
+	@Query(value="SELECT * FROM participacao_instituicao WHERE morador = ?1", nativeQuery = true)
 	List<ParticipacaoInstituicao>findByMorador(Long Morador);
 
 }

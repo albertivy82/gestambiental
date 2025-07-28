@@ -29,7 +29,7 @@ public class ParticipacaoInstituicao {
 	 * NAO_DECLARADO, OUTRO
 	 */
 	
-	private String tipoDeRgistro;
+	private String tipoDeRegistro;
 	
 	private String Registro;
 	

@@ -4,16 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Funcao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoBenfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoCobertura;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoConstrucao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoEsquadrias;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSoloBenfeitoria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Transporte;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,26 +28,33 @@ public class Benfeitoria {
 	private Long id;
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoBenfeitoria tipoBenfeitoria;
-	
+	private String tipoBenfeitoria;
+	 //Residencia,
+	 //Vareneio,
+	 //Comercio,
+	 //SemUso,
+	 //Nao_Informado,
+	 //Outro
 
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Funcao funcao;
+	private String funcao;
+	 //Principal,
+	 //Secundaria
 	
 	
 	private String afastamentoDaPrincipal;
 	
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoSoloBenfeitoria impermeabilizacaoSolo;
-	
+	private String impermeabilizacaoSolo;
+	 //Terreno_Natural,
+	 //Vejetacao,
+	 //Cimentado,
+	// Outro
+
 	
 	private String limites;
 
-	
 	
 	@NotNull
 	private double areaBenfeitoria;
@@ -67,17 +65,27 @@ public class Benfeitoria {
 	
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoConstrucao paredes;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoCobertura tipoCobertura;
-	
+	private String paredes;
+	//Alvenaria,
+    //Madeira,
+    //Taipa,
+    //Palha,
+    //Outro
 
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoEsquadrias tipoEsquadrias;
+	private String tipoCobertura;
+	//Telha_de_Barro,
+    //Brasilit,
+    //Palha,
+    //Laje,
+    //Outros
+
+	@NotNull
+	private String tipoEsquadrias;
+	//madeira,
+	//aluminio,
+	//PVC,
+	//vidro
 	
 	@NotNull
 	private String origemMadeiraDaConstrucao;
@@ -106,8 +114,14 @@ public class Benfeitoria {
 	
 	
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Transporte meiosLocomocao;
+	private String meiosLocomocao;
+	 //CARRO("Carro"),
+	 //BARCO("Barco"),
+	 //BICICLETA("Bicicleta"),
+	 //A_PÉ("Deslocamento a pé"),
+	// MOTO("Motocicleta"),
+	 //RABETA("Rabeta"),
+	 //OUTRO("Outros");
 	
 	@NotNull
 	private String linhasOnibus;
@@ -131,7 +145,7 @@ public class Benfeitoria {
 	private List<ServicosComunicacao> servicosComunicacao;
 	
 	
-		@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "benfeitoria")
 	private List<RendaOutrasFontes> rendaOutrasFontes;
 	

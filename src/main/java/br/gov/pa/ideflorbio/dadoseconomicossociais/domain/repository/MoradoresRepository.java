@@ -11,7 +11,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Morador;
 @Repository
 public interface MoradoresRepository extends JpaRepository<Morador, Long>{
 	
-	@Query(value= "SELECT * FROM MORADOR WHERE BENFEITORIA = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM morador WHERE benfeitoria = ?1", nativeQuery=true)
 	List<Morador> findByBenfeitoriaId(Long benfeiroriaId);
 
 }

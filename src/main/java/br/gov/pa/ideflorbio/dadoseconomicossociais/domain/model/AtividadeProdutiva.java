@@ -3,16 +3,13 @@ package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.AtividadesProdutivas;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -31,9 +28,8 @@ public class AtividadeProdutiva implements Serializable{
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private AtividadesProdutivas atividade;
+	@NotBlank
+	private String atividade;
 	
 	
 	private int pessoasEnvolvidas;

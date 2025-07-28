@@ -11,7 +11,7 @@ public class ParticipacaoInstituicaoInput {
     
     private String instituicao;
 	
-	private String tipoDeRgistro;
+	private String tipoDeRegistro;
 	
 	private String Registro;
 	

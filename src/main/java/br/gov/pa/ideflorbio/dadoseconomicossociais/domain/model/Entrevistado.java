@@ -1,11 +1,7 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Escolaridade;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EstadoCivil;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Sexo;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
@@ -43,8 +39,7 @@ public class Entrevistado implements Serializable{
 	private String naturalidade;
 	
 	@NotNull
-	@DateTimeFormat(pattern = "YYYY-MM-DD")
-	private Date nascimentoData;
+	private int nascimentoData;
 	
 	
 	@Enumerated(EnumType.STRING)
@@ -53,8 +48,8 @@ public class Entrevistado implements Serializable{
 	private String apelido;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private Escolaridade escolaridade;
+	@NotBlank
+	private String escolaridade;
 	
 	
 	@Enumerated(EnumType.STRING)
@@ -65,9 +60,8 @@ public class Entrevistado implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private SimNao morador;
 	
-	@NotNull
-	@DateTimeFormat(pattern = "YYYY-MM-DD")
-	private Date dataChegada;
+	@NotBlank
+	private String dataChegada;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)

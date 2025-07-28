@@ -11,7 +11,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.AtividadeProduti
 @Repository
 public interface AtividadesProdutivasRepository extends JpaRepository<AtividadeProdutiva, Long>{
 	
-	@Query(value= "SELECT * FROM ATIVIDADE_PRODUTIVA WHERE BENFEITORIA = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM atividade_produtiva WHERE benfeitoria = ?1", nativeQuery=true)
 	List<AtividadeProdutiva> findByBenfeitoriaId(Long benfeiroriaId);
 
 }

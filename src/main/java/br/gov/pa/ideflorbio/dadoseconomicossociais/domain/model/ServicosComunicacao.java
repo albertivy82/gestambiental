@@ -1,9 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Operadora;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoServicComunicacao;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,16 +22,13 @@ public class ServicosComunicacao {
 	private Long id;
 	
 	@NotBlank
-	@Enumerated(EnumType.STRING)
-	private TipoServicComunicacao tipoServicoComunicacao;
+	private String tipoServicoComunicacao;
 	
 	@NotBlank
-	@Enumerated(EnumType.STRING)
-	private Operadora operadoraServicoComunicacao;
+	private String operadoraServicoComunicacao;
 	
 	
-	@NotBlank
-    @ManyToOne
+	@ManyToOne
 	@JoinColumn(name="benfeitoria")
 	private Benfeitoria benfeitoria;
 

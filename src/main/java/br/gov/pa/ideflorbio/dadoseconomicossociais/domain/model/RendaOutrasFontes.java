@@ -4,16 +4,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
-
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.FontesRenda;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +31,8 @@ public class RendaOutrasFontes implements Serializable{
 	private Long id;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private FontesRenda fonte;
+	@NotBlank
+	private String fonte;
 	
 	
 	private int beneficiarios;

@@ -9,7 +9,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Benfeitoria;
 @Repository
 public interface BenfeitoriasRepository extends JpaRepository<Benfeitoria, Long>{
 	
-	@Query(value= "SELECT * FROM BENFEITORIA WHERE IMOVEL = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM benfeitoria WHERE imovel = ?1", nativeQuery=true)
 	List<Benfeitoria> findByImovelId(Long imovelId);
 	
 	

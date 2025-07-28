@@ -47,7 +47,6 @@ public class MoradoresService {
 	}
 	
 	
-	@Transactional
 	public Morador buscarEntidade(Long id) {
 		
 		Morador moradorAtual = moradores.findById(id)

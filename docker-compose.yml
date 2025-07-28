@@ -3,18 +3,21 @@ version: '3.8'
 services:
   app:
     build: .
+    container_name: api
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - DB_HOST=db
       - DB_NAME=dadossocioambientais
       - DB_USER=root
-      - DB_PASS=Senha001%Senha002  # Corrigido para bater com o MYSQL_ROOT_PASSWORD
+      - DB_PASS=Senha001%Senha002
       - JWT_KEYSTORE_PASSWORD=875621
       - JWT_KEYPAIR_ALIAS=gestambiental
     depends_on:
       - db
     volumes:
       - ./logs:/logs
+    networks:
+      - rede-api
 
   db:
     image: mysql:8.0
@@ -22,3 +25,28 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=Senha001%Senha002
       - MYSQL_DATABASE=dadossocioambientais
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - rede-api
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - rede-api
+
+volumes:
+  db_data:
+
+networks:
+  rede-api:
+    driver: bridge

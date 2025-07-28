@@ -1,7 +1,5 @@
 package br.gov.pa.ideflorbio.dadoseconomicossociais.api.model;
 
-import java.sql.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +7,12 @@ import lombok.Setter;
 @Setter
 public class MoradorDTO {
 	
-	
+	private Long id;
 	
 	private String perfil;
 	
 	
-	private Date dataNascimento;
+	private int dataNascimento;
 	
 	
 	private String sexo;

@@ -41,7 +41,7 @@ public class BenfeitoriaController {
 	
 	@CheckSecurity.Geral.PodeEditar
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping
+	@PostMapping()
 	public BenfeitoriaDTO adicionar (@RequestBody @Valid BenfeitoriaInput benfeitoriaInput) {
 		
 		try {

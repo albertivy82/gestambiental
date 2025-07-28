@@ -12,7 +12,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.PostoDeSaude;
 public interface PostosDeSaudeRepository extends JpaRepository<PostoDeSaude, Long>{
 	
 	
-	@Query(value="SELECT * FROM POSTO_DE_SAUDE WHERE localidade = ?1", nativeQuery = true)
+	@Query(value="SELECT * FROM posto_de_saude WHERE localidade = ?1", nativeQuery = true)
 	List<PostoDeSaude>findByLocalidade(Long localidade);
 
 }

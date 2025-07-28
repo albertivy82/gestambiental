@@ -11,7 +11,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Credito;
 @Repository
 public interface CreditosRepository extends JpaRepository<Credito, Long>{
 	
-	@Query(value= "SELECT * FROM CREDITO WHERE BENFEITORIA = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM credito WHERE benfeitoria = ?1", nativeQuery=true)
 	List<Credito> findByBenfeitoriaId(Long benfeiroriaId);
 
 }

@@ -12,7 +12,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Agua;
 @Repository
 public interface AguaRepository extends JpaRepository<Agua, Long>{
 	
-	@Query(value= "SELECT * FROM AGUA WHERE BENFEITORIA = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM agua WHERE benfeitoria = ?1", nativeQuery=true)
 	List<Agua> findByBenfeitoriaId(Long benfeiroriaId);
 	
 		

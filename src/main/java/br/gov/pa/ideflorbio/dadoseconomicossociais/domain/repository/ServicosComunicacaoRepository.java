@@ -11,7 +11,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.ServicosComunica
 @Repository
 public interface ServicosComunicacaoRepository extends JpaRepository<ServicosComunicacao, Long>{
 	
-	@Query(value= "SELECT * FROM SERVICOS_COMUNICACAO WHERE BENFEITORIA = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM servicos_comunicacao WHERE benfeitoria = ?1", nativeQuery=true)
 	List<ServicosComunicacao> findByBenfeitoriaId(Long benfeiroriaId);
 
 }

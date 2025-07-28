@@ -14,7 +14,7 @@ import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.Entrevistado;
 public interface EntrevistadosRepository extends JpaRepository<Entrevistado, Long>{
 	
 	
-	@Query(value= "SELECT * FROM ENTREVISTADO WHERE localidade = ?1", nativeQuery=true)
+	@Query(value= "SELECT * FROM entrevistado WHERE localidade = ?1", nativeQuery=true)
 	List<Entrevistado> findByLocalidadeId (Long localidadeId);
 	
 	@Query(value = "SELECT * FROM entrevistado WHERE entrevistado.nome LIKE :nome", nativeQuery = true)
