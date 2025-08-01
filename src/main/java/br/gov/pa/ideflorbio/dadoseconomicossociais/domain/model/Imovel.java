@@ -6,12 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Documentacao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.EsporteLazer;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.LimitesTerreno;
 import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.SimNao;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.Situacao_Fundiaria;
-import br.gov.pa.ideflorbio.dadoseconomicossociais.domain.model.enums.TipoSolo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -61,25 +56,22 @@ public class Imovel implements Serializable{
 	@NotNull
 	private double areaImovel;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoSolo tipoSolo;
+	@NotBlank
+	private String tipoSolo;
 	
 	@NotBlank
 	private String vizinhosConfinantes;
 	
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Situacao_Fundiaria situacaoFundiaria;
+	@NotBlank
+	private String situacaoFundiaria;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private Documentacao documentacaoImovel;
+	@NotBlank
+	private String documentacaoImovel;
 	
 
-	@Enumerated(EnumType.STRING)
-    private LimitesTerreno limites;
+	@NotBlank
+    private String limites;
 	
 		
 	@NotBlank
@@ -88,16 +80,15 @@ public class Imovel implements Serializable{
 	@NotBlank
 	private String pavimentacao;
 	
-	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private SimNao iluminacaoPublica;
 	
 	@NotBlank
 	private String equipamentosUrbanos;
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private EsporteLazer espacosEsporteLazer;
+	@NotBlank
+	private String espacosEsporteLazer;
 	
 	@NotBlank
 	private String programaInfraSaneamento;

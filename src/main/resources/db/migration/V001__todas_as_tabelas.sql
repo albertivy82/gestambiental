@@ -80,7 +80,7 @@ CREATE TABLE `entrevistado` (
   `data_chegada` varchar(255) NOT NULL,
   `relacao_area_imovel` varchar(255) NOT NULL,
   `relacao_vizinhos` varchar(255) NOT NULL,
-  `tipo_alimentacao` varchar(100) NOT NULL,
+  `tipo_alimentacao` varchar(500) NOT NULL,
   `local_compras` varchar(255) NOT NULL,
   `servicos_deficitarios` varchar(255) NOT NULL,
   `sofreu_assaltos` int(11) NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `entrevistado` (
   `conhece_ucs` varchar(20) NOT NULL,
   `conhece_uc_proposta` varchar(20) NOT NULL,
   `conhece_area_uc` varchar(20) NOT NULL,
-  `utiliza_area_uc` varchar(20) NOT NULL,
+  `utiliza_area_uc` varchar(255) NOT NULL,
   `proposta_melhorar_area` varchar(255) NOT NULL,
   `indicado_consulta_publica` varchar(150) NOT NULL,
   `contato_indicado_consulta_publica` varchar(50) NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE `entrevistado` (
   `importancia_de_proteger_fauna` varchar(255) DEFAULT NULL,
   `qual_espaco_precisa_ser_preservado` varchar(255) DEFAULT NULL,
   `problemas_relacionados_ao_ambiente` varchar(255) DEFAULT NULL,
-  `como_cuida_saude_familia` varchar(255) DEFAULT NULL,
+  `como_cuida_saude_familia` varchar(500) DEFAULT NULL,
   `localidade` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`localidade`) REFERENCES `localidade` (`id`)
@@ -108,9 +108,9 @@ CREATE TABLE `entrevistado` (
 
 
 CREATE TABLE `imovel` (
-   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `rua` varchar(255) NOT NULL,
-  `numero` varchar(10) NOT NULL,
+  `numero` varchar(50) NOT NULL,
   `bairro` varchar(255) NOT NULL,
   `referencial` varchar(255) NOT NULL,
   `latitude` varchar(255) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE `imovel` (
   `situacao_fundiaria` varchar(255) NOT NULL,
   `documentacao_imovel` varchar(250) NOT NULL,
   `limites` varchar(250) NOT NULL,
-  `linhas_de_barco` varchar(250) NOT NULL,
+  `linhas_de_barco` varchar(255) NOT NULL,
   `pavimentacao` varchar(255) NOT NULL,
   `iluminacao_publica` varchar(100) NOT NULL,
   `equipamentos_urbanos` varchar(255) NOT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE benfeitoria (
 	`origem_pedra_da_construcao` VARCHAR(150) NOT NULL,
 	`origem_areia_da_construcao` VARCHAR(150) NOT NULL,
   `alagamentos` VARCHAR(500) NOT NULL,
-  `epoca_ocorrencia` VARCHAR(150) NOT NULL,
+  `epoca_ocorrencia` VARCHAR(150),
   `efluentes` VARCHAR(500) NOT NULL,
   `residuos` VARCHAR(500) NOT NULL,
   `fonte_energia` VARCHAR(500) NOT NULL,
@@ -211,7 +211,7 @@ CREATE TABLE `atividade_produtiva` (
 
 CREATE TABLE `renda_outras_fontes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fonte` varchar(100) NOT NULL,
+  `fonte` varchar(255) NOT NULL,
   `beneficiarios` bigint(30) NOT NULL,
   `renda_mes_total` decimal(19,2) NOT NULL,
   `benfeitoria` bigint(30) NOT NULL,
@@ -220,9 +220,9 @@ CREATE TABLE `renda_outras_fontes` (
 
 CREATE TABLE `credito` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) DEFAULT NULL,
-  `valor` decimal(19,2) DEFAULT NULL,
-  `benfeitoria` bigint(30) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `valor` decimal(19,2) NOT NULL,
+  `benfeitoria` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -244,9 +244,9 @@ CREATE TABLE `morador` (
 
 CREATE TABLE `participacao_instituicao` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `instituicao` varchar(5) NOT NULL,
-  `tipoDeRegistro` varchar(255) NOT NULL,
-  `Registro` varchar(255) NOT NULL,
+  `instituicao` varchar(255) NOT NULL,
+  `tipo_de_registro` varchar(255) NOT NULL,
+  `registro` varchar(255) NOT NULL,
   `morador` bigint(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;

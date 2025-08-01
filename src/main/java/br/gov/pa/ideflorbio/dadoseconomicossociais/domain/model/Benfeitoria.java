@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class Benfeitoria {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	@NotNull
+	@NotBlank
 	private String tipoBenfeitoria;
 	 //Residencia,
 	 //Vareneio,
@@ -36,7 +37,7 @@ public class Benfeitoria {
 	 //Nao_Informado,
 	 //Outro
 
-	@NotNull
+	@NotBlank
 	private String funcao;
 	 //Principal,
 	 //Secundaria
@@ -45,7 +46,7 @@ public class Benfeitoria {
 	private String afastamentoDaPrincipal;
 	
 	
-	@NotNull
+	@NotBlank
 	private String impermeabilizacaoSolo;
 	 //Terreno_Natural,
 	 //Vejetacao,
@@ -53,18 +54,19 @@ public class Benfeitoria {
 	// Outro
 
 	
+	@NotBlank
 	private String limites;
 
 	
-	@NotNull
+	
 	private double areaBenfeitoria;
 	
 
-	@NotNull
+	
 	private int pavimentos;
 	
 	
-	@NotNull
+	@NotBlank
 	private String paredes;
 	//Alvenaria,
     //Madeira,
@@ -72,7 +74,7 @@ public class Benfeitoria {
     //Palha,
     //Outro
 
-	@NotNull
+	@NotBlank
 	private String tipoCobertura;
 	//Telha_de_Barro,
     //Brasilit,
@@ -80,40 +82,40 @@ public class Benfeitoria {
     //Laje,
     //Outros
 
-	@NotNull
+	@NotBlank
 	private String tipoEsquadrias;
 	//madeira,
 	//aluminio,
 	//PVC,
 	//vidro
 	
-	@NotNull
+	@NotBlank
 	private String origemMadeiraDaConstrucao;
-	@NotNull
+	@NotBlank
 	private String origemPedraDaConstrucao;
-	@NotNull
+	@NotBlank
 	private String origemAreiaDaConstrucao;
 	
-	@NotNull
+	@NotBlank
     private String alagamentos;
 
-    @NotNull
+	
     private String epocaOcorrencia;
 
-    @NotNull
+	@NotBlank
 	private String efluentes;
 	
-    @NotNull
+    @NotBlank
 	private String residuos;
 	
-    @NotNull
+    @NotBlank
 	private String fonteEnergia;
 		
-    @NotNull
+    @NotBlank
 	private String energiaAlimentos;
 	
 	
-	@NotNull
+    @NotBlank
 	private String meiosLocomocao;
 	 //CARRO("Carro"),
 	 //BARCO("Barco"),
@@ -123,10 +125,10 @@ public class Benfeitoria {
 	 //RABETA("Rabeta"),
 	 //OUTRO("Outros");
 	
-	@NotNull
+    @NotBlank
 	private String linhasOnibus;
 	
-	@NotNull
+    @NotBlank
 	private String informativoPredominante;
 	
 	
